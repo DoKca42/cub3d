@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/19 15:50:00 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:16:19 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_coor
 typedef struct s_map
 {
 	t_coor	*hitbox;
+	int		hitbox_size;
+
 	char	**map;
 }	t_map;
 
