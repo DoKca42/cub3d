@@ -8,6 +8,7 @@ HEADERS	= -I ./include -I $(LIBMLX)/include
 LIBS	= $(GNL)/gnl.a $(RPTINTF)/libftprintf.a $(LIBMLX)/libmlx42.a -ldl -lglfw -L "/users/"$$USER"/.brew/opt/glfw/lib/" -pthread -lm -g -fsanitize=address
 
 SRCS =	src/main.c\
+		src/mlx_init.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\

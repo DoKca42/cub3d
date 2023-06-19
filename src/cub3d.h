@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/19 16:16:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/19 17:24:52 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_map
 	int		hitbox_size;
 
 	char	**map;
+
+	mlx_image_t	**bck;
+	int			bck_size;
 }	t_map;
 
 
@@ -48,5 +51,7 @@ typedef struct s_main
 	void	*mlx;
 	t_map	map;
 }	t_main;
+
+int	ft_mlx_init_build(t_main *main);
 
 #endif
