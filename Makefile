@@ -1,11 +1,11 @@
 NAME	= cub3D
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror
 LIBMLX	= ./lib/MLX42
 RPTINTF	= ./lib/ft_rprintf
 GNL		= ./lib/get_next_line
 
 HEADERS	= -I ./include -I $(LIBMLX)/include
-LIBS	= $(GNL)/gnl.a $(RPTINTF)/libftprintf.a $(LIBMLX)/libmlx42.a -ldl -lglfw -L "/users/"$$USER"/.brew/opt/glfw/lib/" -pthread -lm
+LIBS	= $(GNL)/gnl.a $(RPTINTF)/libftprintf.a $(LIBMLX)/libmlx42.a -ldl -lglfw -L "/users/"$$USER"/.brew/opt/glfw/lib/" -pthread -lm -g -fsanitize=address
 
 SRCS =	src/main.c\
 		memory_manager/memory_manager.c\
