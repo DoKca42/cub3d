@@ -13,6 +13,7 @@ SRCS =	src/main.c\
 		src/map/minimap.c\
 		src/map/map_init.c\
 		src/map/map_utils.c\
+		src/map/map_player.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\

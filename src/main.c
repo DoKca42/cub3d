@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 	map.map = ftm_malloc(6 * sizeof(char *));
     map.map[0] = ft_strdup("111111");
     map.map[1] = ft_strdup("100011");
-    map.map[2] = ft_strdup("100001");
+    map.map[2] = ft_strdup("100N01");
     map.map[3] = ft_strdup("101001");
     map.map[4] = ft_strdup("111111");
     map.map[5] = 0;
