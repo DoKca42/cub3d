@@ -22,6 +22,8 @@ SRCS =	src/main.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\
+		src/parsing_map/copy_file.c\
+		src/parsing_map/pars_raw_file.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BN	= ${SRCS_BN:.c=.o}

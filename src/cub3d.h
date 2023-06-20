@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 19:38:26 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 19:43:15 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_map
 typedef struct s_main
 {
 	void	*mlx;
+	char	**raw_map;
 	t_map	*map;
 }	t_main;
 
@@ -115,5 +116,14 @@ int			player_move_wall(t_main *main, int type, int x, int y);
 /* ======= TIME ====== */
 int			ft_delta_time(t_main *main);
 
+/* ======= COPY_FILE ====== */
+int			get_file(t_main *main, char* str);
+int			check_ber(char *str);
+int			ft_errormap(char *str);
+int			read_map(int fd);
+
+/* ======= PARS_RAW_FILE ====== */
+void		ft_pars_raw_map(char **raw_map);
+void		skip_space(char *raw_map, int *i);
 
 #endif
