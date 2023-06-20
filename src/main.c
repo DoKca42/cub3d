@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	/* ========= RAYCAST ========= */
 	map.map = ftm_malloc(6 * sizeof(char *));
     map.map[0] = ft_strdup("111111\n");
-    map.map[1] = ft_strdup("100011\n");
+    map.map[1] = ft_strdup("100D11\n");
     map.map[2] = ft_strdup("100N01\n");
     map.map[3] = ft_strdup("101001\n");
     map.map[4] = ft_strdup("111111");

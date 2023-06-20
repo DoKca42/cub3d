@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 18:34:58 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 21:26:38 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ t_coor	map_add_hitbox(int x, int y)
 	return (coor);
 }
 
-t_map	init_map_hitbox(t_map map)
+t_map	init_map_wall(t_map map)
 {
 	int		i;
 	int		y;
 	int		x;
 
-	map.hitbox_size = get_map_hitbox_size(map.map);
-	if (map.hitbox_size == 0)
+	map.wall_size = get_map_hitbox_size(map.map, '1');
+	if (map.wall_size == 0)
 		return (map);
-	map.hitbox = ftm_malloc((map.hitbox_size) * sizeof(t_coor));
+	map.wall = ftm_malloc((map.wall_size) * sizeof(t_coor));
 	i = 0;
 	y = 0;
 	while (map.map[y] && map.map[y] != 0)
@@ -39,7 +39,36 @@ t_map	init_map_hitbox(t_map map)
 		while (map.map[y] != 0 && map.map[y][x] != 0 && map.map[y][x] != '\n')
 		{
 			if (map.map[y][x] == '1')
-				map.hitbox[i++] = map_add_hitbox(x * 50, y * 50);
+				map.wall[i++] = map_add_hitbox(x * 50, y * 50);
+			x++;
+		}
+		y++;
+	}
+	return (map);
+}
+
+t_map	init_map_door(t_map map)
+{
+	int		i;
+	int		y;
+	int		x;
+
+	map.door_size = get_map_hitbox_size(map.map, 'D');
+	if (map.door_size == 0)
+		return (map);
+	map.door = ftm_malloc((map.door_size) * sizeof(t_door));
+	i = 0;
+	y = 0;
+	while (map.map[y] && map.map[y] != 0)
+	{
+		x = 0;
+		while (map.map[y] != 0 && map.map[y][x] != 0 && map.map[y][x] != '\n')
+		{
+			if (map.map[y][x] == 'D')
+			{
+				map.door[i].coor = map_add_hitbox(x * 50, y * 50);
+				map.door[i++].open = 0;
+			}
 			x++;
 		}
 		y++;
@@ -49,7 +78,8 @@ t_map	init_map_hitbox(t_map map)
 
 t_map	init_map(t_map map)
 {
-	map = init_map_hitbox(map);
+	map = init_map_wall(map);
+	map = init_map_door(map);
 	map = init_map_player(map);
 	return (map);
 }

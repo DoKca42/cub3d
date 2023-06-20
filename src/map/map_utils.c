@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:05:14 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 15:23:47 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 21:19:40 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_map_size(char **map)
 	return (size);
 }
 
-int	get_map_hitbox_size(char **map)
+int	get_map_hitbox_size(char **map, char c)
 {
 	int	size;
 	int	y;
@@ -50,7 +50,7 @@ int	get_map_hitbox_size(char **map)
 		x = 0;
 		while (map[y] != 0 && map[y][x] != 0 && map[y][x] != '\n')
 		{
-			if (map[y][x] == '1')
+			if (map[y][x] == c)
 				size++;
 			x++;
 		}

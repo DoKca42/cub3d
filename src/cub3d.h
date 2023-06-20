@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 19:43:15 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 21:27:17 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_coor
 	int	y;
 }	t_coor;
 
+typedef struct s_door
+{
+	t_coor	coor;
+	int		open;
+}	t_door;
+
 typedef struct s_player
 {
 	int	x;
@@ -61,8 +67,11 @@ typedef struct s_map
 {
 	char		**map;
 
-	t_coor		*hitbox;
-	int			hitbox_size;
+	t_coor		*wall;
+	int			wall_size;
+
+	t_door		*door;
+	int			door_size;
 
 	mlx_image_t	**img_bck;
 	int			bck_size;
@@ -88,10 +97,10 @@ int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 /* ======= MAP ====== */
 t_coor		map_add_hitbox(int x, int y);
-t_map		init_map_hitbox(t_map map);
+t_map		init_map_wall(t_map map);
 t_map		init_map(t_map map);
 int			get_map_size(char **map);
-int			get_map_hitbox_size(char **map);
+int			get_map_hitbox_size(char **map, char c);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);

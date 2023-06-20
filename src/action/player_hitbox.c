@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_hitbox.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:36:39 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 19:39:36 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 21:18:00 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ int	player_move_wall(t_main *main, int type, int x, int y)
 
 	i = 0;
 	map = main->map;
-	while (i < map->hitbox_size)
+	while (i < map->wall_size)
 	{
-		if (is_wall_collision(x, y, map->current, map->hitbox[i]))
+		if (is_wall_collision(x, y, map->current, map->wall[i]))
 		{
 			if (type == 0)
-				set_mv(main, map->current.x, map->hitbox[i].y + MAP_RES + 1);
+				set_mv(main, map->current.x, map->wall[i].y + MAP_RES + 1);
 			else if (type == 1)
-				set_mv(main, map->current.x, map->hitbox[i].y - PLAYER_RES - 1);
+				set_mv(main, map->current.x, map->wall[i].y - PLAYER_RES - 1);
 			else if (type == 2)
-				set_mv(main, map->hitbox[i].x - PLAYER_RES - 1, map->current.y);
+				set_mv(main, map->wall[i].x - PLAYER_RES - 1, map->current.y);
 			else if (type == 3)
-				set_mv(main, map->hitbox[i].x + MAP_RES + 1, map->current.y);
+				set_mv(main, map->wall[i].x + MAP_RES + 1, map->current.y);
 			return (1);
 		}
 		i++;
