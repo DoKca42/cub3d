@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:43:19 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 13:59:11 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 19:34:01 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ t_map	init_map_player(t_map map)
 	while (map.map[y] && map.map[y] != 0)
 	{
 		x = 0;
-		while (map.map[y] != 0 && map.map[y][x] != 0)
+		while (map.map[y] != 0 && map.map[y][x] != 0 && map.map[y][x] != '\n')
 		{
 			if (map.map[y][x] == 'N' || map.map[y][x] == 'S'
 				|| map.map[y][x] == 'E' || map.map[y][x] == 'W')
 			{
-				map.start = set_player(x, y,
+				map.start = set_player(x * MAP_RES + (MAP_RES / 4),
+						y * MAP_RES + (MAP_RES / 4),
 						orientation_to_angle(map.map[y][x]));
 				map.current = map.start;
 				return (map);

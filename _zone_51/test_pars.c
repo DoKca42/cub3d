@@ -97,6 +97,7 @@ int get_file(char* str)
 			write(1, &copy_file[k][i], 1);
 			i++;
 		}
+		write(1, "-\n", 2);
 		i = 0;
 		k++;
 	}

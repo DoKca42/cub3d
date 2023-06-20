@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:05:14 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 13:12:23 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:23:47 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_map_size(char **map)
 	while (map[y] && map[y] != 0)
 	{
 		x = 0;
-		while (map[y] != 0 && map[y][x] != 0)
+		while (map[y] != 0 && map[y][x] != 0 && map[y][x] != '\n')
 		{
 			size++;
 			x++;
@@ -48,7 +48,7 @@ int	get_map_hitbox_size(char **map)
 	while (map[y] && map[y] != 0)
 	{
 		x = 0;
-		while (map[y] != 0 && map[y][x] != 0)
+		while (map[y] != 0 && map[y][x] != 0 && map[y][x] != '\n')
 		{
 			if (map[y][x] == '1')
 				size++;

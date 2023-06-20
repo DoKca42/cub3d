@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 13:54:15 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 18:34:58 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_map	init_map_hitbox(t_map map)
 	while (map.map[y] && map.map[y] != 0)
 	{
 		x = 0;
-		while (map.map[y] != 0 && map.map[y][x] != 0)
+		while (map.map[y] != 0 && map.map[y][x] != 0 && map.map[y][x] != '\n')
 		{
 			if (map.map[y][x] == '1')
-				map.hitbox[i++] = map_add_hitbox(x, y);
+				map.hitbox[i++] = map_add_hitbox(x * 50, y * 50);
 			x++;
 		}
 		y++;

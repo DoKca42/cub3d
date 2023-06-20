@@ -14,6 +14,11 @@ SRCS =	src/main.c\
 		src/map/map_init.c\
 		src/map/map_utils.c\
 		src/map/map_player.c\
+		src/action/player_action.c\
+		src/action/mlx_input.c\
+		src/action/player_move.c\
+		src/action/player_hitbox.c\
+		src/action/time_utils.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\
