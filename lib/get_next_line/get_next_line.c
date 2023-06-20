@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:03:07 by loculy            #+#    #+#             */
-/*   Updated: 2023/01/09 15:23:27 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:03:09 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_buffer_mg(char *buffer)
 	j = 0;
 	while (buffer[j] != '\0' && buffer[j] != '\n')
 		j++;
-	if (buffer[j] == '\n')
-		j++;
+	//if (buffer[j] == '\n')
+	//	j++;
 	while (buffer[j] != '\0')
 		buffer[i++] = buffer[j++];
 	buffer[i] = '\0';
@@ -40,8 +40,8 @@ char	*ft_read(char *buffer)
 	size = 0;
 	while (buffer[size] != '\0' && buffer[size] != '\n')
 		size++;
-	if (buffer[size] == '\n')
-		size++;
+	//if (buffer[size] == '\n')
+	//	size++;
 	m = malloc(size + 1 * sizeof(char));
 	if (!m)
 		return (0);

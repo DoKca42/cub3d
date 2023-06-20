@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 13:16:38 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:54:15 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_coor	map_add_hitbox(int x, int y)
 	return (coor);
 }
 
-t_map	init_map(t_map map)
+t_map	init_map_hitbox(t_map map)
 {
 	int		i;
 	int		y;
@@ -44,5 +44,12 @@ t_map	init_map(t_map map)
 		}
 		y++;
 	}
+	return (map);
+}
+
+t_map	init_map(t_map map)
+{
+	map = init_map_hitbox(map);
+	map = init_map_player(map);
 	return (map);
 }

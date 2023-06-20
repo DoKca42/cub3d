@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 14:53:45 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:13:01 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,15 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 /* ======= MAP ====== */
 t_coor	map_add_hitbox(int x, int y);
+t_map	init_map_hitbox(t_map map);
 t_map	init_map(t_map map);
 int		get_map_size(char **map);
 int		get_map_hitbox_size(char **map);
+
+/* ======= PLAYER ====== */
+t_map		init_map_player(t_map map);
+t_player	set_player(int x, int y, int orientation);
+int			orientation_to_angle(char orientation);
 
 /* ======= MINIMAP ====== */
 void 	display_mini_map(t_main *main);
