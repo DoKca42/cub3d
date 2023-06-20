@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/19 17:24:52 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:31:55 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@
 # define HEIGHT 1440
 # define TOOLBAR 130
 
-# define PL_SPEED 4
+# define MN_MAP_RES 50
+
+# define PLY_SPEED 4
+# define PLY_FOV 60
 
 typedef struct s_coor
 {
@@ -34,15 +37,25 @@ typedef struct s_coor
 	int	y;
 }	t_coor;
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	int	orientation;
+}	t_player;
+
 typedef struct s_map
 {
-	t_coor	*hitbox;
-	int		hitbox_size;
+	char		**map;
 
-	char	**map;
+	t_coor		*hitbox;
+	int			hitbox_size;
 
 	mlx_image_t	**bck;
 	int			bck_size;
+
+	t_player	start;
+	t_player	current;
 }	t_map;
 
 
@@ -52,6 +65,19 @@ typedef struct s_main
 	t_map	map;
 }	t_main;
 
-int	ft_mlx_init_build(t_main *main);
+/* ======= MLX ====== */
+int		ft_mlx_init_build(t_main *main);
+void	fill_color_image(mlx_image_t *image, uint32_t color);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+
+/* ======= MAP ====== */
+t_coor	map_add_hitbox(int x, int y);
+t_map	init_map(t_map map);
+int		get_map_size(char **map);
+int		get_map_hitbox_size(char **map);
+
+/* ======= MINIMAP ====== */
+void 	display_mini_map(t_main *main);
+
 
 #endif
