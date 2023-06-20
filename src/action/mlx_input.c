@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 18:12:58 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/20 23:35:56 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_player_init_input(t_inpt *input, t_main *main)
 	input->speed = PLY_SPEED * ft_delta_time(main);
 }
 
-void	player_getmove(t_main *main)
+void	player_get_move(t_main *main)
 {
 	t_inpt	input;
 

@@ -5,13 +5,15 @@ static void	ft_hook(void *param)
 	t_main	*main;
 
 	main = param;
-	player_getmove(main);
+	player_get_move(main);
+	player_get_action(main);
 }
 
 int	main(int argc, char **argv)
 {
-	t_main	main;
-	t_map	map;
+	t_main		main;
+	t_map		map;
+	t_cooldown	cooldown;
 
 	/* ========= PARSING ========= */
 	/*
@@ -26,7 +28,7 @@ int	main(int argc, char **argv)
 	map.map = ftm_malloc(6 * sizeof(char *));
     map.map[0] = ft_strdup("111111\n");
     map.map[1] = ft_strdup("100D11\n");
-    map.map[2] = ft_strdup("100N01\n");
+    map.map[2] = ft_strdup("100ND1\n");
     map.map[3] = ft_strdup("101001\n");
     map.map[4] = ft_strdup("111111");
     //map.map[0] = ft_strdup("000000\n");
@@ -41,6 +43,8 @@ int	main(int argc, char **argv)
 	ft_mlx_init_build(&main);
 	display_mini_map(&main);
 	display_mini_map_player(&main);
+	cooldown = init_cooldown();
+	main.cooldown = &cooldown;
 
 	//printf("----- PLAYER -----\nx: %d\ny: %d\norientation %d\n\n", map.start.x, map.start.y, map.start.orientation);
 

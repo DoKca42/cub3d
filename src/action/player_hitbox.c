@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 19:36:39 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 21:18:00 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 00:29:37 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_wall_collision(int x, int y, t_player current, t_coor wall)
 	return (0);
 }
 
-int	player_move_wall(t_main *main, int type, int x, int y)
+void	player_move_wall(t_main *main, int type, int x, int y)
 {
 	int		i;
 	t_map	*map;
@@ -45,10 +45,36 @@ int	player_move_wall(t_main *main, int type, int x, int y)
 				set_mv(main, map->wall[i].x - PLAYER_RES - 1, map->current.y);
 			else if (type == 3)
 				set_mv(main, map->wall[i].x + MAP_RES + 1, map->current.y);
-			return (1);
+			return ;
 		}
 		i++;
 	}
-	update_player(main, x, y);
-	return (0);
+	player_move_door(main, type, x, y);
+}
+
+void	player_move_door(t_main *mn, int type, int x, int y)
+{
+	int		i;
+	t_map	*mp;
+
+	i = 0;
+	mp = mn->map;
+	while (i < mp->door_size)
+	{
+		if (mp->door[i].open == 0
+			&& is_wall_collision(x, y, mp->current, mp->door[i].coor))
+		{
+			if (type == 0)
+				set_mv(mn, mp->current.x, mp->door[i].coor.y + MAP_RES + 1);
+			else if (type == 1)
+				set_mv(mn, mp->current.x, mp->door[i].coor.y - PLAYER_RES - 1);
+			else if (type == 2)
+				set_mv(mn, mp->door[i].coor.x - PLAYER_RES - 1, mp->current.y);
+			else if (type == 3)
+				set_mv(mn, mp->door[i].coor.x + MAP_RES + 1, mp->current.y);
+			return ;
+		}
+		i++;
+	}
+	update_player(mn, x, y);
 }

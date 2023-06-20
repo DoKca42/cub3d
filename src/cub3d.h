@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 21:27:17 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 00:53:44 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct s_player
 	int	orientation;
 }	t_player;
 
+typedef struct s_cooldown
+{
+	int	door;
+	int	fire;
+}	t_cooldown;
+
 typedef struct s_map
 {
 	char		**map;
@@ -85,9 +91,10 @@ typedef struct s_map
 
 typedef struct s_main
 {
-	void	*mlx;
-	char	**raw_map;
-	t_map	*map;
+	void		*mlx;
+	char		**raw_map;
+	t_map		*map;
+	t_cooldown	*cooldown;
 }	t_main;
 
 /* ======= MLX ====== */
@@ -113,17 +120,21 @@ void 		display_mini_map_player(t_main *main);
 
 /* ======= ACTION ====== */
 void		ft_player_move(t_main *main, t_inpt input);
-void		player_getmove(t_main *main);
+void		player_get_move(t_main *main);
+void		player_get_action(t_main *main);
 void		ft_player_init_input(t_inpt *input, t_main *main);
 void		set_mv(t_main *main, int x, int y);
 void		update_player(t_main *main, int x, int y);
 
 /* ======= COLLISION ====== */
 int			is_wall_collision(int x, int y, t_player current, t_coor wall);
-int			player_move_wall(t_main *main, int type, int x, int y);
+void		player_move_wall(t_main *main, int type, int x, int y);
+void		player_move_door(t_main *main, int type, int x, int y);
 
 /* ======= TIME ====== */
 int			ft_delta_time(t_main *main);
+int			get_time(t_main *main);
+t_cooldown	init_cooldown(void);
 
 /* ======= COPY_FILE ====== */
 int			get_file(t_main *main, char* str);
