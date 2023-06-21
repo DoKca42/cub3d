@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 18:50:59 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 19:08:58 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_dblcoor	ray_get_yn_xn(t_main *main)
 {
 	t_dblcoor	n_pose;
 	t_coor		case_coor;
-
 
 	main->map->current.direc = 75;
 	case_coor = get_case_coor(get_center_player(main));
