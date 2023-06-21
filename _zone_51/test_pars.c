@@ -15,6 +15,46 @@ int ft_strlen(char *str)
 	return (i);
 }
 
+char	*ft_strdup_modif(char *s1)
+{
+	char	*m;
+	int		i;
+	int		sizes1;
+
+	i = 0;
+	sizes1 = ft_strlen(s1);
+	m = (char *)malloc((sizes1) * sizeof(char));
+	if (!m)
+		return (0);
+	while (i < sizes1 - 1)
+	{
+		m[i] = s1[i];
+		i++;
+	}
+	m[i] = '\0';
+	return (m);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*m;
+	int		i;
+	int		sizes1;
+
+	i = 0;
+	sizes1 = ft_strlen(s1);
+	m = (char *)malloc((sizes1 + 1) * sizeof(char));
+	if (!m)
+		return (0);
+	while (i < sizes1)
+	{
+		m[i] = s1[i];
+		i++;
+	}
+	m[i] = '\0';
+	return (m);
+}
+
 int	checkline(char *buffer)
 {
 	int	i;
@@ -76,31 +116,32 @@ int get_file(char* str)
 	int i;
 	int size;
 	int fd;
+	int k;
 	char **copy_file;
-
+	char **final_version;
 	i = 0;
+	k = 0;
 	size = read_map(ftm_open(str, O_RDONLY));
 	copy_file = malloc((size + 1) * sizeof(char *));
+	final_version = malloc((size + 1) * sizeof(char *));
 	copy_file[size] = 0;
+	final_version[size] = 0;
 	fd = ftm_open(str, O_RDONLY);
 	while (i < size)
 		copy_file[i++] = get_next_line(fd);
 	ftm_close(fd);
-<<<<<<< HEAD
 	i = 0;
 	while(copy_file[k])
 	{
-		while(copy_file[k][i])
-		{
-			write(1, &copy_file[k][i], 1);
-			i++;
-		}
-		write(1, "-\n", 2);
-		i = 0;
+		if(copy_file[k][ft_strlen(copy_file[k]) - 1] == '\n')
+			final_version[k] = ft_strdup_modif(copy_file[k]);
+		else
+			final_version[k] = ft_strdup(copy_file[k]);
 		k++;
 	}
-=======
->>>>>>> 7f5bd1f44898ac5e2b516cbe77ba2adb2a102622
+	k = 0;
+	while(copy_file[k])
+		printf("%s\n", final_version[k++]);
 	return (0);
 }
 

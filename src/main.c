@@ -16,17 +16,15 @@ int	main(int argc, char **argv)
 	t_cooldown	cooldown;
 
 	/* ========= PARSING ========= */
-	
+	/*
 	if (argc != 2)
 		return (ft_errormap("wrong number of args"));
 	if (check_ber(argv[1]) == 0)
 		return (0);
 	get_file(&main, argv[1]);
 	ft_pars_raw_map(main.raw_map);
-	
+	*/
 	/* ========= RAYCAST ========= */
-    map.map = 0;
-    map = init_map(map);
 	main.map = &map;
 
 	ft_mlx_init_build(&main);
@@ -40,8 +38,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);
-	(void)argc;
-	(void)argv;
 	ftm_free_all();
 	return (0);
 }
