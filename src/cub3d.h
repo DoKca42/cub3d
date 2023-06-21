@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 17:31:10 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:43:39 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <math.h>
 # include "MLX42/MLX42.h"
 # include "../memory_manager/memory_manager.h"
 # include "../lib/ft_rprintf/ft_printf.h"
@@ -36,8 +35,6 @@
 # define PLY_SPEED 4
 # define PLY_FOV 60
 
-# define PI 3.14159265
-
 typedef struct s_inpt
 {
 	int		right;
@@ -46,13 +43,6 @@ typedef struct s_inpt
 	int		down;
 	int		speed;
 }	t_inpt;
-
-typedef struct s_dblcoor
-{
-	double	x;
-	double	y;
-}	t_dblcoor;
-
 
 typedef struct s_coor
 {
@@ -70,7 +60,7 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
-	int	direc;
+	int	orientation;
 }	t_player;
 
 typedef struct s_cooldown
@@ -78,15 +68,6 @@ typedef struct s_cooldown
 	int	door;
 	int	fire;
 }	t_cooldown;
-
-typedef struct s_raycast
-{
-	double x;
-	double y;
-	double xn;
-	double yn;
-}	t_raycast;
-
 
 typedef struct s_map
 {
@@ -107,14 +88,24 @@ typedef struct s_map
 	mlx_image_t	*img_player;
 }	t_map;
 
+typedef struct s_texture
+{
+	char **NO;
+	char **SO;
+	char **WE;
+	char **EA;
+
+	char **F;
+	char **C;
+}	t_texture;
 
 typedef struct s_main
 {
 	void		*mlx;
 	char		**clean_file;
+	t_texture	*text;
 	t_map		*map;
 	t_cooldown	*cooldown;
-	t_raycast	*ray;
 }	t_main;
 
 /* ======= MLX ====== */
@@ -151,19 +142,6 @@ int			is_wall_collision(int x, int y, t_player current, t_coor wall);
 void		player_move_wall(t_main *main, int type, int x, int y);
 void		player_move_door(t_main *main, int type, int x, int y);
 
-/* ======= POSITION ====== */
-t_coor		get_case_player(t_main *main);
-t_coor		get_case_coor(t_coor coor);
-t_coor		get_center_player(t_main *main);
-t_dblcoor	get_dblcenter_player(t_main *main);
-
-/* ======= RAYCASTING ====== */
-void		ray_set_player_pose(t_main *main);
-t_dblcoor	ray_get_yn_xn(t_main *main);
-
-/* ======= RAYCASTING UTILS ====== */
-double		deg_to_rad(int angle);
-
 /* ======= TIME ====== */
 int			ft_delta_time(t_main *main);
 int			get_time(t_main *main);
@@ -176,12 +154,18 @@ int			ft_errormap(char *str);
 int			read_map(int fd);
 
 /* ======= COPY_FILE_UTILS ====== */
-char		*ft_strdup_modif(char *s1);
-void 		clean_map(t_main *main, char **raw_map);
-void 		ft_free_tab(char **tab);
+char	*ft_strdup_modif(char *s1);
+void 	clean_map(t_main *main, char **raw_map);
+void 	ft_free_tab(char **tab);
+int		ft_strcmp(char *s1, char *s2);
+
 
 /* ======= PARS_RAW_FILE ====== */
-void		ft_pars_raw_map(char **raw_map);
+void 		ft_pars_raw_map(char **raw_map, t_texture *text);
 void		skip_space(char *raw_map, int *i);
-
+int 		check_char(char *raw_map, int *i, t_texture *text);
+int			check_valide_format(char *raw_map, int *i, t_texture *text);
+int			check_valide_texture(t_texture *text);
+char 		**check_routine(char *raw_map, char **texture, char *to_compare);
+int 		check_color_format(char *raw_map, int *i, t_texture *text);
 #endif

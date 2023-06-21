@@ -6,12 +6,25 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:03:30 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/21 15:06:56 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:43:38 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i])
+	{
+		if(s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
 
 void ft_free_tab(char **tab)
 {
