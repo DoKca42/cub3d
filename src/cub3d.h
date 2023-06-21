@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 00:53:44 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 15:06:55 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_map
 typedef struct s_main
 {
 	void		*mlx;
-	char		**raw_map;
+	char		**clean_file;
 	t_map		*map;
 	t_cooldown	*cooldown;
 }	t_main;
@@ -141,6 +141,11 @@ int			get_file(t_main *main, char* str);
 int			check_ber(char *str);
 int			ft_errormap(char *str);
 int			read_map(int fd);
+
+/* ======= COPY_FILE_UTILS ====== */
+char	*ft_strdup_modif(char *s1);
+void 	clean_map(t_main *main, char **raw_map);
+
 
 /* ======= PARS_RAW_FILE ====== */
 void		ft_pars_raw_map(char **raw_map);
