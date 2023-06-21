@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 15:06:55 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:43:39 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,22 @@ typedef struct s_map
 	mlx_image_t	*img_player;
 }	t_map;
 
+typedef struct s_texture
+{
+	char **NO;
+	char **SO;
+	char **WE;
+	char **EA;
+
+	char **F;
+	char **C;
+}	t_texture;
 
 typedef struct s_main
 {
 	void		*mlx;
 	char		**clean_file;
+	t_texture	*text;
 	t_map		*map;
 	t_cooldown	*cooldown;
 }	t_main;
@@ -145,10 +156,16 @@ int			read_map(int fd);
 /* ======= COPY_FILE_UTILS ====== */
 char	*ft_strdup_modif(char *s1);
 void 	clean_map(t_main *main, char **raw_map);
+void 	ft_free_tab(char **tab);
+int		ft_strcmp(char *s1, char *s2);
 
 
 /* ======= PARS_RAW_FILE ====== */
-void		ft_pars_raw_map(char **raw_map);
+void 		ft_pars_raw_map(char **raw_map, t_texture *text);
 void		skip_space(char *raw_map, int *i);
-
+int 		check_char(char *raw_map, int *i, t_texture *text);
+int			check_valide_format(char *raw_map, int *i, t_texture *text);
+int			check_valide_texture(t_texture *text);
+char 		**check_routine(char *raw_map, char **texture, char *to_compare);
+int 		check_color_format(char *raw_map, int *i, t_texture *text);
 #endif
