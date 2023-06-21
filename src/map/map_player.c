@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:43:19 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 19:34:01 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 18:10:40 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	orientation_to_angle(char orientation)
 {
 	if (orientation == 'N')
-		return (0);
-	else if (orientation == 'E')
 		return (90);
+	else if (orientation == 'E')
+		return (0);
 	else if (orientation == 'S')
-		return (180);
-	else if (orientation == 'W')
 		return (270);
+	else if (orientation == 'W')
+		return (180);
 	return (0);
 }
 
@@ -31,7 +31,7 @@ t_player	set_player(int x, int y, int orientation)
 
 	player.x = x;
 	player.y = y;
-	player.orientation = orientation;
+	player.direc = orientation;
 	return (player);
 }
 

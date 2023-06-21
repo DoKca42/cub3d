@@ -14,24 +14,28 @@ int	main(int argc, char **argv)
 	t_main		main;
 	t_map		map;
 	t_cooldown	cooldown;
+	t_raycast	raycast;
 
 	/* ========= PARSING ========= */
-	/*
+	
 	if (argc != 2)
 		return (ft_errormap("wrong number of args"));
 	if (check_ber(argv[1]) == 0)
 		return (0);
 	get_file(&main, argv[1]);
-	ft_pars_raw_map(main.raw_map);
-	*/
+	//ft_pars_raw_map(main.clean_file);
+	
 	/* ========= RAYCAST ========= */
+	map.map = main.clean_file;
+	map = init_map(map);
 	main.map = &map;
-
 	ft_mlx_init_build(&main);
 	display_mini_map(&main);
 	display_mini_map_player(&main);
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
+	main.ray = &raycast;
+	ray_set_player_pose(&main);
 
 	//printf("----- PLAYER -----\nx: %d\ny: %d\norientation %d\n\n", map.start.x, map.start.y, map.start.orientation);
 
