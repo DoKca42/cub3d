@@ -18,12 +18,21 @@ SRCS =	src/main.c\
 		src/action/mlx_input.c\
 		src/action/player_move.c\
 		src/action/player_hitbox.c\
+		src/action/player_position.c\
 		src/action/time_utils.c\
+		src/raycast/init_raycast.c\
+		src/raycast/raycast_utils.c\
+		src/raycast/draw_line.c\
+		src/raycast/raycast_collision.c\
+		src/utils/utils_1.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\
 		src/parsing_map/copy_file.c\
-		src/parsing_map/pars_raw_file.c
+		src/parsing_map/pars_raw_file.c\
+		src/parsing_map/copy_file_utils.c\
+		src/parsing_map/ft_split_modif.c\
+		src/parsing_map/ft_split_modif_utils.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BN	= ${SRCS_BN:.c=.o}

@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:48:24 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 00:47:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/21 17:12:44 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-t_coor	get_case_player(t_main *main)
-{
-	t_coor	case_coor;
-
-	case_coor.x = main->map->current.x / MAP_RES;
-	case_coor.y = main->map->current.y / MAP_RES;
-	case_coor.x = case_coor.x * MAP_RES;
-	case_coor.y = case_coor.y * MAP_RES;
-	return (case_coor);
-}
 
 int	interact_door(t_main *main, t_door *door, int cldwn)
 {
