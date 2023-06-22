@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 12:53:42 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/22 17:37:16 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,21 @@ typedef struct s_texture
 	char **C;
 }	t_texture;
 
+typedef struct s_rgb
+{
+	int	r;
+	int g;
+	int b;
+}	t_rgb;
+
 typedef struct s_main
 {
 	void		*mlx;
 	char		**clean_file;
+
 	t_texture	*text;
+	t_rgb		*sol;
+	t_rgb		*ciel;
 	t_map		*map;
 	t_cooldown	*cooldown;
 	t_raycast	*ray;
@@ -214,11 +224,18 @@ void 		ft_free_tab(char **tab);
 int			ft_strcmp(char *s1, char *s2);
 
 /* ======= PARS_RAW_FILE ====== */
-void 		ft_pars_raw_map(char **raw_map, t_texture *text);
+void 		ft_pars_raw_map(char **raw_map, t_main *main);
 void		skip_space(char *raw_map, int *i);
-int 		check_char(char *raw_map, int *i, t_texture *text);
+int 		check_char(char *raw_map, int *i, t_main *main);
 int			check_valide_format(char *raw_map, int *i, t_texture *text);
 int			check_valide_texture(t_texture *text);
 char 		**check_routine(char *raw_map, char **texture, char *to_compare);
-int 		check_color_format(char *raw_map, int *i, t_texture *text);
+char 		**check_color_format(char *raw_map, int *i, char **rgb);
+
+/* ======= PARS_RAW_FILE ====== */
+int		check_char_tab_split(char c, char *str);
+char	**ft_split_modif(char const *str, char *c);
+
+/* ======= PARS_RAW_FILE ====== */
+void	init_struct(t_main *main);
 #endif

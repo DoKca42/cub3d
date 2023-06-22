@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:03:30 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/21 17:43:38 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/22 17:37:12 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void clean_map(t_main *main, char **raw_map)
 			main->clean_file[k] = ft_strdup(raw_map[k]);
 		k++;
 	}
+	main->clean_file[k] = 0;
 }
