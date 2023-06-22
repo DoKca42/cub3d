@@ -6,11 +6,12 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 14:53:00 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/22 17:37:15 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
 int	strlen_doubletab(char **tab)
 {
 	int k;
@@ -29,9 +30,14 @@ void skip_space(char *raw_map, int *i)
 
 char	**check_routine(char *raw_map, char **texture, char *to_compare)
 {
-	if(!texture)
+	char tab[3];
+
+	tab[0] = ' ';
+	tab[1] = '\t';
+	tab[2] = '\0';
+	if (!texture)
 	{
-		texture = ft_split(raw_map, ' ');
+		texture = ft_split_modif(raw_map, tab);
 		if (ft_strcmp(texture[0], to_compare) != 0 || strlen_doubletab(texture) != 2)
 			ft_errormap("Wrong texture format");
 	}
@@ -60,7 +66,7 @@ void	check_color_char(char *str)
 
 	while(str[++i])
 	{
-		if((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ',')
+		if((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ',' && str[i] != '\t')
 			ft_errormap("Wrong char in color");
 	}
 }
@@ -70,17 +76,23 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 	int		k;
 	int		size;
 	char	*color_tab;
+	char	tab[4];
+
+	tab[0] = ' ';
+	tab[1] = ',';
+	tab[2] = '\t';
+	tab[3] = '\0';
 	size = 0;
 	k = *i;
 
-	if (raw_map[k + 1] != ' ')
+	if (raw_map[k + 1] != ' ' && raw_map[k + 1] != '\t')
 		ft_errormap("Wrong color format");
 	k++;
-	while (raw_map[k] == ' ')
+	while (raw_map[k] == ' ' || raw_map[k] == '\t')
 		k++;
 	color_tab = &raw_map[k];
 	check_color_char(color_tab);
-	rgb = ft_split(color_tab, ',');
+	rgb = ft_split_modif(color_tab, tab);
 	if (strlen_doubletab(rgb) != 3)
 		ft_errormap("Wrong color format");
 	return (rgb);
@@ -129,13 +141,7 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 	int k;
 	i = 0;
 	k = 0;
-	main->text->NO = NULL;
-	main->text->SO = NULL;
-	main->text->EA = NULL;
-	main->text->WE = NULL;
-	main->text->F = NULL;
-	main->text->C = NULL;
-	while(raw_map[k])
+	while(raw_map[k] != 0)
 	{
 		while(raw_map[k][i] != 0 && raw_map[k][i] != '1' && raw_map[k][i] != '0')
 		{
@@ -149,10 +155,12 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 		i = 0;
 		k++;
 	}
-	//printf("%d\n", k);
-	//k = -1;
-	//while(text->F[++k])
-	//	printf("%s\n", text->F[k]);
+	k = -1;
+	while(main->text->F[++k] != 0)
+		printf("%s\n", main->text->F[k]);
+	k = -1;
+	while(main->text->C[++k])
+		printf("%s\n", main->text->C[k]);
 	//k = -1;
 	//while(text->NO[++k])
 	//{

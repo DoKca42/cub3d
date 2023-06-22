@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 15:05:43 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/22 17:37:16 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,4 +231,11 @@ int			check_valide_format(char *raw_map, int *i, t_texture *text);
 int			check_valide_texture(t_texture *text);
 char 		**check_routine(char *raw_map, char **texture, char *to_compare);
 char 		**check_color_format(char *raw_map, int *i, char **rgb);
+
+/* ======= PARS_RAW_FILE ====== */
+int		check_char_tab_split(char c, char *str);
+char	**ft_split_modif(char const *str, char *c);
+
+/* ======= PARS_RAW_FILE ====== */
+void	init_struct(t_main *main);
 #endif

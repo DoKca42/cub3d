@@ -9,6 +9,19 @@
 //	player_get_action(main);
 //}
 
+//void	init_struct(t_main *main)
+//{
+//	t_texture	*text;
+//	t_rgb		*sol;
+//	t_rgb		*ciel;
+//
+//	text = NULL;
+//	sol = NULL;
+//	ciel = NULL;
+//	main->text = text;
+//	main->ciel = ciel;
+//	main->sol = sol;
+//}
 int	main(int argc, char **argv)
 {
 	t_main		main;
@@ -27,29 +40,30 @@ int	main(int argc, char **argv)
 	main.text = &text;
 	main.ciel = &ciel;
 	main.sol = &sol;
+	ft_bzero(main.text, sizeof(t_texture));
 	get_file(&main, argv[1]);
 	ft_pars_raw_map(main.clean_file, &main);
 	
-	/* ========= RAYCAST ========= */
-	map.map = main.clean_file;
-	map = init_map(map);
-	main.map = &map;
-	get_main(&main);
-	ft_mlx_init_build(&main);
-	display_mini_map(&main);
-	
-	display_mini_map_player(&main);
-	init_ray_view(&main);
-	cooldown = init_cooldown();
-	main.cooldown = &cooldown;
-	main.ray = &raycast;
-	ray_set_player_pose(&main);
-
-	//printf("----- PLAYER -----\nx: %d\ny: %d\norientation %d\n\n", map.start.x, map.start.y, map.start.orientation);
-
-	mlx_loop_hook(main.mlx, ft_hook, &main);
-	mlx_loop(main.mlx);
-	mlx_terminate(main.mlx);
+	// /* ========= RAYCAST ========= */
+	// map.map = main.clean_file;
+	// map = init_map(map);
+	// main.map = &map;
+	// get_main(&main);
+	// ft_mlx_init_build(&main);
+	// display_mini_map(&main);
+	// 
+	// display_mini_map_player(&main);
+	// init_ray_view(&main);
+	// cooldown = init_cooldown();
+	// main.cooldown = &cooldown;
+	// main.ray = &raycast;
+	// ray_set_player_pose(&main);
+// 
+	// //printf("----- PLAYER -----\nx: %d\ny: %d\norientation %d\n\n", map.start.x, map.start.y, map.start.orientation);
+// 
+	// mlx_loop_hook(main.mlx, ft_hook, &main);
+	// mlx_loop(main.mlx);
+	// mlx_terminate(main.mlx);
 	ftm_free_all();
 	return (0);
 }
