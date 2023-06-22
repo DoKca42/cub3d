@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color_pixel.c                                  :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 12:14:15 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 10:56:16 by loculy           ###   ########.fr       */
+/*   Created: 2023/06/22 10:45:56 by loculy            #+#    #+#             */
+/*   Updated: 2023/06/22 12:25:54 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+int	ft_strlen_(char *str)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void	fill_color_image(mlx_image_t *image, uint32_t color)
+int	get_max(int a, int b)
 {
-	uint32_t	y;
-	uint32_t	x;
+	if (a > b)
+		return (a);
+	return (b);
+}
 
-	y = 0;
-	while (y < image->height)
-	{
-		x = 0;
-		while (x < image->width)
-		{
-			mlx_put_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
+int	get_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

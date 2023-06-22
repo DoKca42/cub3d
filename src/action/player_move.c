@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 18:51:59 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:53:45 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	ft_player_move(t_main *main, t_inpt input)
 	if (input.up + input.down + input.right + input.left > 0)
 	{
 		ray_set_player_pose(main);
-		ray_get_yn_xn(main);
-		printf("xn: %f - yn: %f\n", main->ray->xn, main->ray->yn);
+		raycast(main);
+		//raycast_get_collision(ray_get_yn_xn(main), main);
+		//printf("xn: %f - yn: %f\n", main->ray->x + main->ray->xn, main->ray->y + main->ray->yn);
+		//draw_line(main->ray->x, main->ray->y, main->ray->x + main->ray->xn, main->ray->y + main->ray->yn);
 	}
 }
