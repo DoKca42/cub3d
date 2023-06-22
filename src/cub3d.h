@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 19:05:43 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:53:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_map
 	t_player	current;
 
 	mlx_image_t	*img_player;
+
+	mlx_image_t	*ray_lines;
 }	t_map;
 
 typedef struct s_texture
@@ -139,6 +141,13 @@ t_map		init_map_wall(t_map map);
 t_map		init_map(t_map map);
 int			get_map_size(char **map);
 int			get_map_hitbox_size(char **map, char c);
+t_coor		get_map_maxsize(char **map);
+t_main		*get_main(void *input);
+
+/* ======= UTILS ====== */
+int			ft_strlen_(char *str);
+int			get_max(int a, int b);
+int			get_min(int a, int b);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);
@@ -167,13 +176,25 @@ t_coor		get_case_player(t_main *main);
 t_coor		get_case_coor(t_coor coor);
 t_coor		get_center_player(t_main *main);
 t_dblcoor	get_dblcenter_player(t_main *main);
+t_coor		get_case_dbcoor(t_dblcoor coor);
 
 /* ======= RAYCASTING ====== */
 void		ray_set_player_pose(t_main *main);
 t_dblcoor	ray_get_yn_xn(t_main *main);
+t_dblcoor	ray_horizontal(t_dblcoor pose, int direc);
+void		raycast(t_main *main);
+
+/* ======= RAYCASTING COLLISION ====== */
+int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(int angle);
+
+/* ======= DDA ====== */
+void		init_ray_view(t_main *main);
+void		draw_line(int xa, int ya, int xb, int yb);
+void		dda_incr(float x, float y, int step, t_coor dcoor);
+int			get_abs(int value);
 
 /* ======= TIME ====== */
 int			ft_delta_time(t_main *main);
@@ -191,7 +212,6 @@ char		*ft_strdup_modif(char *s1);
 void 		clean_map(t_main *main, char **raw_map);
 void 		ft_free_tab(char **tab);
 int			ft_strcmp(char *s1, char *s2);
-
 
 /* ======= PARS_RAW_FILE ====== */
 void 		ft_pars_raw_map(char **raw_map, t_texture *text);

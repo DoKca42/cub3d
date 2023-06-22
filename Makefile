@@ -22,6 +22,9 @@ SRCS =	src/main.c\
 		src/action/time_utils.c\
 		src/raycast/init_raycast.c\
 		src/raycast/raycast_utils.c\
+		src/raycast/draw_line.c\
+		src/raycast/raycast_collision.c\
+		src/utils/utils_1.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
 		memory_manager/memory_manager_utils.c\

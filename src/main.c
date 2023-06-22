@@ -29,9 +29,12 @@ int	main(int argc, char **argv)
 	map.map = main.clean_file;
 	map = init_map(map);
 	main.map = &map;
+	get_main(&main);
 	ft_mlx_init_build(&main);
 	display_mini_map(&main);
+	
 	display_mini_map_player(&main);
+	init_ray_view(&main);
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
