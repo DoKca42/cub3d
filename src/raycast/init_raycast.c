@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 14:33:52 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/22 16:48:13 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,34 +69,70 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 	return (out);
 }
 
-t_dblcoor	raycast_next(t_dblcoor pose, int angle, t_main *main, int type)
+double calculateAngle(double xA, double yA, double xB, double yB, double xC, double yC) {
+    double ABx, ABy, ACx, ACy;
+    double dotProduct, normAB, normAC, angle;
+
+    // Calcul des vecteurs AB et AC
+    ABx = xB - xA;
+    ABy = yB - yA;
+    ACx = xC - xA;
+    ACy = yC - yA;
+
+    // Calcul du produit scalaire AB · AC
+    dotProduct = (ABx * ACx) + (ABy * ACy);
+
+    // Calcul des normes ||AB|| et ||AC||
+    normAB = sqrt(ABx * ABx + ABy * ABy);
+    normAC = sqrt(ACx * ACx + ACy * ACy);
+
+    // Calcul de l'angle θ en radians
+    angle = acos(dotProduct / (normAB * normAC));
+
+    // Conversion de l'angle en degrés si nécessaire
+    angle = angle * 180.0 / M_PI;
+
+    return angle;
+}
+
+t_dblcoor	raycast_next_verti(t_dblcoor pose, int angle, t_main *main)
 {
 	t_dblcoor	val;
 	int			i;
 
 	i = 0;
-	(void)type;
-	while (i < 5)
+	val = ray_vertical(pose, angle);
+	val = convert_pose(val, pose);
+	while (raycast_get_collision(val, main) != 1 && i < 150)
 	{
-		if (type == 0)
-			val = ray_horizontal(pose, angle);
+		val.y = val.y - (MAP_RES / cos(deg_to_rad(angle)));
+		if (angle > 90 && angle < 270)
+			val.x -= (double)MAP_RES;
 		else
-			val = ray_vertical(pose, angle);
-		//printf(">> %f, %f, %f, %f === ", pose.x, pose.y, val.x, val.y);
-		if (raycast_get_collision(convert_pose(val, pose), main) == 1)
-		{
-			//printf("GOOD\n");
-			return (convert_pose(val, pose));
-		}
-		
-		pose = convert_pose(pose, val);
-		if (type == 0)
-			pose.y -= 1;
+			val.x += (double)MAP_RES;
 		i++;
 	}
-	pose.x = 0;
-	pose.y = 0;
-	return (pose);
+	return (val);
+}
+
+t_dblcoor	raycast_next_horiz(t_dblcoor pose, int angle, t_main *main)
+{
+	t_dblcoor	val;
+	int			i;
+
+	i = 0;
+	val = ray_horizontal(pose, angle);
+	val = convert_pose(val, pose);
+	while (raycast_get_collision(val, main) != 1 && i < 150)
+	{
+		val.x = val.x + (MAP_RES / tan(deg_to_rad(angle)));
+		if (angle > 0 && angle < 180)
+			val.y -= (double)MAP_RES;
+		else
+			val.y += (double)MAP_RES;
+		i++;
+	}
+	return (val);
 }
 
 t_dblcoor	raycast_get_line(t_dblcoor pose, int angle, t_main *main)
@@ -105,14 +141,15 @@ t_dblcoor	raycast_get_line(t_dblcoor pose, int angle, t_main *main)
 	t_dblcoor	verti;
 
 	//printf("VERTI = ");
-	verti = raycast_next(pose, angle, main, 1);
+	verti = raycast_next_verti(pose, angle, main);
+	horiz = raycast_next_horiz(pose, angle, main);
+	
 	//printf("HORIZ = ");
-	horiz = raycast_next(pose, angle, main, 0);
-	if (verti.x != 0 && get_mini(verti, horiz) == 0)
+	if (get_mini(verti, horiz) == 0)
 		return (verti);
-	else if (horiz.x != 0)
+	else 
 		return (horiz);
-	return (get_dblcenter_player(main));
+	//return (get_dblcenter_player(main));
 }
 
 void	raycast(t_main *main)
@@ -121,12 +158,8 @@ void	raycast(t_main *main)
 	t_dblcoor	new;
 
 	pose = get_dblcenter_player(main);
-	new = raycast_get_line(pose, 75, main);
+	new = raycast_get_line(pose, 50, main);
+	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	draw_line(main->ray->x, main->ray->y, new.x, new.y);
-	///printf(">> %d\n", get_max(new.x, new.y));
-	//if (get_mini(verti, horiz) == 0)
-	//	draw_line(main->ray->x, main->ray->y, main->ray->x + verti.x, main->ray->y + verti.y);
-	//else
-	//	draw_line(main->ray->x, main->ray->y, main->ray->x + horiz.x, main->ray->y + horiz.y);
-	//horiz = ray_horizontal(pose, 75);
+	//printf(">> %d\n", get_max(new.x, new.y));
 }
