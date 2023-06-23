@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 12:53:45 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:04:50 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	set_mv(t_main *main, int x, int y)
 
 void	ft_player_move(t_main *main, t_inpt input)
 {
-	t_map	*map;
+	//t_map	*map;
 
-	map = main->map;
+	//map = main->map;
 	if (input.up == 1)
 		player_move_wall(main, 0, 0, -input.speed);
 	if (input.down == 1)

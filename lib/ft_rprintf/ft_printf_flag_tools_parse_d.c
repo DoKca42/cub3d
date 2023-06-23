@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_flag_tools_parse_d.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:06:15 by loculy            #+#    #+#             */
-/*   Updated: 2022/11/21 12:14:21 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:03:48 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_fl_nj_d(t_of of, unsigned int s_sz, unsigned int out_sz,
 	neg = 0;
 	if (of.s[0] == '-')
 		neg = 1;
-	while (i >= 0 && s_sz > 0 + neg)
+	while (s_sz > 0 + neg)
 	{
 		if (o_sz > 0 + neg)
 			of.m[i--] = of.s[o_sz - 1];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 17:37:15 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/24 01:56:53 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int check_valide_format(char *raw_map, int *i, t_texture *text)
 		text->EA = check_routine(raw_map, text->EA, "EA");
 	return (0); // flag
 }
+
 void	check_color_char(char *str)
 {
 	int i;
@@ -74,7 +75,6 @@ void	check_color_char(char *str)
 char **check_color_format(char *raw_map, int *i, char **rgb)
 {
 	int		k;
-	int		size;
 	char	*color_tab;
 	char	tab[4];
 
@@ -82,7 +82,6 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 	tab[1] = ',';
 	tab[2] = '\t';
 	tab[3] = '\0';
-	size = 0;
 	k = *i;
 
 	if (raw_map[k + 1] != ' ' && raw_map[k + 1] != '\t')
@@ -97,6 +96,7 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 		ft_errormap("Wrong color format");
 	return (rgb);
 }
+
 void convert_color(char **color, t_rgb *rgb)
 {
 	rgb->r = ft_atoi(color[0]);
@@ -106,6 +106,7 @@ void convert_color(char **color, t_rgb *rgb)
 	if (rgb->r > 255 || rgb->g > 255 || rgb->b > 255)
 		ft_errormap("wrong RGB format");
 }
+
 int check_char(char *raw_map, int *i, t_main *main)
 {
 	if (raw_map[*i] == '\0')
@@ -135,10 +136,23 @@ int check_valide_texture(t_texture *text)
 		return (1);
 }
 
+int	check_char_for_map(char	*tab)
+{
+	int i;
+
+	i = -1;
+	while(tab[++i])
+		if(tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S' || tab[i] == 'E' || tab[i] == 'W')
+				return (1);
+	return (0);
+}
+
 void ft_pars_raw_map(char **raw_map, t_main *main)
 {
 	int i;
 	int k;
+	int start_map;
+
 	i = 0;
 	k = 0;
 	while(raw_map[k] != 0)
@@ -155,12 +169,33 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 		i = 0;
 		k++;
 	}
-	k = -1;
-	while(main->text->F[++k] != 0)
-		printf("%s\n", main->text->F[k]);
-	k = -1;
-	while(main->text->C[++k])
-		printf("%s\n", main->text->C[k]);
+	if (check_valide_texture(main->text) == 0 || raw_map[k] == 0)
+		ft_errormap("Wrong file format");
+	start_map = k;
+	while(raw_map[k] && check_char_for_map(raw_map[k]) == 1)
+		k++;
+	if(raw_map[k] != 0)
+		ft_errormap("Wrong file format");
+	main->map_tab = malloc((k - start_map + 1) * sizeof(char *));
+	main->map_tab[k - start_map] = 0;
+	i = 0;
+	while(start_map < k)
+	{
+		main->map_tab[i] = ft_strdup(raw_map[start_map]);
+		start_map++;
+		i++;
+	}
+	//k = -1;
+	//while(main->map_tab[++k])
+	//	printf("%s\n", main->map_tab[k]);
+
+	//printf("%d\n", k);
+	//k = -1;
+	//while(main->text->F[++k] != 0)
+	//	printf("%s\n", main->text->F[k]);
+	//k = -1;
+	//while(main->text->C[++k])
+	//	printf("%s\n", main->text->C[k]);
 	//k = -1;
 	//while(text->NO[++k])
 	//{
@@ -170,11 +205,10 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 	//	printf("%s\n", text->WE[k]);
 	//}
 	//k = -1;
+	//k = -1;
 	//while(text->F[++k])
 	//	printf("%s\n", text->F[k]);
 	//k = -1;
 	//while(text->F[++k])
 	//	printf("%s\n", text->C[k]);
-	if (check_valide_texture(main->text) == 0)
-		ft_errormap("Wrong file format");
 }
