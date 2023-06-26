@@ -33,11 +33,11 @@ player = {'x': 3 * MAP_RES + MAP_RES / 2, 'y': 7 * MAP_RES + MAP_RES / 2, 'ray_x
 
 def draw_rect(x, y, height, width, color):
     pygame.draw.rect(win, color, pygame.Rect(x, y, width, height))
-    pygame.display.flip()
+    pygame.display.update()
 
 def draw_line(x1, y1, x2, y2, color):
     pygame.draw.line(win, color, (x1, y1), (x2, y2))
-    pygame.display.flip()
+    pygame.display.update()
 
 def draw_circle(x, y, r, color):
     pygame.draw.circle(win, color, (x, y), r)
@@ -75,20 +75,20 @@ def get_case_player():
     return (case_x, case_y)
 
 def cast_ray(x, y, angle):
-    dx = get_case_player()[0] * MAP_RES - x
-    dy = get_case_player()[1] * MAP_RES - y
+    dy = -(get_case_player()[1] * MAP_RES - y)
+    dx = -(get_case_player()[0] * MAP_RES - x)
+    
+    yn = -dy
+    xn = -dy / math.tan(deg_to_rad(angle))
 
-    yn = dy
-    xn = dy / math.tan(deg_to_rad(angle))
-
-    print(xn, yn)
-    draw_line(x, y, xn, yn, (25, 25, 25))
+    print(dx, dy, " | ", xn, yn)
+    draw_line(x, y, xn * MAP_RES, yn * MAP_RES, (25, 25, 25))
 
 def player_up():
     x = player['x']
     y = player['y']
-    player['direc'] = 75
-    print(player)
+    player['direc'] = 45
+    #print(player)
     draw_circle(x, y, 10, (82, 222, 62))
     cast_ray(x, y, player['direc'])
 
