@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_modif.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:31:38 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 16:05:44 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:09:34 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	**size_tab(char **tab, char const *str, char *c)
 				size++;
 				i++;
 			}
-			tab[nb] = malloc((size + 1) * sizeof(char));
+			tab[nb] = ftm_malloc((size + 1) * sizeof(char));
 			if (!tab[nb])
 				return (free_nb(tab));
 			nb++;
@@ -105,16 +105,10 @@ static char	**size_tab(char **tab, char const *str, char *c)
 char	**ft_split_modif(char const *str, char *c)
 {	
 	char	**tab;
-	int		i;
-	int		size;
-	int		nb;
 
-	i = 0;
-	nb = 0;
-	size = 0;
 	if (str == 0)
 		return (0);
-	tab = malloc((count_word(str, c) + 1) * sizeof(str));
+	tab = ftm_malloc((count_word(str, c) + 1) * sizeof(str));
 	if (!tab)
 		return (0);
 	if (size_tab(tab, str, c) == 0)

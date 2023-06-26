@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_argu_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:05:13 by loculy            #+#    #+#             */
-/*   Updated: 2022/11/22 13:02:59 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:03:11 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	ft_w_c(char c, t_plist **out, int *error)
 int	ft_w_s(char *s, t_plist **out, int *error)
 {
 	t_plist	*new;
-	int		i;
+	//int		i;
 	char	*m;
 
-	i = 0;
+	//i = 0;
 	if (s == NULL)
 		m = ft_strdup("(null)");
 	else

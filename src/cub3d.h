@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 17:37:16 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/24 01:50:42 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ typedef struct s_main
 {
 	void		*mlx;
 	char		**clean_file;
-
+	char		**map_tab;
 	t_texture	*text;
 	t_rgb		*sol;
 	t_rgb		*ciel;

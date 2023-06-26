@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_flag_tools_parse_s.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:06:15 by loculy            #+#    #+#             */
-/*   Updated: 2022/11/17 12:26:54 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:03:30 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_fl_nj_s(char *s, char *m, unsigned int s_sz, unsigned int out_sz)
 	unsigned int	i;
 
 	i = out_sz - 1;
-	while (i >= 0 && s_sz > 0)
+	while (s_sz > 0)
 	{
 		m[i] = s[s_sz - 1];
 		i--;

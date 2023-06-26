@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:48:24 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/21 17:12:44 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/24 00:04:29 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_doors(t_main *main, t_map	*map)
 			&& case_coor.y == map->door[i].coor.y)
 			cldwn = interact_door(main, &(map->door[i]), cldwn);
 		else if (case_coor.x + MAP_RES == map->door[i].coor.x
-			& case_coor.y == map->door[i].coor.y)
+			&& case_coor.y == map->door[i].coor.y)
 			cldwn = interact_door(main, &(map->door[i]), cldwn);
 		else if (case_coor.x == map->door[i].coor.x
 			&& case_coor.y - MAP_RES == map->door[i].coor.y)

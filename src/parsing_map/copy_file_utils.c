@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:03:30 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 17:37:12 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/24 01:41:52 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void ft_free_tab(char **tab)
 		ftm_free(tab[i]);
 	ftm_free(tab);
 }
+
 char	*ft_strdup_modif(char *s1)
 {
 	char	*m;
@@ -43,7 +44,7 @@ char	*ft_strdup_modif(char *s1)
 
 	i = 0;
 	sizes1 = ft_strlen(s1);
-	m = (char *)malloc((sizes1) * sizeof(char));
+	m = (char *)ftm_malloc((sizes1) * sizeof(char));
 	if (!m)
 		return (0);
 	while (i < sizes1 - 1)

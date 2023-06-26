@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:28:04 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 17:37:13 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/24 01:15:39 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ int	read_map(int fd)
 
 int	ft_errormap(char *str)
 {
-	int	i;
 	int	k;
 
-	i = 0;
 	k = ft_strlen(str);
 	write(1, "Error\n", 6);
 	write(1, str, k);
@@ -86,7 +84,6 @@ int get_file(t_main *main, char* str)
 	fd = ftm_open(str, O_RDONLY);
 	while (i < size)
 		raw_map[i++] = get_next_line(fd);
-	printf("malloc size=%d\n", size);
 	clean_map(main, raw_map);
 	ft_free_tab(raw_map);
 	ftm_close(fd);
