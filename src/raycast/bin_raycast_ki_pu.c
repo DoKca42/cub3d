@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_raycast.c                                     :+:      :+:    :+:   */
+/*   bin_raycast_ki_pu.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/26 18:12:13 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/26 17:42:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,30 @@ int	get_mini(t_dblcoor verti, t_dblcoor horiz)
 		return (0);
 	else
 		return (1);
+}
+
+t_dblcoor	ray_horizontal(t_dblcoor pose, int direc)
+{
+	t_dblcoor	n_pose;
+	t_coor		case_coor;
+
+	case_coor = get_case_dbcoor(pose);
+	n_pose.y = (double)case_coor.y - pose.y;
+	n_pose.x = -(n_pose.y) / tan(deg_to_rad(direc));
+	return (n_pose);
+}
+
+t_dblcoor	ray_vertical(t_dblcoor pose, int direc)
+{
+	t_dblcoor	n_pose;
+	t_coor		case_coor;
+	double		dx;
+
+	case_coor = get_case_dbcoor(pose);
+	dx = pose.x - (double)case_coor.x - MAP_RES;
+	n_pose.y = (dx) * tan(deg_to_rad(direc));
+	n_pose.x = -(dx);
+	return (n_pose);
 }
 
 t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
@@ -71,44 +95,77 @@ double calculateAngle(double xA, double yA, double xB, double yB, double xC, dou
     return angle;
 }
 
-void	line_raycast(t_main *main, float angle)
+t_dblcoor	raycast_next_verti(t_dblcoor pose, int angle, t_main *main)
 {
-	float	pdx;
-	float	pdy;
+	t_dblcoor	val;
+	int			i;
 
-	pdx = cos(angle) * 100;
-	pdy = sin(angle) * 100;
-	(void)main;
-	//printf(">> %f, %f  ||  %f, %f\n", main->ray->x, main->ray->y, main->ray->x+pdx*5, main->ray->y-pdy*5);
-	//draw_line(main->ray->x, main->ray->y, pdx, pdy);
-	draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
-}
-void	raycast_flastlight(t_main *main, float angle)
-{
-	int		i;
-
-	angle -= 0.0174533 * 30;
 	i = 0;
-	while (i < 60)
+	val = ray_vertical(pose, angle);
+	val = convert_pose(val, pose);
+	if (raycast_get_collision(val, main))
+		return (val);
+		/*
+	while (raycast_get_collision(val, main) != 1 && i < 150)
 	{
-		line_raycast(main, angle);
-		angle += 0.0174533;
+		val.y = val.y - (MAP_RES / cos(deg_to_rad(angle)));
+		if (angle > 90 && angle < 270)
+			val.x -= (double)MAP_RES;
+		else
+			val.x += (double)MAP_RES;
 		i++;
-	}
+	}*/
+	return (val);
+}
+
+t_dblcoor	raycast_next_horiz(t_dblcoor pose, int angle, t_main *main)
+{
+	t_dblcoor	val;
+	int			i;
+
+	i = 0;
+	val = ray_horizontal(pose, angle);
+	val = convert_pose(val, pose);
+	if (raycast_get_collision(val, main))
+		return (val);
+	/*
+	while (raycast_get_collision(val, main) != 1 && i < 150)
+	{
+		val.x = val.x + (MAP_RES / tan(deg_to_rad(angle)));
+		if (angle > 0 && angle < 180)
+			val.y -= (double)MAP_RES;
+		else
+			val.y += (double)MAP_RES;
+		i++;
+	}*/
+	return (val);
+}
+
+t_dblcoor	raycast_get_line(t_dblcoor pose, int angle, t_main *main)
+{
+	t_dblcoor	horiz;
+	t_dblcoor	verti;
+
+	//printf("VERTI = ");
+	verti = raycast_next_verti(pose, angle, main);
+	horiz = raycast_next_horiz(pose, angle, main);
+	
+	//printf("HORIZ = ");
+	if (get_mini(verti, horiz) == 0)
+		return (verti);
+	else 
+		return (horiz);
+	//return (get_dblcenter_player(main));
 }
 
 void	raycast(t_main *main)
 {
 	t_dblcoor	pose;
-	//t_dblcoor	new;
-	t_map	*map;
+	t_dblcoor	new;
 
-	map = main->map;
 	pose = get_dblcenter_player(main);
-	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
-	raycast_flastlight(main, deg_to_rad(90));
-	//new = raycast_flastlight(pose, 210, main);
+	new = raycast_get_line(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
-	//draw_line(main->ray->x, main->ray->y, new.x, new.y);
+	draw_line(main->ray->x, main->ray->y, new.x, new.y);
 	//printf(">> %d\n", get_max(new.x, new.y));
 }
