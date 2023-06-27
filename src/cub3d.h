@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 17:07:01 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:18:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int			get_file(t_main *main, char* str);
 int			check_ber(char *str);
 int			ft_errormap(char *str);
 int			read_map(int fd);
-
+int			checkline(char *buffer);
 /* ======= COPY_FILE_UTILS ====== */
 char		*ft_strdup_modif(char *s1);
 void 		clean_map(t_main *main, char **raw_map);
@@ -231,17 +231,23 @@ int			ft_strcmp(char *s1, char *s2);
 
 /* ======= PARS_RAW_FILE ====== */
 void 		ft_pars_raw_map(char **raw_map, t_main *main);
-void		skip_space(char *raw_map, int *i);
 int 		check_char(char *raw_map, int *i, t_main *main);
 int			check_valide_format(char *raw_map, int *i, t_texture *text);
-int			check_valide_texture(t_texture *text);
 char 		**check_routine(char *raw_map, char **texture, char *to_compare);
 char 		**check_color_format(char *raw_map, int *i, char **rgb);
 
-/* ======= PARS_RAW_FILE ====== */
-int			check_char_tab_split(char c, char *str);
-char		**ft_split_modif(char const *str, char *c);
+/* ======= PARS_RAW_FILE_UTILS ====== */
+int			strlen_doubletab(char **tab);
+void		skip_space(char *raw_map, int *i);
+void		check_color_char(char *str);
+int			check_valide_texture(t_texture *text);
+int			check_char_for_map(char	*tab);
 
-/* ======= PARS_RAW_FILE ====== */
-void		init_struct(t_main *main);
+/* ======= PARS_RAW_FILE_UTILS_2 ====== */
+void 		convert_color(char **color, t_rgb *rgb);
+
+/* ======= SPLIT_MODIF ====== */
+char		**ft_split_modif(char const *str, char *c);
+int			check_char_tab_split(char c, char *str);
+
 #endif
