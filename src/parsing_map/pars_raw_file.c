@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/24 01:56:53 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:07:22 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	strlen_doubletab(char **tab)
-{
-	int k;
-
-	k = 0;
-	while(tab[k])
-		k++;
-	return (k);
-}
-
-void skip_space(char *raw_map, int *i)
-{
-	while(raw_map[*i] == ' ' || raw_map[*i] == '\n' || raw_map[*i] == '\t')
-		*i = *i + 1;
-}
 
 char	**check_routine(char *raw_map, char **texture, char *to_compare)
 {
@@ -59,19 +43,6 @@ int check_valide_format(char *raw_map, int *i, t_texture *text)
 	return (0); // flag
 }
 
-void	check_color_char(char *str)
-{
-	int i;
-
-	i = -1;
-
-	while(str[++i])
-	{
-		if((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ',' && str[i] != '\t')
-			ft_errormap("Wrong char in color");
-	}
-}
-
 char **check_color_format(char *raw_map, int *i, char **rgb)
 {
 	int		k;
@@ -97,15 +68,7 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 	return (rgb);
 }
 
-void convert_color(char **color, t_rgb *rgb)
-{
-	rgb->r = ft_atoi(color[0]);
-	rgb->g = ft_atoi(color[1]);
-	rgb->b = ft_atoi(color[2]);
 
-	if (rgb->r > 255 || rgb->g > 255 || rgb->b > 255)
-		ft_errormap("wrong RGB format");
-}
 
 int check_char(char *raw_map, int *i, t_main *main)
 {
@@ -126,25 +89,6 @@ int check_char(char *raw_map, int *i, t_main *main)
 		convert_color(main->text->C, main->ciel);
 	}
 	return (0); // flag
-}
-
-int check_valide_texture(t_texture *text)
-{
-	if (!text->NO || !text->WE || !text->SO || !text->EA || !text->F || !text->C)
-		return (0);
-	else
-		return (1);
-}
-
-int	check_char_for_map(char	*tab)
-{
-	int i;
-
-	i = -1;
-	while(tab[++i])
-		if(tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S' || tab[i] == 'E' || tab[i] == 'W')
-				return (1);
-	return (0);
 }
 
 void ft_pars_raw_map(char **raw_map, t_main *main)
