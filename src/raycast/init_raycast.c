@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/26 18:12:13 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 14:48:53 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,6 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 	return (out);
 }
 
-double calculateAngle(double xA, double yA, double xB, double yB, double xC, double yC) {
-    double ABx, ABy, ACx, ACy;
-    double dotProduct, normAB, normAC, angle;
-
-    // Calcul des vecteurs AB et AC
-    ABx = xB - xA;
-    ABy = yB - yA;
-    ACx = xC - xA;
-    ACy = yC - yA;
-
-    // Calcul du produit scalaire AB · AC
-    dotProduct = (ABx * ACx) + (ABy * ACy);
-
-    // Calcul des normes ||AB|| et ||AC||
-    normAB = sqrt(ABx * ABx + ABy * ABy);
-    normAC = sqrt(ACx * ACx + ACy * ACy);
-
-    // Calcul de l'angle θ en radians
-    angle = acos(dotProduct / (normAB * normAC));
-
-    // Conversion de l'angle en degrés si nécessaire
-    angle = angle * 180.0 / M_PI;
-
-    return angle;
-}
-
 void	line_raycast(t_main *main, float angle)
 {
 	float	pdx;
@@ -106,7 +80,7 @@ void	raycast(t_main *main)
 	map = main->map;
 	pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
-	raycast_flastlight(main, deg_to_rad(90));
+	raycast_flastlight(main, deg_to_rad(map->current.direc));
 	//new = raycast_flastlight(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	//draw_line(main->ray->x, main->ray->y, new.x, new.y);

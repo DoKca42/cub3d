@@ -6,6 +6,7 @@ static void	ft_hook(void *param)
 
 	main = param;
 	player_get_move(main);
+	player_get_rotation(main);
 	player_get_action(main);
 }
 

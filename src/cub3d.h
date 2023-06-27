@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/24 01:50:42 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/27 15:17:31 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,9 @@ void 		display_mini_map(t_main *main);
 void 		display_mini_map_player(t_main *main);
 
 /* ======= ACTION ====== */
+void		ft_player_rotation(t_main *main);
 void		ft_player_move(t_main *main, t_inpt input);
+void		player_get_rotation(t_main *main);
 void		player_get_move(t_main *main);
 void		player_get_action(t_main *main);
 void		ft_player_init_input(t_inpt *input, t_main *main);
@@ -233,9 +235,9 @@ char 		**check_routine(char *raw_map, char **texture, char *to_compare);
 char 		**check_color_format(char *raw_map, int *i, char **rgb);
 
 /* ======= PARS_RAW_FILE ====== */
-int		check_char_tab_split(char c, char *str);
-char	**ft_split_modif(char const *str, char *c);
+int			check_char_tab_split(char c, char *str);
+char		**ft_split_modif(char const *str, char *c);
 
 /* ======= PARS_RAW_FILE ====== */
-void	init_struct(t_main *main);
+void		init_struct(t_main *main);
 #endif

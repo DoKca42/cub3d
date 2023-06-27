@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/20 23:35:56 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 15:17:06 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,33 @@ void	player_get_move(t_main *main)
 	t_inpt	input;
 
 	ft_player_init_input(&input, main);
-	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_D)
-		|| mlx_is_key_down((void *)main->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_D))
 		input.right = 1;
-	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_A)
-		|| mlx_is_key_down((void *)main->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_A))
 		input.left = 1;
-	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_W)
-		|| mlx_is_key_down((void *)main->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_W))
 		input.up = 1;
-	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_S)
-		|| mlx_is_key_down((void *)main->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_S))
 		input.down = 1;
 	if (input.up + input.down + input.left + input.right > 1)
 		input.speed = input.speed - (input.speed / 3.5);
 	if (input.up + input.down + input.left + input.right > 0)
 		ft_player_move(main, input);
+}
+
+void	player_get_rotation(t_main *main)
+{
+	t_map	*map;
+
+	map = main->map;
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_LEFT))
+	{
+		map->current.direc += 4;
+		ft_player_rotation(main);
+	}
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_RIGHT))
+	{
+		map->current.direc -= 4;
+		ft_player_rotation(main);
+	}
 }

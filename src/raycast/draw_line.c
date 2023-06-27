@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:21 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/26 18:04:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 14:33:49 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	dda_incr(float x, float y, int step, t_coor dcoor)
 	i = 0;
 	while (i < step)
 	{
-		mlx_put_pixel(map->ray_lines, (uint32_t)x, (uint32_t)y, ft_pixel(255, 0, 0, 255));
+		mlx_put_pixel(map->ray_lines, (uint32_t)x, (uint32_t)y, ft_pixel(255, 225, 70, 255));
 		x += xdda;
 		y += ydda;
 		i++;
