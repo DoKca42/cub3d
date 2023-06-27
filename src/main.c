@@ -46,25 +46,25 @@ int	main(int argc, char **argv)
 	ft_pars_raw_map(main.clean_file, &main);
 	
 	// /* ========= RAYCAST ========= */
-	 map.map = main.map_tab;
-	 map = init_map(map);
-	 main.map = &map;
-	 get_main(&main);
-	 ft_mlx_init_build(&main);
-	 display_mini_map(&main);
-	 
-	 display_mini_map_player(&main);
-	 init_ray_view(&main);
-	 cooldown = init_cooldown();
-	 main.cooldown = &cooldown;
-	 main.ray = &raycast;
-	 ray_set_player_pose(&main);
-// 
-	// //printf("----- PLAYER -----\nx: %d\ny: %d\norientation %d\n\n", map.start.x, map.start.y, map.start.orientation);
-// 
-	 mlx_loop_hook(main.mlx, ft_hook, &main);
-	 mlx_loop(main.mlx);
-	 mlx_terminate(main.mlx);
+	map.map = main.map_tab;
+	map = init_map(map);
+	main.map = &map;
+
+	get_main(&main);
+	ft_mlx_init_build(&main);
+	init_main(&main);
+	display_mini_map(&main);
+
+	display_mini_map_player(&main);
+	init_ray_view(&main);
+	cooldown = init_cooldown();
+	main.cooldown = &cooldown;
+	main.ray = &raycast;
+	ray_set_player_pose(&main);
+
+	mlx_loop_hook(main.mlx, ft_hook, &main);
+	mlx_loop(main.mlx);
+	mlx_terminate(main.mlx);
 	ftm_free_all();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 10:34:49 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:07:38 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,13 @@ t_map	init_map(t_map map)
 	map = init_map_door(map);
 	map = init_map_player(map);
 	return (map);
+}
+
+void	init_main(t_main *main)
+{
+	mouse_mode_t	mode;
+
+	main->pause = 0;
+	mode = MLX_MOUSE_HIDDEN;
+	mlx_set_cursor_mode(main->mlx, mode);
 }

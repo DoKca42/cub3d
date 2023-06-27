@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 14:48:53 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:17:43 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	raycast_flastlight(t_main *main, float angle)
 {
 	int		i;
 
-	angle -= 0.0174533 * 30;
+	angle -= (0.0174533 / 3) * 90;
 	i = 0;
-	while (i < 60)
+	while (i < 180)
 	{
 		line_raycast(main, angle);
-		angle += 0.0174533;
+		angle += (0.0174533 / 3);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 15:46:55 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 16:52:12 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,6 @@ void	ft_player_move(t_main *main, t_inpt input)
 		pdx = (sin(deg_to_rad(map->current.direc)) * input.speed);
 		player_move_wall(main, map->current.direc, -pdx, -pdy);
 	}
-	//printf("x: %d - y: %d\n", map->current.y += pdy, map->current.x += pdx);
-	//if (input.up == 1)
-	//	player_move_wall(main, 0, pdx, pdy);
-	//if (input.down == 1)
-	//	player_move_wall(main, 1, -pdx, -pdy);
-	//if (input.right == 1)
-	//	player_move_wall(main, 2, pdx, pdy);
-	//if (input.left == 1)
-	//	player_move_wall(main, 3, pdx, pdy);
 	if (input.up + input.down + input.right + input.left > 0)
 		ft_player_rotation(main);
 }

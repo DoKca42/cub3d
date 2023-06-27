@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:48:24 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:19:06 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:02:35 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ void	check_doors(t_main *main, t_map	*map)
 		main->cooldown->door = get_time(main) + 150;
 }
 
+void	pause_game(t_main *main)
+{
+	mouse_mode_t	mode;
+
+	if (main->pause == 0)
+	{
+		mode = MLX_MOUSE_NORMAL;
+		main->pause = 1;
+	}
+	else
+	{
+		main->pause = 0;
+		mode = MLX_MOUSE_HIDDEN;
+	}
+	mlx_set_cursor_mode(main->mlx, mode);
+	main->cooldown->pause = get_time(main) + 150;
+}
+
 void	player_get_action(t_main *main)
 {
 	t_map	*map;
@@ -59,6 +77,9 @@ void	player_get_action(t_main *main)
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_E))
 		if (get_time(main) >= main->cooldown->door)
 			check_doors(main, map);
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_SPACE))
+		if (get_time(main) >= main->cooldown->pause)
+			pause_game(main);
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_ESCAPE))
 	{
 		ftm_free_all();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:10:33 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/24 00:05:55 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/27 16:53:32 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_cooldown	init_cooldown(void)
 
 	cooldown.door = 0;
 	cooldown.fire = 0;
+	cooldown.pause = 0;
 	return (cooldown);
 }

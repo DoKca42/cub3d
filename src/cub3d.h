@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:02:36 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 17:07:01 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_cooldown
 {
 	int	door;
 	int	fire;
+	int	pause;
 }	t_cooldown;
 
 typedef struct s_raycast
@@ -138,6 +139,7 @@ typedef struct s_main
 	t_map		*map;
 	t_cooldown	*cooldown;
 	t_raycast	*ray;
+	int			pause;
 }	t_main;
 
 /* ======= MLX ====== */
@@ -153,6 +155,7 @@ int			get_map_size(char **map);
 int			get_map_hitbox_size(char **map, char c);
 t_coor		get_map_maxsize(char **map);
 t_main		*get_main(void *input);
+void		init_main(t_main *main);
 
 /* ======= UTILS ====== */
 int			ft_strlen_(char *str);
