@@ -6,7 +6,7 @@
 /*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:03:30 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/24 01:41:52 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/27 23:09:25 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void clean_map(t_main *main, char **raw_map)
 		if(raw_map[k][ft_strlen(raw_map[k]) - 1] == '\n')
 			main->clean_file[k] = ft_strdup_modif(raw_map[k]);
 		else
-			main->clean_file[k] = ft_strdup(raw_map[k]);
+			main->clean_file[k] = ft_strdup_(raw_map[k]);
 		k++;
 	}
 	main->clean_file[k] = 0;

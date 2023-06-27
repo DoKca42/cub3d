@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 17:17:43 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 23:00:05 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	raycast_flastlight(t_main *main, float angle)
 
 void	raycast(t_main *main)
 {
-	t_dblcoor	pose;
+	//t_dblcoor	pose;
 	//t_dblcoor	new;
 	t_map	*map;
 
 	map = main->map;
-	pose = get_dblcenter_player(main);
+	//pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
 	raycast_flastlight(main, deg_to_rad(map->current.direc));
 	//new = raycast_flastlight(pose, 210, main);

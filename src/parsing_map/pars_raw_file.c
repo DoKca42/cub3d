@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/27 17:07:22 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/27 23:10:15 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,12 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 		k++;
 	if(raw_map[k] != 0)
 		ft_errormap("Wrong file format");
-	main->map_tab = malloc((k - start_map + 1) * sizeof(char *));
+	main->map_tab = ftm_malloc((k - start_map + 1) * sizeof(char *));
 	main->map_tab[k - start_map] = 0;
 	i = 0;
 	while(start_map < k)
 	{
-		main->map_tab[i] = ft_strdup(raw_map[start_map]);
+		main->map_tab[i] = ft_strdup_(raw_map[start_map]);
 		start_map++;
 		i++;
 	}

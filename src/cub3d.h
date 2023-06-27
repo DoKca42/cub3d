@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 17:18:42 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 23:09:23 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,8 @@ int			check_char_for_map(char	*tab);
 
 /* ======= PARS_RAW_FILE_UTILS_2 ====== */
 void 		convert_color(char **color, t_rgb *rgb);
+char		*ft_strdup_(char *s1);
+
 
 /* ======= SPLIT_MODIF ====== */
 char		**ft_split_modif(char const *str, char *c);
