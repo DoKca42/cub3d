@@ -69,6 +69,6 @@ fclean: clean
 	@$(MAKE) -C $(RPTINTF) fclean
 	@$(MAKE) -C $(LIBMLX) fclean
 
-re: clean all
+re: fclean all
 
 .PHONY: all, clean, fclean, re, libmlx
