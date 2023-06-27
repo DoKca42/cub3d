@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:48:24 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/24 00:04:29 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/27 16:19:06 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,9 @@ void	player_get_action(t_main *main)
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_E))
 		if (get_time(main) >= main->cooldown->door)
 			check_doors(main, map);
+	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_ESCAPE))
+	{
+		ftm_free_all();
+		exit(0);
+	}
 }

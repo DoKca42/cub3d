@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 15:17:31 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 16:02:36 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void		player_get_action(t_main *main);
 void		ft_player_init_input(t_inpt *input, t_main *main);
 void		set_mv(t_main *main, int x, int y);
 void		update_player(t_main *main, int x, int y);
+void		mlx_mouse(t_main *main);
 
 /* ======= COLLISION ====== */
 int			is_wall_collision(int x, int y, t_player current, t_coor wall);
