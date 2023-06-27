@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:22:30 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/27 16:28:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	mlx_mouse(t_main *main)
 			ft_player_rotation(main);
 			printf("droite\n");
 		}
-		mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
+		//mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
 	}
 	//printf(">> mouse: x:%d |	windows: x:%d \n", mx, wx);
 }
