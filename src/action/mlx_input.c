@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:29:44 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:54:47 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,4 @@ void	mlx_mouse(t_main *main)
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
 		}
 	}
-	//printf(">> mouse: x:%d |	windows: x:%d \n", mx, wx);
 }

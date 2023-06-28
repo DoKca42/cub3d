@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 18:48:26 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:30:17 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ static void	ft_hook(void *param)
 	player_get_move(main);
 	player_get_rotation(main);
 	player_get_action(main);
-}
-void	init_struct(t_main *main)
-{
-	t_texture	*text;
-	t_rgb		*sol;
-	t_rgb		*ciel;
-
-	text = NULL;
-	sol = NULL;
-	ciel = NULL;
-	main->text = text;
-	main->ciel = ciel;
-	main->sol = sol;
 }
 
 int	main(int argc, char **argv)
@@ -55,8 +42,9 @@ int	main(int argc, char **argv)
 	main.sol = &sol;
 	ft_bzero(main.text, sizeof(t_texture));
 	get_file(&main, argv[1]);
-	ft_pars_raw_map(main.clean_file, &main);			
-	//// /* ========= RAYCAST ========= */
+	ft_pars_raw_map(main.clean_file, &main);
+	
+	/* ========= RAYCAST ========= */
 	map.map = main.map_tab;
 	map = init_map(map);
 	main.map = &map;
@@ -68,6 +56,8 @@ int	main(int argc, char **argv)
 //
 	display_mini_map_player(&main);
 	init_ray_view(&main);
+	init_grid(&main);
+	grid_mlx(&main);
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
