@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:27:52 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 16:33:04 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 
 void	line_raycast(t_main *main, float rad)
 {
-	float	pdx;
-	float	pdy;
-	float	a_tan;
+	float		pdx;
+	float		pdy;
+	float		a_tan;
+	t_dblcoor	val;
 
 	float	rx;
 	float	ry;
@@ -58,40 +59,38 @@ void	line_raycast(t_main *main, float rad)
 
 	if (rad < PI)
 	{
-		//ry = (((int)main->ray->y>>6)<<6)-0.0001;
 		ry = get_case_coor(get_center_player(main)).y;
 		rx = (main->ray->y - ry) * a_tan - main->ray->x;
 		draw_line((int)main->ray->x, (int)main->ray->y, (int)-rx, (int)ry);
 	}
 	else
 	{
-		rx = 0;
-		ry = 0;
+		ry = get_case_coor(get_center_player(main)).y + MAP_RES;
+		rx = (main->ray->y - ry) * a_tan - main->ray->x;
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)-rx, (int)ry);
 		pdx = cos(rad) * 50;
 		pdy = sin(rad) * 50;
-		draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
 	}
 
-	//printf(">> %f\n", a_tan);
-	//printf(">> %f, %f  ||  %f, %f\n", main->ray->x, main->ray->y, main->ray->x+pdx*5, main->ray->y-pdy*5);
-	//draw_line(main->ray->x, main->ray->y, pdx, pdy);
-
-	//draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
-	//draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+rx, (int)ry);
-	//printf("%f, %f\n", rx, ry);
+	val.x = -rx;
+	val.y = ry;
+	if (raycast_get_collision(val, main))
+		printf("HIT\n");
 }
 void	raycast_flastlight(t_main *main, float rad)
 {
 	int		i;
 
+	line_raycast(main, rad);
 	rad -= (0.0174533 / 3) * 90;
 	i = 0;
-	while (i < 180)
-	{
-		line_raycast(main, rad);
-		rad += (0.0174533 / 3);
-		i++;
-	}
+	//while (i < 180)
+	//while (i < 1)
+	//{
+	//	line_raycast(main, rad);
+	//	rad += (0.0174533 / 3);
+	//	i++;
+	//}
 	//printf(">------------<\n");
 }
 
@@ -105,7 +104,7 @@ void	raycast(t_main *main)
 	//pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
 	raycast_flastlight(main, deg_to_rad(map->current.direc));
-	//printf(">> %d\n", map->current.direc);
+	printf(">> %d \n", map->current.direc);
 	//new = raycast_flastlight(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	//draw_line(main->ray->x, main->ray->y, new.x, new.y);

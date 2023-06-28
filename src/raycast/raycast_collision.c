@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:11:30 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/26 17:33:18 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 16:32:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	raycast_get_collision(t_dblcoor n_coor, t_main *main)
 	{
 		if (is_ray_collision(n_coor.x, n_coor.y, map->wall[i]) == 1)
 		{
-			printf("YEPPPP, %f, %f, %f, %f\n", n_coor.x, n_coor.y, (double)map->wall[i].x, (double)map->wall[i].y);
+			//printf("YEPPPP, %f, %f, %f, %f\n", n_coor.x, n_coor.y, (double)map->wall[i].x, (double)map->wall[i].y);
 			return (1);
 		}
 		//else
-			//printf("NO, %f, %f, %f, %f\n", n_coor.x, n_coor.y, (double)map->wall[i].x, (double)map->wall[i].y);
+		//	printf("NO, %f, %f, %f, %f\n", n_coor.x, n_coor.y, (double)map->wall[i].x, (double)map->wall[i].y);
 		i++;
 	}
 	return (0);
