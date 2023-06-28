@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 18:59:35 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:30:17 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ static void	ft_hook(void *param)
 	player_get_action(main);
 }
 
-void	init_struct(t_main *main)
-{
-	t_texture	*text;
-	t_rgb		*sol;
-	t_rgb		*ciel;
-
-	text = NULL;
-	sol = NULL;
-	ciel = NULL;
-	main->text = text;
-	main->ciel = ciel;
-	main->sol = sol;
-}
 int	main(int argc, char **argv)
 {
 	t_main		main;
@@ -79,6 +66,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);
+	ftm_free_all();
 	return (0);
 }
 
