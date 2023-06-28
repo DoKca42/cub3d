@@ -6,7 +6,7 @@
 /*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/27 23:10:15 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 01:56:06 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,69 @@ int check_char(char *raw_map, int *i, t_main *main)
 	}
 	return (0); // flag
 }
+int	check_char_clean_map(char c)
+{
+	if(c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D' || c == ' ' || c == '\t')
+				return (1);
+	return (0);
+}
 
+void	check_arround(char **map, int i, int k)
+{
+	if (k == 0 || k == strlen_doubletab(map) - 1)
+		ft_errormap("bad wall");
+	if	(i > ft_strlen_(map[k - 1]) || i > ft_strlen_(map[k + 1]))
+		ft_errormap("bad wall");
+	if	(i == 0)
+		ft_errormap("bad wall");
+	if	(check_char_clean_map(map[k - 1][i]) == 0)
+		ft_errormap("bad wall");
+	if 	(check_char_clean_map(map[k + 1][i]) == 0)
+		ft_errormap("bad wall");
+	if	(check_char_clean_map(map[k][i - 1]) == 0)
+		ft_errormap("bad wall");
+	if 	(check_char_clean_map(map[k][i + 1]) == 0)
+		ft_errormap("bad wall");
+}
+
+int char_to_check_around(char c)
+{
+	if(c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D')
+		return (1);
+	return (0);
+}
+
+int char_player(char c)
+{
+	if(c == 'N' || c == 'S' || c == 'E' || c == 'W' )
+		return (1);
+	return (0);
+}
+
+void	ft_pars_clean_map(char	**map)
+{
+	int k;
+	int i;
+	int player;
+
+	k = -1;
+	player = 0;
+	while(map[++k])
+	{
+		i = -1;
+		while(map[k][++i])
+		{
+			if(!check_char_clean_map(map[k][i]))
+				ft_errormap("bad char in map");
+			if(char_to_check_around(map[k][i]))
+				check_arround(map, i, k);
+			if(char_player(map[k][i]))
+				player++;
+		}
+	}
+	if (player != 1)
+		ft_errormap("wrong number of player");
+}
 void ft_pars_raw_map(char **raw_map, t_main *main)
 {
 	int i;
@@ -129,10 +191,10 @@ void ft_pars_raw_map(char **raw_map, t_main *main)
 		start_map++;
 		i++;
 	}
+	ft_pars_clean_map(main->map_tab);
 	//k = -1;
 	//while(main->map_tab[++k])
 	//	printf("%s\n", main->map_tab[k]);
-
 	//printf("%d\n", k);
 	//k = -1;
 	//while(main->text->F[++k] != 0)

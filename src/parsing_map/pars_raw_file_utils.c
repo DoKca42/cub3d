@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:52:40 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/27 16:54:16 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 01:05:19 by seya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_char_for_map(char	*tab)
 
 	i = -1;
 	while(tab[++i])
-		if(tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S' || tab[i] == 'E' || tab[i] == 'W')
+		if(tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S' || tab[i] == 'E' || tab[i] == 'W' || tab[i] == 'D')
 				return (1);
 	return (0);
 }
