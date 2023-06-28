@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 12:47:18 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:27:52 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	line_raycast(t_main *main, float rad)
 
 	if (rad < PI)
 	{
-		ry = (((int)main->ray->y>>6)<<6)-0.0001;
-		rx = (main->ray->y - ry) * a_tan;
-		draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x-rx, (int)ry - PLAYER_RES / 2);
+		//ry = (((int)main->ray->y>>6)<<6)-0.0001;
+		ry = get_case_coor(get_center_player(main)).y;
+		rx = (main->ray->y - ry) * a_tan - main->ray->x;
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)-rx, (int)ry);
 	}
 	else
 	{
@@ -71,12 +72,7 @@ void	line_raycast(t_main *main, float rad)
 		draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
 	}
 
-
-
 	//printf(">> %f\n", a_tan);
-	pdx = cos(rad) * 50;
-	pdy = sin(rad) * 50;
-	(void)main;
 	//printf(">> %f, %f  ||  %f, %f\n", main->ray->x, main->ray->y, main->ray->x+pdx*5, main->ray->y-pdy*5);
 	//draw_line(main->ray->x, main->ray->y, pdx, pdy);
 
@@ -109,6 +105,7 @@ void	raycast(t_main *main)
 	//pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
 	raycast_flastlight(main, deg_to_rad(map->current.direc));
+	//printf(">> %d\n", map->current.direc);
 	//new = raycast_flastlight(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	//draw_line(main->ray->x, main->ray->y, new.x, new.y);

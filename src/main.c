@@ -57,6 +57,8 @@ int	main(int argc, char **argv)
 //
 	display_mini_map_player(&main);
 	init_ray_view(&main);
+	init_grid(&main);
+	grid_mlx(&main);
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
