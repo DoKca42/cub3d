@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:59:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 15:19:17 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:56:49 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	ft_copy_map(char **raw_map, t_main *main, int k)
 		start_map++;
 		i++;
 	}
-	k = -1;
-	while (main->map_tab[++k])
-		printf("%s\n", main->map_tab[k]);
+	ft_free_tab(raw_map);
 	ft_pars_clean_map(main->map_tab);
 }

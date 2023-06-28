@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 15:38:13 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:56:24 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	main(int argc, char **argv)
 	main.sol = &sol;
 	ft_bzero(main.text, sizeof(t_texture));
 	get_file(&main, argv[1]);
-	ft_pars_raw_map(main.clean_file, &main);
-	
+	ft_pars_raw_map(main.clean_file, &main);			
 //	//// /* ========= RAYCAST ========= */
 //	map.map = main.map_tab;
 //	map = init_map(map);
@@ -81,3 +80,28 @@ int	main(int argc, char **argv)
 	ftm_free_all();
 	return (0);
 }
+
+//int i = 0;
+//while (text.no[i])
+//	printf("%s\n", text.no[i++]);
+//i = 0;
+//while (text.so[i])
+//	printf("%s\n", text.so[i++]);
+//i = 0;
+//while (text.we[i])
+//	printf("%s\n", text.we[i++]);
+//i = 0;
+//while (text.ea[i])
+//	printf("%s\n", text.ea[i++]);		
+//i = 0;
+//while (text.f[i])
+//	printf("%s\n", text.f[i++]);
+//i = 0;
+//while (text.c[i])
+//	printf("%s\n", text.c[i++]);
+//i = 0;
+//while (main.map_tab[i])
+//	printf("%s\n", main.map_tab[i++]);
+//i = 0;
+//while (main.clean_file[i])
+//	printf("%s\n", main.clean_file[i++]);		
