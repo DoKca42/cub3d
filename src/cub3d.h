@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 18:58:54 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:28:42 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ void		grid_mlx(t_main *main);
 void		draw_line_grid(int xa, int ya, int xb, int yb);
 void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
 void		init_grid(t_main *main);
+void	dda_incr_red(float x, float y, int step, t_coor dcoor);
+void	draw_line_red(int xa, int ya, int xb, int yb);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
@@ -210,6 +212,7 @@ void		raycast(t_main *main);
 t_dblcoor	line_raycast_hori(t_main *main, float rad);
 t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
+t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);

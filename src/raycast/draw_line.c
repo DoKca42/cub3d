@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:21 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:21:48 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:29:38 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,42 @@ void	draw_line(int xa, int ya, int xb, int yb)
 	dcoor.x = dx;
 	dcoor.y = dy;
 	dda_incr((float)xa, (float)ya, step, dcoor);
+}
+
+void	dda_incr_red(float x, float y, int step, t_coor dcoor)
+{
+	float	xdda;
+	float	ydda;
+	int		i;
+	t_main	*main;
+	t_map	*map;
+
+	main = get_main(0);
+	map = main->map;
+	xdda = dcoor.x / (float)step;
+	ydda = dcoor.y / (float)step;
+	i = 0;
+	while (i < step && i < 5000)
+	{
+		if (x >= 0 && x < map->width * MAP_RES && y >= 0 && y < map->height * MAP_RES)
+			mlx_put_pixel(map->ray_lines, (uint32_t)x, (uint32_t)y, ft_pixel(255, 2, 2, 255));
+		x += xdda;
+		y += ydda;
+		i++;
+	}
+}
+
+void	draw_line_red(int xa, int ya, int xb, int yb)
+{
+	int		dx;
+	int		dy;
+	int		step;
+	t_coor	dcoor;
+
+	dx = xb - xa;
+	dy = yb - ya;
+	step = get_max(get_abs(dx), get_abs(dy));
+	dcoor.x = dx;
+	dcoor.y = dy;
+	dda_incr_red((float)xa, (float)ya, step, dcoor);
 }
