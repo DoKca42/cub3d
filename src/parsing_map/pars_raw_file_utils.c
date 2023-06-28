@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:52:40 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 01:05:19 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 14:38:40 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,37 @@
 
 int	strlen_doubletab(char **tab)
 {
-	int k;
+	int	k;
 
 	k = 0;
-	while(tab[k])
+	while (tab[k])
 		k++;
 	return (k);
 }
 
-void skip_space(char *raw_map, int *i)
+void	skip_space(char *raw_map, int *i)
 {
-	while(raw_map[*i] == ' ' || raw_map[*i] == '\n' || raw_map[*i] == '\t')
+	while (raw_map[*i] == ' ' || raw_map[*i] == '\n' || raw_map[*i] == '\t')
 		*i = *i + 1;
 }
 
 void	check_color_char(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
-
-	while(str[++i])
+	while (str[++i])
 	{
-		if((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ',' && str[i] != '\t')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ','
+			&& str[i] != '\t')
 			ft_errormap("Wrong char in color");
 	}
 }
 
-int check_valide_texture(t_texture *text)
+int	check_valide_texture(t_texture *text)
 {
-	if (!text->NO || !text->WE || !text->SO || !text->EA || !text->F || !text->C)
+	if (!text->no || !text->we || !text->so || !text->ea || !text->f
+		|| !text->c)
 		return (0);
 	else
 		return (1);
@@ -51,11 +52,12 @@ int check_valide_texture(t_texture *text)
 
 int	check_char_for_map(char	*tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(tab[++i])
-		if(tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S' || tab[i] == 'E' || tab[i] == 'W' || tab[i] == 'D')
-				return (1);
+	while (tab[++i])
+		if (tab[i] == '1' || tab[i] == '0' || tab[i] == 'N' || tab[i] == 'S'
+			|| tab[i] == 'E' || tab[i] == 'W' || tab[i] == 'D')
+			return (1);
 	return (0);
 }

@@ -6,15 +6,15 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:57:02 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/22 15:57:37 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:25:48 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		check_char_tab_split(char c, char *str)
+int	check_char_tab_split(char c, char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])

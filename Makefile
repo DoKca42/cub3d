@@ -35,7 +35,8 @@ SRCS =	src/main.c\
 		src/parsing_map/ft_split_modif.c\
 		src/parsing_map/ft_split_modif_utils.c\
 		src/parsing_map/pars_raw_file_utils.c\
-		src/parsing_map/pars_raw_files_utils_2.c
+		src/parsing_map/pars_raw_files_utils_2.c\
+		src/parsing_map/pars_clean_map.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BN	= ${SRCS_BN:.c=.o}

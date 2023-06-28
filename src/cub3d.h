@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:14:01 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:38:56 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_dblcoor
 	double	y;
 }	t_dblcoor;
 
-
 typedef struct s_coor
 {
 	int	x;
@@ -82,12 +81,11 @@ typedef struct s_cooldown
 
 typedef struct s_raycast
 {
-	double x;
-	double y;
-	double xn;
-	double yn;
+	double	x;
+	double	y;
+	double	xn;
+	double	yn;
 }	t_raycast;
-
 
 typedef struct s_map
 {
@@ -116,20 +114,19 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	char **NO;
-	char **SO;
-	char **WE;
-	char **EA;
-
-	char **F;
-	char **C;
+	char	**no;
+	char	**so;
+	char	**we;
+	char	**ea;
+	char	**f;
+	char	**c;
 }	t_texture;
 
 typedef struct s_rgb
 {
 	int	r;
-	int g;
-	int b;
+	int	g;
+	int	b;
 }	t_rgb;
 
 typedef struct s_main
@@ -147,10 +144,10 @@ typedef struct s_main
 }	t_main;
 
 /* ======= DEBUG ====== */
-void	grid_mlx(t_main *main);
-void	draw_line_grid(int xa, int ya, int xb, int yb);
-void	dda_incr_grid(float x, float y, int step, t_coor dcoor);
-void	init_grid(t_main *main);
+void		grid_mlx(t_main *main);
+void		draw_line_grid(int xa, int ya, int xb, int yb);
+void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
+void		init_grid(t_main *main);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
@@ -178,8 +175,8 @@ t_player	set_player(int x, int y, int orientation);
 int			orientation_to_angle(char orientation);
 
 /* ======= MINIMAP ====== */
-void 		display_mini_map(t_main *main);
-void 		display_mini_map_player(t_main *main);
+void		display_mini_map(t_main *main);
+void		display_mini_map_player(t_main *main);
 
 /* ======= ACTION ====== */
 void		ft_player_rotation(t_main *main);
@@ -228,23 +225,23 @@ int			get_time(t_main *main);
 t_cooldown	init_cooldown(void);
 
 /* ======= COPY_FILE ====== */
-int			get_file(t_main *main, char* str);
+int			get_file(t_main *main, char *str);
 int			check_ber(char *str);
 int			ft_errormap(char *str);
 int			read_map(int fd);
 int			checkline(char *buffer);
 /* ======= COPY_FILE_UTILS ====== */
 char		*ft_strdup_modif(char *s1);
-void 		clean_map(t_main *main, char **raw_map);
-void 		ft_free_tab(char **tab);
+void		clean_map(t_main *main, char **raw_map);
+void		ft_free_tab(char **tab);
 int			ft_strcmp(char *s1, char *s2);
 
 /* ======= PARS_RAW_FILE ====== */
-void 		ft_pars_raw_map(char **raw_map, t_main *main);
-int 		check_char(char *raw_map, int *i, t_main *main);
+void		ft_pars_raw_map(char **raw_map, t_main *main);
+int			check_char(char *raw_map, int *i, t_main *main);
 int			check_valide_format(char *raw_map, int *i, t_texture *text);
-char 		**check_routine(char *raw_map, char **texture, char *to_compare);
-char 		**check_color_format(char *raw_map, int *i, char **rgb);
+char		**check_routine(char *raw_map, char **texture, char *to_compare);
+char		**check_color_format(char *raw_map, int *i, char **rgb);
 
 /* ======= PARS_RAW_FILE_UTILS ====== */
 int			strlen_doubletab(char **tab);
@@ -254,12 +251,18 @@ int			check_valide_texture(t_texture *text);
 int			check_char_for_map(char	*tab);
 
 /* ======= PARS_RAW_FILE_UTILS_2 ====== */
-void 		convert_color(char **color, t_rgb *rgb);
+void		convert_color(char **color, t_rgb *rgb);
 char		*ft_strdup_(char *s1);
-
-
+void		ft_copy_map(char **raw_map, t_main *main, int k);
 /* ======= SPLIT_MODIF ====== */
 char		**ft_split_modif(char const *str, char *c);
 int			check_char_tab_split(char c, char *str);
+
+/* ======= PARS_CLEAN_MAP ====== */
+void		check_arround(char **map, int i, int k);
+void		ft_pars_clean_map(char	**map);
+int			char_player(char c);
+int			char_to_check_around(char c);
+int			check_char_clean_map(char c, int cases);
 
 #endif

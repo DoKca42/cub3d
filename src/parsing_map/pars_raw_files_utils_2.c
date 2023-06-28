@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_files_utils_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:59:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/27 23:09:08 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 15:19:17 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void convert_color(char **color, t_rgb *rgb)
+void	convert_color(char **color, t_rgb *rgb)
 {
 	rgb->r = ft_atoi(color[0]);
 	rgb->g = ft_atoi(color[1]);
 	rgb->b = ft_atoi(color[2]);
-
 	if (rgb->r > 255 || rgb->g > 255 || rgb->b > 255)
 		ft_errormap("wrong RGB format");
 }
@@ -40,4 +39,29 @@ char	*ft_strdup_(char *s1)
 	}
 	m[i] = '\0';
 	return (m);
+}
+
+void	ft_copy_map(char **raw_map, t_main *main, int k)
+{
+	int	start_map;
+	int	i;
+
+	start_map = k;
+	while (raw_map[k] && check_char_for_map(raw_map[k]) == 1)
+		k++;
+	if (raw_map[k] != 0)
+		ft_errormap("Wrong file format");
+	main->map_tab = ftm_malloc((k - start_map + 1) * sizeof(char *));
+	main->map_tab[k - start_map] = 0;
+	i = 0;
+	while (start_map < k)
+	{
+		main->map_tab[i] = ft_strdup_(raw_map[start_map]);
+		start_map++;
+		i++;
+	}
+	k = -1;
+	while (main->map_tab[++k])
+		printf("%s\n", main->map_tab[k]);
+	ft_pars_clean_map(main->map_tab);
 }
