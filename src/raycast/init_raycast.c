@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 16:33:04 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 18:35:52 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,53 +45,40 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 	return (out);
 }
 
-void	line_raycast(t_main *main, float rad)
+t_dblcoor	line_raycast(t_main *main, float rad)
 {
-	float		pdx;
-	float		pdy;
-	float		a_tan;
-	t_dblcoor	val;
-
-	float	rx;
-	float	ry;
-
-	a_tan = -1 / tan(rad);
-
-	if (rad < PI)
-	{
-		ry = get_case_coor(get_center_player(main)).y;
-		rx = (main->ray->y - ry) * a_tan - main->ray->x;
-		draw_line((int)main->ray->x, (int)main->ray->y, (int)-rx, (int)ry);
-	}
-	else
-	{
-		ry = get_case_coor(get_center_player(main)).y + MAP_RES;
-		rx = (main->ray->y - ry) * a_tan - main->ray->x;
-		draw_line((int)main->ray->x, (int)main->ray->y, (int)-rx, (int)ry);
-		pdx = cos(rad) * 50;
-		pdy = sin(rad) * 50;
-	}
-
-	val.x = -rx;
-	val.y = ry;
-	if (raycast_get_collision(val, main))
-		printf("HIT\n");
+	return (line_raycast_verti(main, rad));
 }
-void	raycast_flastlight(t_main *main, float rad)
-{
-	int		i;
 
-	line_raycast(main, rad);
-	rad -= (0.0174533 / 3) * 90;
+void	raycast_flastlight(t_main *main, float angle)
+{
+	int			i;
+	t_dblcoor	val;
+	float		step;
+	float 		temp;
+
+	val = line_raycast(main, deg_to_rad(angle));
+	draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
+	printf("%f\n", angle);
+	(void)i;
+	(void)temp;
+	(void)step;
+/*
+	step = 0.33333;
 	i = 0;
-	//while (i < 180)
-	//while (i < 1)
-	//{
-	//	line_raycast(main, rad);
-	//	rad += (0.0174533 / 3);
-	//	i++;
-	//}
-	//printf(">------------<\n");
+	angle -= step * 90;
+	while (i < 180)
+	{
+		temp = angle;
+		if (angle < 0)
+			temp += 359;
+		else if (angle >= 360)
+			temp = angle - 360;
+		val = line_raycast(main, deg_to_rad(temp));
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
+		angle += step;
+		i++;
+	}*/
 }
 
 void	raycast(t_main *main)
@@ -103,8 +90,9 @@ void	raycast(t_main *main)
 	map = main->map;
 	//pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
-	raycast_flastlight(main, deg_to_rad(map->current.direc));
-	printf(">> %d \n", map->current.direc);
+	raycast_flastlight(main, map->current.direc);
+	//deg_to_rad(map->current.direc)
+	//printf(">> %d \n", map->current.direc);
 	//new = raycast_flastlight(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	//draw_line(main->ray->x, main->ray->y, new.x, new.y);

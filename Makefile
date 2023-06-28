@@ -24,7 +24,8 @@ SRCS =	src/main.c\
 		src/raycast/raycast_utils.c\
 		src/raycast/draw_line.c\
 		src/raycast/raycast_collision.c\
-		src/raycast/grid_gridy.c\
+		src/raycast/raycast_horizontal.c\
+		src/raycast/raycast_vertical.c\
 		src/utils/utils_1.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\
@@ -36,7 +37,8 @@ SRCS =	src/main.c\
 		src/parsing_map/ft_split_modif_utils.c\
 		src/parsing_map/pars_raw_file_utils.c\
 		src/parsing_map/pars_raw_files_utils_2.c\
-		src/parsing_map/pars_clean_map.c
+		src/parsing_map/pars_clean_map.c\
+		src/raycast/grid_gridy.c #DEBUG
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BN	= ${SRCS_BN:.c=.o}

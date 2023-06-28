@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:38:56 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 18:19:49 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,10 @@ void		ray_set_player_pose(t_main *main);
 t_dblcoor	ray_get_yn_xn(t_main *main);
 t_dblcoor	ray_horizontal(t_dblcoor pose, int direc);
 void		raycast(t_main *main);
+
+t_dblcoor	line_raycast_hori(t_main *main, float rad);
+t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
+t_dblcoor	line_raycast_verti(t_main *main, float rad);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
