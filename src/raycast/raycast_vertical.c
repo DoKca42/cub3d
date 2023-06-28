@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:19:18 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 18:57:41 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 19:00:22 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_dblcoor	line_raycast_verti(t_main *main, float rad)
 		
 		dx = get_case_coor(get_center_player(main)).x;
 		//ry = (dx) * (sin(rad));
-		rx = -(dx);
+		rx = (dx);
 		//ry = get_case_coor(get_center_player(main)).y + MAP_RES;
 		//rx = (main->ray->y - ry) * a_tan - main->ray->x;
 		printf("DROITE\n");
