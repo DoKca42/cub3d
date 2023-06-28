@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 20:31:35 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 23:09:54 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,21 @@ t_dblcoor	line_raycast(t_main *main, float rad)
 
 	horizontal = line_raycast_hori(main, rad);
 	vertical = line_raycast_verti(main, rad);
-	//return (vertical);
-	//if (get_mini(vertical, horizontal) == 0)
-	//{
-	//	draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
-	//	return (vertical);
-	//}
-	//else
-	//{
-	//	draw_line_red((int)main->ray->x, (int)main->ray->y, (int)horizontal.x, (int)horizontal.y);
-	//	return (horizontal);
-	//}
-	draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
+
+	/*
+	if (mini_distance(main, horizontal, vertical))
+	{
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
+		return (vertical);
+	}
+	else
+	{
+		draw_line_red((int)main->ray->x, (int)main->ray->y, (int)horizontal.x, (int)horizontal.y);
+		return (horizontal);
+	}
+
+	*/
+	//draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
 	return (vertical);
 }
 
@@ -76,8 +79,9 @@ void	raycast_flastlight(t_main *main, float angle)
 
 	step = 0.33333;
 	i = 0;
-	angle -= step * 90;
-	while (i < 180)
+	//angle -= step * 90;
+	//while (i < 180)
+	while (i < 1)
 	{
 		temp = angle;
 		if (angle < 0)
@@ -85,7 +89,7 @@ void	raycast_flastlight(t_main *main, float angle)
 		else if (angle >= 360)
 			temp = angle - 360;
 		val = line_raycast(main, deg_to_rad(temp));
-		//draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
 		angle += step;
 		i++;
 	}

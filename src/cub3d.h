@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 20:28:42 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 22:19:37 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,8 @@ void		grid_mlx(t_main *main);
 void		draw_line_grid(int xa, int ya, int xb, int yb);
 void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
 void		init_grid(t_main *main);
-void	dda_incr_red(float x, float y, int step, t_coor dcoor);
-void	draw_line_red(int xa, int ya, int xb, int yb);
+void	dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
+void	draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
@@ -219,6 +219,8 @@ int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(int angle);
+float		distance_from_main(t_main *main, t_dblcoor val);
+int			mini_distance(t_main *main, t_dblcoor hori, t_dblcoor verti);
 
 /* ======= DDA ====== */
 void		init_ray_view(t_main *main);
