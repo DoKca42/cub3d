@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:27:27 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:38:56 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct s_raycast
 typedef struct s_map
 {
 	char		**map;
+	int			width;
+	int			height;
 
 	t_coor		*wall;
 	int			wall_size;
@@ -106,6 +108,8 @@ typedef struct s_map
 	mlx_image_t	*img_player;
 
 	mlx_image_t	*ray_lines;
+
+	mlx_image_t	*grid;
 }	t_map;
 
 typedef struct s_texture
@@ -138,6 +142,12 @@ typedef struct s_main
 	t_raycast	*ray;
 	int			pause;
 }	t_main;
+
+/* ======= DEBUG ====== */
+void		grid_mlx(t_main *main);
+void		draw_line_grid(int xa, int ya, int xb, int yb);
+void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
+void		init_grid(t_main *main);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);

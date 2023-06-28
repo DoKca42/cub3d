@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:46:07 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:29:44 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ void	player_get_rotation(t_main *main)
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_LEFT))
 	{
 		map->current.direc += 4;
+		if (map->current.direc >= 360)
+			map->current.direc = 0;
 		ft_player_rotation(main);
 	}
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_RIGHT))
 	{
 		map->current.direc -= 4;
+		if (map->current.direc < 0)
+			map->current.direc = 359;
 		ft_player_rotation(main);
 	}
 	mlx_mouse(main);
@@ -71,12 +75,16 @@ void	mlx_mouse(t_main *main)
 		if (mx < WIDTH / 2 - 5)
 		{
 			map->current.direc += 4;
+			if (map->current.direc >= 360)
+				map->current.direc = 0;
 			ft_player_rotation(main);
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
 		}
 		else if (mx > WIDTH / 2 + 5)
 		{
 			map->current.direc -= 4;
+			if (map->current.direc < 0)
+				map->current.direc = 359;
 			ft_player_rotation(main);
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
 		}
