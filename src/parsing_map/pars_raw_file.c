@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 01:56:06 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 15:19:11 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**check_routine(char *raw_map, char **texture, char *to_compare)
 {
-	char tab[3];
+	char	tab[3];
 
 	tab[0] = ' ';
 	tab[1] = '\t';
@@ -22,7 +22,8 @@ char	**check_routine(char *raw_map, char **texture, char *to_compare)
 	if (!texture)
 	{
 		texture = ft_split_modif(raw_map, tab);
-		if (ft_strcmp(texture[0], to_compare) != 0 || strlen_doubletab(texture) != 2)
+		if (ft_strcmp(texture[0], to_compare) != 0
+			|| strlen_doubletab(texture) != 2)
 			ft_errormap("Wrong texture format");
 	}
 	else
@@ -30,20 +31,20 @@ char	**check_routine(char *raw_map, char **texture, char *to_compare)
 	return (texture);
 }
 
-int check_valide_format(char *raw_map, int *i, t_texture *text)
+int	check_valide_format(char *raw_map, int *i, t_texture *text)
 {
-	if(raw_map[*i] == 'N')
-		text->NO = check_routine(raw_map, text->NO, "NO");
-	if(raw_map[*i] == 'S')
-		text->SO = check_routine(raw_map, text->SO, "SO");
-	if(raw_map[*i] == 'W')
-		text->WE = check_routine(raw_map, text->WE, "WE");
-	if(raw_map[*i] == 'E')
-		text->EA = check_routine(raw_map, text->EA, "EA");
-	return (0); // flag
+	if (raw_map[*i] == 'N')
+		text->no = check_routine(raw_map, text->no, "NO");
+	if (raw_map[*i] == 'S')
+		text->so = check_routine(raw_map, text->so, "SO");
+	if (raw_map[*i] == 'W')
+		text->we = check_routine(raw_map, text->we, "WE");
+	if (raw_map[*i] == 'E')
+		text->ea = check_routine(raw_map, text->ea, "EA");
+	return (0);
 }
 
-char **check_color_format(char *raw_map, int *i, char **rgb)
+char	**check_color_format(char *raw_map, int *i, char **rgb)
 {
 	int		k;
 	char	*color_tab;
@@ -54,7 +55,6 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 	tab[2] = '\t';
 	tab[3] = '\0';
 	k = *i;
-
 	if (raw_map[k + 1] != ' ' && raw_map[k + 1] != '\t')
 		ft_errormap("Wrong color format");
 	k++;
@@ -68,153 +68,80 @@ char **check_color_format(char *raw_map, int *i, char **rgb)
 	return (rgb);
 }
 
-
-
-int check_char(char *raw_map, int *i, t_main *main)
+int	check_char(char *raw_map, int *i, t_main *main)
 {
 	if (raw_map[*i] == '\0')
 		return (0);
-	else if (raw_map[*i] != 'N' && raw_map[*i] != 'S' && raw_map[*i] != 'W' && raw_map[*i] != 'E' && raw_map[*i] != 'F' && raw_map[*i] != 'C' && raw_map[*i] != '1' && raw_map[*i] != ' ' && raw_map[*i] != '\n' && raw_map[*i] != '\t')
+	else if (raw_map[*i] != 'N' && raw_map[*i] != 'S' && raw_map[*i] != 'W'
+		&& raw_map[*i] != 'E' && raw_map[*i] != 'F' && raw_map[*i] != 'C'
+		&& raw_map[*i] != '1' && raw_map[*i] != ' ' && raw_map[*i] != '\n'
+		&& raw_map[*i] != '\t')
 		ft_errormap("Wrong format of file");
-	else if (raw_map[*i] == 'N' || raw_map[*i] == 'S' || raw_map[*i] == 'W' || raw_map[*i] == 'E')
+	else if (raw_map[*i] == 'N' || raw_map[*i] == 'S' || raw_map[*i] == 'W'
+		|| raw_map[*i] == 'E')
 		check_valide_format(raw_map, i, main->text);
 	else if (raw_map[*i] == 'F')
 	{
-		main->text->F = check_color_format(raw_map, i, main->text->F);
-		convert_color(main->text->F, main->sol);
+		main->text->f = check_color_format(raw_map, i, main->text->f);
+		convert_color(main->text->f, main->sol);
 	}
 	else if (raw_map[*i] == 'C')
 	{
-		main->text->C = check_color_format(raw_map, i, main->text->C);
-		convert_color(main->text->C, main->ciel);
+		main->text->c = check_color_format(raw_map, i, main->text->c);
+		convert_color(main->text->c, main->ciel);
 	}
-	return (0); // flag
-}
-int	check_char_clean_map(char c)
-{
-	if(c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D' || c == ' ' || c == '\t')
-				return (1);
 	return (0);
 }
 
-void	check_arround(char **map, int i, int k)
+void	ft_pars_raw_map(char **raw_map, t_main *main)
 {
-	if (k == 0 || k == strlen_doubletab(map) - 1)
-		ft_errormap("bad wall");
-	if	(i > ft_strlen_(map[k - 1]) || i > ft_strlen_(map[k + 1]))
-		ft_errormap("bad wall");
-	if	(i == 0)
-		ft_errormap("bad wall");
-	if	(check_char_clean_map(map[k - 1][i]) == 0)
-		ft_errormap("bad wall");
-	if 	(check_char_clean_map(map[k + 1][i]) == 0)
-		ft_errormap("bad wall");
-	if	(check_char_clean_map(map[k][i - 1]) == 0)
-		ft_errormap("bad wall");
-	if 	(check_char_clean_map(map[k][i + 1]) == 0)
-		ft_errormap("bad wall");
-}
-
-int char_to_check_around(char c)
-{
-	if(c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D')
-		return (1);
-	return (0);
-}
-
-int char_player(char c)
-{
-	if(c == 'N' || c == 'S' || c == 'E' || c == 'W' )
-		return (1);
-	return (0);
-}
-
-void	ft_pars_clean_map(char	**map)
-{
-	int k;
-	int i;
-	int player;
-
-	k = -1;
-	player = 0;
-	while(map[++k])
-	{
-		i = -1;
-		while(map[k][++i])
-		{
-			if(!check_char_clean_map(map[k][i]))
-				ft_errormap("bad char in map");
-			if(char_to_check_around(map[k][i]))
-				check_arround(map, i, k);
-			if(char_player(map[k][i]))
-				player++;
-		}
-	}
-	if (player != 1)
-		ft_errormap("wrong number of player");
-}
-void ft_pars_raw_map(char **raw_map, t_main *main)
-{
-	int i;
-	int k;
-	int start_map;
+	int	i;
+	int	k;
 
 	i = 0;
 	k = 0;
-	while(raw_map[k] != 0)
+	while (raw_map[k] != 0)
 	{
-		while(raw_map[k][i] != 0 && raw_map[k][i] != '1' && raw_map[k][i] != '0')
+		while (raw_map[k][i] != 0 && raw_map[k][i] != '1'
+			&& raw_map[k][i] != '0')
 		{
 			skip_space(raw_map[k], &i);
-			if(check_char(raw_map[k], &i, main) == 0)
-				break;
+			if (check_char(raw_map[k], &i, main) == 0)
+				break ;
 			i++;
 		}
-		if(raw_map[k][i] == '1' || raw_map[k][i] == '0')
-			break;
+		if (raw_map[k][i] == '1' || raw_map[k][i] == '0')
+			break ;
 		i = 0;
 		k++;
 	}
 	if (check_valide_texture(main->text) == 0 || raw_map[k] == 0)
 		ft_errormap("Wrong file format");
-	start_map = k;
-	while(raw_map[k] && check_char_for_map(raw_map[k]) == 1)
-		k++;
-	if(raw_map[k] != 0)
-		ft_errormap("Wrong file format");
-	main->map_tab = ftm_malloc((k - start_map + 1) * sizeof(char *));
-	main->map_tab[k - start_map] = 0;
-	i = 0;
-	while(start_map < k)
-	{
-		main->map_tab[i] = ft_strdup_(raw_map[start_map]);
-		start_map++;
-		i++;
-	}
-	ft_pars_clean_map(main->map_tab);
+	ft_copy_map(raw_map, main, k);
+}
+
 	//k = -1;
 	//while(main->map_tab[++k])
 	//	printf("%s\n", main->map_tab[k]);
 	//printf("%d\n", k);
 	//k = -1;
-	//while(main->text->F[++k] != 0)
-	//	printf("%s\n", main->text->F[k]);
+	//while(main->text->f[++k] != 0)
+	//	printf("%s\n", main->text->f[k]);
 	//k = -1;
-	//while(main->text->C[++k])
-	//	printf("%s\n", main->text->C[k]);
+	//while(main->text->c[++k])
+	//	printf("%s\n", main->text->c[k]);
 	//k = -1;
-	//while(text->NO[++k])
+	//while(text->no[++k])
 	//{
-	//	printf("%s\n", text->NO[k]);
-	//	printf("%s\n", text->SO[k]);
-	//	printf("%s\n", text->EA[k]);
-	//	printf("%s\n", text->WE[k]);
+	//	printf("%s\n", text->no[k]);
+	//	printf("%s\n", text->so[k]);
+	//	printf("%s\n", text->ea[k]);
+	//	printf("%s\n", text->we[k]);
 	//}
 	//k = -1;
 	//k = -1;
-	//while(text->F[++k])
-	//	printf("%s\n", text->F[k]);
+	//while(text->f[++k])
+	//	printf("%s\n", text->f[k]);
 	//k = -1;
-	//while(text->F[++k])
-	//	printf("%s\n", text->C[k]);
-}
+	//while(text->f[++k])
+	//	printf("%s\n", text->c[k]);

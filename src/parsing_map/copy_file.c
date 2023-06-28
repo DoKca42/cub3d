@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:28:04 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/24 01:15:39 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 14:26:21 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ int	check_ber(char *str)
 	return (1);
 }
 
-int get_file(t_main *main, char* str)
+int	get_file(t_main *main, char *str)
 {
-	int i;
-	int size;
-	int fd;
-	char **raw_map;
+	int		i;
+	int		size;
+	int		fd;
+	char	**raw_map;
 
 	i = 0;
 	size = read_map(ftm_open(str, O_RDONLY));

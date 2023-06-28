@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_modif.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:31:38 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/24 00:09:34 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 14:25:38 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ static char	**size_tab(char **tab, char const *str, char *c)
 	}
 	return (tab);
 }
-
 
 char	**ft_split_modif(char const *str, char *c)
 {	
