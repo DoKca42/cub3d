@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seya <seya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 23:00:05 by seya             ###   ########.fr       */
+/*   Updated: 2023/06/28 12:47:18 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,58 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 	return (out);
 }
 
-void	line_raycast(t_main *main, float angle)
+void	line_raycast(t_main *main, float rad)
 {
 	float	pdx;
 	float	pdy;
+	float	a_tan;
 
-	pdx = cos(angle) * 100;
-	pdy = sin(angle) * 100;
+	float	rx;
+	float	ry;
+
+	a_tan = -1 / tan(rad);
+
+	if (rad < PI)
+	{
+		ry = (((int)main->ray->y>>6)<<6)-0.0001;
+		rx = (main->ray->y - ry) * a_tan;
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x-rx, (int)ry - PLAYER_RES / 2);
+	}
+	else
+	{
+		rx = 0;
+		ry = 0;
+		pdx = cos(rad) * 50;
+		pdy = sin(rad) * 50;
+		draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
+	}
+
+
+
+	//printf(">> %f\n", a_tan);
+	pdx = cos(rad) * 50;
+	pdy = sin(rad) * 50;
 	(void)main;
 	//printf(">> %f, %f  ||  %f, %f\n", main->ray->x, main->ray->y, main->ray->x+pdx*5, main->ray->y-pdy*5);
 	//draw_line(main->ray->x, main->ray->y, pdx, pdy);
-	draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
+
+	//draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+pdx, (int)main->ray->y-pdy);
+	//draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x+rx, (int)ry);
+	//printf("%f, %f\n", rx, ry);
 }
-void	raycast_flastlight(t_main *main, float angle)
+void	raycast_flastlight(t_main *main, float rad)
 {
 	int		i;
 
-	angle -= (0.0174533 / 3) * 90;
+	rad -= (0.0174533 / 3) * 90;
 	i = 0;
 	while (i < 180)
 	{
-		line_raycast(main, angle);
-		angle += (0.0174533 / 3);
+		line_raycast(main, rad);
+		rad += (0.0174533 / 3);
 		i++;
 	}
+	//printf(">------------<\n");
 }
 
 void	raycast(t_main *main)
