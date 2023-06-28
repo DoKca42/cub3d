@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:59:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 17:49:39 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/28 18:59:46 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	ft_copy_map(char **raw_map, t_main *main, int k)
 		start_map++;
 		i++;
 	}
+	ft_free_tab(raw_map);
 	ft_pars_clean_map(main->map_tab);
 }

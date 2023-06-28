@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 15:19:11 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:56:39 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	**check_color_format(char *raw_map, int *i, char **rgb)
 		k++;
 	color_tab = &raw_map[k];
 	check_color_char(color_tab);
+	if (rgb)
+		ft_errormap("wrong double color");
 	rgb = ft_split_modif(color_tab, tab);
 	if (strlen_doubletab(rgb) != 3)
 		ft_errormap("Wrong color format");
@@ -120,28 +122,3 @@ void	ft_pars_raw_map(char **raw_map, t_main *main)
 	ft_copy_map(raw_map, main, k);
 }
 
-	//k = -1;
-	//while(main->map_tab[++k])
-	//	printf("%s\n", main->map_tab[k]);
-	//printf("%d\n", k);
-	//k = -1;
-	//while(main->text->f[++k] != 0)
-	//	printf("%s\n", main->text->f[k]);
-	//k = -1;
-	//while(main->text->c[++k])
-	//	printf("%s\n", main->text->c[k]);
-	//k = -1;
-	//while(text->no[++k])
-	//{
-	//	printf("%s\n", text->no[k]);
-	//	printf("%s\n", text->so[k]);
-	//	printf("%s\n", text->ea[k]);
-	//	printf("%s\n", text->we[k]);
-	//}
-	//k = -1;
-	//k = -1;
-	//while(text->f[++k])
-	//	printf("%s\n", text->f[k]);
-	//k = -1;
-	//while(text->f[++k])
-	//	printf("%s\n", text->c[k]);

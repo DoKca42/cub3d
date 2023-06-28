@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
+/*   Updated: 2023/06/28 18:59:35 by loculy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	ft_hook(void *param)
@@ -67,6 +79,30 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);
-	ftm_free_all();
 	return (0);
 }
+
+//int i = 0;
+//while (text.no[i])
+//	printf("%s\n", text.no[i++]);
+//i = 0;
+//while (text.so[i])
+//	printf("%s\n", text.so[i++]);
+//i = 0;
+//while (text.we[i])
+//	printf("%s\n", text.we[i++]);
+//i = 0;
+//while (text.ea[i])
+//	printf("%s\n", text.ea[i++]);		
+//i = 0;
+//while (text.f[i])
+//	printf("%s\n", text.f[i++]);
+//i = 0;
+//while (text.c[i])
+//	printf("%s\n", text.c[i++]);
+//i = 0;
+//while (main.map_tab[i])
+//	printf("%s\n", main.map_tab[i++]);
+//i = 0;
+//while (main.clean_file[i])
+//	printf("%s\n", main.clean_file[i++]);		

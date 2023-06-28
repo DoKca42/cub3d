@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:52:40 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 14:38:40 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/28 17:56:53 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@ void	skip_space(char *raw_map, int *i)
 void	check_color_char(char *str)
 {
 	int	i;
+	int	count;
 
+	count = 0;
 	i = -1;
 	while (str[++i])
 	{
 		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != ','
 			&& str[i] != '\t')
 			ft_errormap("Wrong char in color");
+		if (str[i] == ',')
+			count++;
 	}
+	if (count != 2)
+		ft_errormap("wrong color format");
 }
 
 int	check_valide_texture(t_texture *text)
