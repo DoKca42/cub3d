@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_vertical.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:19:18 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 23:13:33 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 14:12:19 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,26 @@ t_dblcoor	line_raycast_verti(t_main *main, float rad)
 	t_dblcoor	val;
 	float		rx;
 	float		ry;
+	//float		dx;
 
 	a_tan = -1 / tan(rad);
 	if ((int)(rad * 180 / PI) == 90)
 	{
 		ry = get_case_coor(get_center_player(main)).y;
-		rx = -main->ray->x;
+		rx = main->ray->x;
 	}
 	else if (((rad > PI / 2) && (rad < (PI / 2) * 3)))
 	{
-		rx = -get_case_coor(get_center_player(main)).x;
+		/*
+		dx = main->ray->x - get_case_coor(get_center_player(main)).x;
+		rx = main->ray->x - dx;
+		ry = rx * tan(rad);
+		printf("    <>  dx:%f  %f * %f = %f", dx, rx, tan(rad), ry);
+		//printf("    <>    %f  %d %f", main->ray->x, get_case_coor(get_center_player(main)).x, dx);*/
+		printf("    <> %d %d", (int)main->ray->x, (int)main->ray->y);
+		rx = -(get_case_coor(get_center_player(main)).x);
 		ry = -rx * tan(rad);
+		draw_line_red((int)main->ray->x, (int)main->ray->y, (int)rx, (int)main->ray->y, ft_pixel(255, 2, 255, 255));
 	}
 	else
 	{
@@ -38,12 +47,13 @@ t_dblcoor	line_raycast_verti(t_main *main, float rad)
 	}
 	val.x = -rx;
 	val.y = ry;
+	printf("\n");
 	draw_line_red((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y, ft_pixel(255, 2, 2, 255));
-	if (raycast_get_collision(val, main))
-		return (val);
-	else
-		return (line_raycast_verti_next(main, rad, val));
-	//return (val);
+	//if (raycast_get_collision(val, main))
+	//	return (val);
+	//else
+	//	return (line_raycast_verti_next(main, rad, val));
+	return (val);
 }
 
 t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val)
@@ -67,8 +77,9 @@ t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val)
 		else if (((rad > PI / 2) && (rad < (PI / 2) * 3)))
 		{
 			rx = val.x - MAP_RES;
-			ry = main->ray->x - rx * tan(rad);
-			printf(">> %f %f %f\n", tan(rad), val.x * tan(rad), tmp.y);
+			//ry = rx * tan(rad);
+			ry = (main->ray->x - (val.x - MAP_RES)) * tan(rad);
+			//printf(">> %f - %f =  %f * %f = %f\n", main->ray->x, val.x - MAP_RES, (main->ray->x - (val.x - MAP_RES)), tan(rad), ry);
 			draw_line_red((int)tmp.x, (int)tmp.y, (int)rx, (int)tmp.y, ft_pixel(255, 2, 255, 255));
 		}
 		else

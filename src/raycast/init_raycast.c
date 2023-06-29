@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 23:09:54 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 18:30:39 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_dblcoor	line_raycast(t_main *main, float rad)
 
 	*/
 	//draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
-	return (vertical);
+	return (horizontal);
 }
 
 void	raycast_flastlight(t_main *main, float angle)
@@ -88,6 +88,7 @@ void	raycast_flastlight(t_main *main, float angle)
 			temp += 359;
 		else if (angle >= 360)
 			temp = angle - 360;
+		printf(">> %f", temp);
 		val = line_raycast(main, deg_to_rad(temp));
 		draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
 		angle += step;
@@ -104,9 +105,10 @@ void	raycast(t_main *main)
 	map = main->map;
 	//pose = get_dblcenter_player(main);
 	fill_color_image(map->ray_lines, ft_pixel(255, 255, 255, 0));
-	raycast_flastlight(main, map->current.direc);
+	fill_color_image(map->view, ft_pixel(255, 255, 255, 0));
+	raycast_flastlight_new(main, map->current.direc);
 	//deg_to_rad(map->current.direc)
-	//printf(">> %d \n", map->current.direc);
+	//printf(">> %d", map->current.direc);
 	//new = raycast_flastlight(pose, 210, main);
 	//printf(">> %f, %f\n", calculateAngle(pose.x, pose.y, new.x, new.y, new.x , pose.y), new.y);
 	//draw_line(main->ray->x, main->ray->y, new.x, new.y);

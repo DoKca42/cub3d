@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 22:19:37 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 18:33:25 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct s_map
 	mlx_image_t	*ray_lines;
 
 	mlx_image_t	*grid;
+
+	mlx_image_t	*view;
 }	t_map;
 
 typedef struct s_texture
@@ -170,6 +172,7 @@ void		init_main(t_main *main);
 int			ft_strlen_(char *str);
 int			get_max(int a, int b);
 int			get_min(int a, int b);
+int			height_distance(int distance);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);
@@ -214,6 +217,11 @@ t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
 t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
 
+void	draw_rectangle(t_main *main, int x, int height, int width);
+
+
+void	raycast_flastlight_new(t_main *main, float angle);
+
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 
@@ -221,6 +229,7 @@ int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 double		deg_to_rad(int angle);
 float		distance_from_main(t_main *main, t_dblcoor val);
 int			mini_distance(t_main *main, t_dblcoor hori, t_dblcoor verti);
+float		distance_diff(t_dblcoor a, t_dblcoor b);
 
 /* ======= DDA ====== */
 void		init_ray_view(t_main *main);

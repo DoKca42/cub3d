@@ -1,51 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_1.c                                          :+:      :+:    :+:   */
+/*   raycast_view.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 10:45:56 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 18:10:32 by loculy           ###   ########.fr       */
+/*   Created: 2023/06/29 17:10:41 by loculy            #+#    #+#             */
+/*   Updated: 2023/06/29 18:19:41 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_strlen_(char *str)
+void	draw_rectangle(t_main *main, int x, int height, int width)
 {
+	int	middle_map;
+	int	middle_height;
+	int	y;
 	int	i;
+	int	x_max;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	get_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-int	get_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	height_distance(int distance)
-{
-	int			height;
-
-	height = HEIGHT - distance * 3;
-	if (height < 0)
-		height = 0;
-	if (height > HEIGHT)
-		height = HEIGHT;
-	return (height);
+	middle_map = HEIGHT / 2;
+	middle_height = height / 2;
+	y = middle_map - middle_height;
+	x_max = x + width;
+	while (x < x_max)
+	{
+		i = 0;
+		while (i < height)
+		{
+			mlx_put_pixel(main->map->view, x, i + y, ft_pixel(150, 150, 255, 255));
+			i++;
+		}
+		x++;
+	}
 }

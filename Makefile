@@ -26,6 +26,8 @@ SRCS =	src/main.c\
 		src/raycast/raycast_collision.c\
 		src/raycast/raycast_horizontal.c\
 		src/raycast/raycast_vertical.c\
+		src/raycast/new_raycast.c\
+		src/raycast/raycast_view.c\
 		src/utils/utils_1.c\
 		memory_manager/memory_manager.c\
 		memory_manager/memory_manager_2.c\

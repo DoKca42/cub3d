@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:22:02 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 20:55:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 15:41:19 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ float	distance_from_main(t_main *main, t_dblcoor val)
 
 	distance = sqrtf(powf((val.x - main->ray->x), 2)
 			+ powf((val.y - main->ray->y), 2));
+	return (distance);
+}
+
+float	distance_diff(t_dblcoor a, t_dblcoor b)
+{
+	float	distance;
+
+	distance = sqrtf(powf((b.x - a.x), 2)
+			+ powf((b.y - a.y), 2));
 	return (distance);
 }
 
