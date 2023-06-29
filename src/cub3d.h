@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:31:13 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:50:41 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MAP_RES 50
 # define PLAYER_RES 25
 
-# define PLY_SPEED 4
+# define PLY_SPEED 2
 # define PLY_FOV 60
 
 # define PI 3.14159265

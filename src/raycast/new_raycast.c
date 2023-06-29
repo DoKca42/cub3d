@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 18:23:52 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:45:41 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ t_dblcoor	line_raycast_new(t_main *main, float rad)
 	max = distance_diff(a, b);
 	val.x = main->ray->x + cos(rad) * max;
 	val.y = main->ray->y - sin(rad) * max;
+	draw_line((int)main->ray->x, (int)main->ray->y, (int)main->ray->x
+		+ cos(rad) * 25, (int)main->ray->y - sin(rad) * 25);
 	return (line_raycast_new_dda(main, rad, val));
 }
 
@@ -104,7 +106,7 @@ void	raycast_flastlight_new(t_main *main, float angle)
 	int			i;
 	t_dblcoor	val;
 	float		step;
-	float 		temp;
+	float		temp;
 	int			x;
 
 	step = 0.0234375;
@@ -119,10 +121,7 @@ void	raycast_flastlight_new(t_main *main, float angle)
 		else if (angle >= 360)
 			temp = angle - 360;
 		val = line_raycast_new(main, deg_to_rad(temp));
-		//draw_line((int)main->ray->x, (int)main->ray->y, (int)val.x, (int)val.y);
 		draw_rectangle(main, x, height_distance(distance_from_main(main, val)), 1);
-		//	draw_rectangle(main, x, height_distance(distance_from_main(main, val)) * -cos(deg_to_rad(temp)), WIDTH / 900);
-		//printf("x: %d | distance: %d\n", x, height_distance(distance_from_main(main, val)));
 		angle -= step;
 		x += 1;
 		i++;
