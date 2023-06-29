@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 20:30:17 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:33:28 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 static void	ft_hook(void *param)
 {
 	t_main	*main;
+	int		update;
 
+	update = 0;
 	main = param;
-	player_get_move(main);
-	player_get_rotation(main);
-	player_get_action(main);
+	update += player_get_move(main);
+	update += player_get_rotation(main);
+	update += player_get_action(main);
+	get_fire(main);
+	get_reload(main, 0);
+	if (update > 0)
+		ft_player_rotation(main);
 }
 
 int	main(int argc, char **argv)
@@ -31,8 +37,8 @@ int	main(int argc, char **argv)
 	t_texture	text;
 	t_rgb		sol;
 	t_rgb		ciel;
+
 	/* ========= PARSING ========= */
-	
 	if (argc != 2)
 		return (ft_errormap("wrong number of args"));
 	if (check_ber(argv[1]) == 0)
@@ -62,6 +68,9 @@ int	main(int argc, char **argv)
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
 	ray_set_player_pose(&main);
+
+	load_texture(&main);
+	hand_display(&main, 0);
 //
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);

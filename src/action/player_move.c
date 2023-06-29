@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:52:12 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:29:05 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ void	ft_player_rotation(t_main *main)
 void	ft_player_move(t_main *main, t_inpt input)
 {
 	t_map	*map;
-
-	map = main->map;
 	float	pdx;
 	float	pdy;
 
+	map = main->map;
 	if (input.down == 1)
 	{
 		pdy = -sin(deg_to_rad(map->current.direc)) * input.speed;
@@ -72,6 +71,4 @@ void	ft_player_move(t_main *main, t_inpt input)
 		pdx = (sin(deg_to_rad(map->current.direc)) * input.speed);
 		player_move_wall(main, map->current.direc, -pdx, -pdy);
 	}
-	if (input.up + input.down + input.right + input.left > 0)
-		ft_player_rotation(main);
 }

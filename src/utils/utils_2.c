@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 16:20:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:10:54 by loculy           ###   ########.fr       */
+/*   Created: 2023/06/29 21:11:20 by loculy            #+#    #+#             */
+/*   Updated: 2023/06/29 21:11:43 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
 static char	*ft_itoa_loop(unsigned int n, char *m, unsigned int size, int neg)
 {
@@ -46,7 +46,7 @@ static unsigned int	ft_itoa_size(unsigned int use)
 	return (size);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_(int n)
 {
 	unsigned int	original;
 	unsigned int	use;
@@ -64,7 +64,7 @@ char	*ft_itoa(int n)
 		original = n;
 	use = original;
 	size = ft_itoa_size(use);
-	m = malloc((size + neg + 1) * sizeof(char));
+	m = ftm_malloc((size + neg + 1) * sizeof(char));
 	if (!m)
 		return (0);
 	return (ft_itoa_loop(original, m, size, neg));
