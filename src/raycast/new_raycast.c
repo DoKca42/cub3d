@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/30 00:16:06 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 05:10:55 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor
 		if ((int)dcoor.y == y_case)
 		{
 			dcoor.y = (int)dcoor.y;
-			if (raycast_get_collision(dcoor, main))
+			if (get_hit_texture_spbox(main, dcoor) == 1 || get_hit_texture_spbox(main, dcoor) == 2)
+			{
+				//if ((int)dcoor.y == 100 && (int)dcoor.x == 150)
+				//	printf("%f %f\n", dcoor.x, dcoor.y);
 				return (dcoor);
+			}
 			else
 			{
 				if (rad < PI)
@@ -50,7 +54,7 @@ t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor
 		if ((int)dcoor.x == x_case)
 		{
 			dcoor.x = (int)dcoor.x;
-			if (raycast_get_collision(dcoor, main))
+			if (get_hit_texture_spbox(main, dcoor) == 4 || get_hit_texture_spbox(main, dcoor) == 3)
 				return (dcoor);
 			else
 			{

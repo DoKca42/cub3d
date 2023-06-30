@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:56:29 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/30 03:05:28 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 05:03:18 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,22 @@ t_hit	get_hit_texture_box(t_main *main, t_dblcoor val)
 		i++;
 	}
 	return (box);
+}
+
+int	get_hit_texture_spbox(t_main *main, t_dblcoor val)
+{
+	int		i;
+	t_map	*map;
+
+	i = 0;
+	map = main->map;
+	while (i < map->wall_size)
+	{
+		if (is_ray_collision(val.x, val.y, map->wall[i]) == 1)
+		{
+			return (get_hit_orient(val.x, val.y, map->wall[i]));
+		}
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/30 03:06:18 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 05:03:22 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ void	raycast_flastlight_new(t_main *main, float angle);
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 int			is_ray_collision(double x, double y, t_coor wall);
+int			get_hit_orient(double x, double y, t_coor wall);
+int	get_hit_texture_spbox(t_main *main, t_dblcoor val);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(int angle);
