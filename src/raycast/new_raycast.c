@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:45:41 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 00:16:06 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,10 @@ void	raycast_flastlight_new(t_main *main, float angle)
 	t_dblcoor	val;
 	float		step;
 	float		temp;
-	int			x;
 
 	step = 0.0234375;
 	i = 0;
 	angle += step * 1280;
-	x = 0;
 	while (i < 2560)
 	{
 		temp = angle;
@@ -121,9 +119,8 @@ void	raycast_flastlight_new(t_main *main, float angle)
 		else if (angle >= 360)
 			temp = angle - 360;
 		val = line_raycast_new(main, deg_to_rad(temp));
-		draw_rectangle(main, x, height_distance(distance_from_main(main, val)), 1);
+		draw_rectangle(main, i, height_distance(distance_from_main(main, val)), val);
 		angle -= step;
-		x += 1;
 		i++;
 	}
 }

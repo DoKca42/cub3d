@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:49:45 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 18:30:39 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 00:08:40 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,15 @@ t_dblcoor	convert_pose(t_dblcoor pose, t_dblcoor new)
 	out.y = new.y + pose.y;
 	return (out);
 }
-
+/*
 t_dblcoor	line_raycast(t_main *main, float rad)
 {
 	t_dblcoor	horizontal;
 	t_dblcoor	vertical;
 
-	horizontal = line_raycast_hori(main, rad);
-	vertical = line_raycast_verti(main, rad);
+	//horizontal = line_raycast_hori(main, rad);
+	//vertical = line_raycast_verti(main, rad);
 
-	/*
 	if (mini_distance(main, horizontal, vertical))
 	{
 		draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
@@ -65,11 +64,12 @@ t_dblcoor	line_raycast(t_main *main, float rad)
 		return (horizontal);
 	}
 
-	*/
+	
 	//draw_line((int)main->ray->x, (int)main->ray->y, (int)vertical.x, (int)vertical.y);
 	return (horizontal);
 }
-
+*/
+/*
 void	raycast_flastlight(t_main *main, float angle)
 {
 	int			i;
@@ -95,7 +95,7 @@ void	raycast_flastlight(t_main *main, float angle)
 		i++;
 	}
 }
-
+*/
 void	raycast(t_main *main)
 {
 	//t_dblcoor	pose;

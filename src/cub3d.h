@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:50:41 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 03:06:18 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ typedef struct s_dblcoor
 	double	x;
 	double	y;
 }	t_dblcoor;
+
+typedef struct s_hit
+{
+	float	x;
+	int		hit_type;
+	int		orientation;
+}	t_hit;
+
 
 typedef struct s_coor
 {
@@ -235,13 +243,13 @@ t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
 t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
 
-void	draw_rectangle(t_main *main, int x, int height, int width);
-
+void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val);
 
 void	raycast_flastlight_new(t_main *main, float angle);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
+int			is_ray_collision(double x, double y, t_coor wall);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(int angle);
@@ -259,6 +267,9 @@ int			get_abs(int value);
 int			ft_delta_time(t_main *main);
 int			get_time(t_main *main);
 t_cooldown	init_cooldown(void);
+
+/* ======= TEXTURE ====== */
+t_hit		get_hit_texture_box(t_main *main, t_dblcoor val);
 
 /* ======= COPY_FILE ====== */
 int			get_file(t_main *main, char *str);

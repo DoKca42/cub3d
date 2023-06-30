@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:10:04 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:36:34 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 00:31:03 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	load_texture(t_main *main)
 		main->map->hand[i] = mlx_texture_to_image(main->mlx,
 				main->map->hand_texture[i]);
 		if (!main->map->hand[i] || (mlx_image_to_window(main->mlx,
-					main->map->hand[i], 1100, 900) < 0))
+					main->map->hand[i], 1000, 900) < 0))
 			exit(0);
 		main->map->hand[i]->enabled = false;
 		i++;
