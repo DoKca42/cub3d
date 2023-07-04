@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:31:22 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:02:09 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,17 @@ void	init_main(t_main *main)
 	mouse_mode_t	mode;
 
 	main->pause = 0;
+	main->fire = 0;
+	main->fire_anim = 0;
+	main->load = 0;
+	main->load_anim = 0;
+	main->ammo = 20;
 	mode = MLX_MOUSE_HIDDEN;
 	mlx_set_cursor_mode(main->mlx, mode);
+	main->map->view = ftm_malloc((1) * sizeof(mlx_image_t));
+	main->map->view = mlx_new_image(main->mlx, WIDTH, HEIGHT);
+	if (!main->map->view
+		|| (mlx_image_to_window(main->mlx, main->map->view, 0, 0) < 0))
+		exit(0);
+	main->map->hand = ftm_malloc((29) * sizeof(mlx_image_t));
 }

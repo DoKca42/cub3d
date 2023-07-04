@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 17:54:47 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:33:21 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_player_init_input(t_inpt *input, t_main *main)
 	input->speed = PLY_SPEED * ft_delta_time(main);
 }
 
-void	player_get_move(t_main *main)
+int	player_get_move(t_main *main)
 {
 	t_inpt	input;
 
@@ -37,10 +37,14 @@ void	player_get_move(t_main *main)
 	if (input.up + input.down + input.left + input.right > 1)
 		input.speed = input.speed - (input.speed / 3.5);
 	if (input.up + input.down + input.left + input.right > 0)
+	{
 		ft_player_move(main, input);
+		return (1);
+	}
+	return (0);
 }
 
-void	player_get_rotation(t_main *main)
+int	player_get_rotation(t_main *main)
 {
 	t_map	*map;
 
@@ -50,19 +54,19 @@ void	player_get_rotation(t_main *main)
 		map->current.direc += 4;
 		if (map->current.direc >= 360)
 			map->current.direc = 0;
-		ft_player_rotation(main);
+		return (1);
 	}
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_RIGHT))
 	{
 		map->current.direc -= 4;
 		if (map->current.direc < 0)
 			map->current.direc = 359;
-		ft_player_rotation(main);
+		return (1);
 	}
-	mlx_mouse(main);
+	return (mlx_mouse(main));
 }
 
-void	mlx_mouse(t_main *main)
+int	mlx_mouse(t_main *main)
 {
 	int		mx;
 	int		my;
@@ -77,16 +81,17 @@ void	mlx_mouse(t_main *main)
 			map->current.direc += 4;
 			if (map->current.direc >= 360)
 				map->current.direc = 0;
-			ft_player_rotation(main);
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
+			return (1);
 		}
 		else if (mx > WIDTH / 2 + 5)
 		{
 			map->current.direc -= 4;
 			if (map->current.direc < 0)
 				map->current.direc = 359;
-			ft_player_rotation(main);
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
+			return (1);
 		}
 	}
+	return (0);
 }

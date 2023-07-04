@@ -6,42 +6,11 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:22:11 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/22 10:58:05 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 16:51:27 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../cub3d.h"
-
-void dessiner_point(int x, int y, mlx_image_t *image) {
-    mlx_put_pixel(image, x, y, ft_pixel(255, 255, 255, 25));
-    printf("x: %d - y: %d\n", x, y);
-}
-
-void dessiner_cercle_bresenham(int h, int k, int r, mlx_image_t *image) {
-    int x = 0, y = r;
-    int d = 3 - 2 * r;
-
-    while (y >= x) {
-        dessiner_point(h+x, k+y, image);
-        dessiner_point(h-x, k+y, image);
-        dessiner_point(h+x, k-y, image);
-        dessiner_point(h-x, k-y, image);
-        dessiner_point(h+y, k+x, image);
-        dessiner_point(h-y, k+x, image);
-        dessiner_point(h+y, k-x, image);
-        dessiner_point(h-y, k-x, image);
-
-        x++;
-
-        if (d > 0) {
-            y--; 
-            d = d + 4 * (x - y) + 10;
-        } else {
-            d = d + 4 * x + 6;
-        }
-    }
-}
 
 void display_mini_map(t_main *main)
 {

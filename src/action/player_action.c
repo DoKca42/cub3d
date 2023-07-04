@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:48:24 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 17:02:35 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/29 21:33:14 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,19 @@ void	pause_game(t_main *main)
 	main->cooldown->pause = get_time(main) + 150;
 }
 
-void	player_get_action(t_main *main)
+int	player_get_action(t_main *main)
 {
 	t_map	*map;
 
 	map = main->map;
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_E))
+	{
 		if (get_time(main) >= main->cooldown->door)
+		{
 			check_doors(main, map);
+			return (1);
+		}
+	}
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_SPACE))
 		if (get_time(main) >= main->cooldown->pause)
 			pause_game(main);
@@ -85,4 +90,5 @@ void	player_get_action(t_main *main)
 		ftm_free_all();
 		exit(0);
 	}
+	return (0);
 }

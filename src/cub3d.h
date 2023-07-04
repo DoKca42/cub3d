@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 18:58:54 by loculy           ###   ########.fr       */
+/*   Updated: 2023/06/30 05:03:22 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MAP_RES 50
 # define PLAYER_RES 25
 
-# define PLY_SPEED 4
+# define PLY_SPEED 2
 # define PLY_FOV 60
 
 # define PI 3.14159265
@@ -52,6 +52,14 @@ typedef struct s_dblcoor
 	double	x;
 	double	y;
 }	t_dblcoor;
+
+typedef struct s_hit
+{
+	float	x;
+	int		hit_type;
+	int		orientation;
+}	t_hit;
+
 
 typedef struct s_coor
 {
@@ -89,27 +97,31 @@ typedef struct s_raycast
 
 typedef struct s_map
 {
-	char		**map;
-	int			width;
-	int			height;
+	char			**map;
+	int				width;
+	int				height;
 
-	t_coor		*wall;
-	int			wall_size;
+	t_coor			*wall;
+	int				wall_size;
 
-	t_door		*door;
-	int			door_size;
+	t_door			*door;
+	int				door_size;
 
-	mlx_image_t	**img_bck;
-	int			bck_size;
+	mlx_image_t		**img_bck;
+	int				bck_size;
 
-	t_player	start;
-	t_player	current;
+	t_player		start;
+	t_player		current;
 
-	mlx_image_t	*img_player;
+	mlx_image_t		*img_player;
 
-	mlx_image_t	*ray_lines;
+	mlx_image_t		*ray_lines;
 
-	mlx_image_t	*grid;
+	mlx_image_t		*grid;
+
+	mlx_image_t		*view;
+	mlx_image_t		**hand;
+	mlx_texture_t	**hand_texture;
 }	t_map;
 
 typedef struct s_texture
@@ -141,6 +153,11 @@ typedef struct s_main
 	t_cooldown	*cooldown;
 	t_raycast	*ray;
 	int			pause;
+	int			fire;
+	int			fire_anim;
+	int			load;
+	int			load_anim;
+	int			ammo;
 }	t_main;
 
 /* ======= DEBUG ====== */
@@ -148,6 +165,18 @@ void		grid_mlx(t_main *main);
 void		draw_line_grid(int xa, int ya, int xb, int yb);
 void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
 void		init_grid(t_main *main);
+void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
+void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
+
+/* ======= INIFINIT JOIN ====== */
+char		*infinit_join(const char *fmt, ...);
+void		infinit_join_fill(char *full_join, char *argu, int *i);
+
+/* ======= TEXTURE ====== */
+void		load_texture(t_main *main);
+void		hand_display(t_main *main, int pose);
+void		get_fire(t_main *main);
+void		get_reload(t_main *main, int force);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
@@ -168,6 +197,8 @@ void		init_main(t_main *main);
 int			ft_strlen_(char *str);
 int			get_max(int a, int b);
 int			get_min(int a, int b);
+int			height_distance(int distance);
+char		*ft_itoa_(int n);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);
@@ -181,13 +212,13 @@ void		display_mini_map_player(t_main *main);
 /* ======= ACTION ====== */
 void		ft_player_rotation(t_main *main);
 void		ft_player_move(t_main *main, t_inpt input);
-void		player_get_rotation(t_main *main);
-void		player_get_move(t_main *main);
-void		player_get_action(t_main *main);
+int			player_get_rotation(t_main *main);
+int			player_get_move(t_main *main);
+int			player_get_action(t_main *main);
 void		ft_player_init_input(t_inpt *input, t_main *main);
 void		set_mv(t_main *main, int x, int y);
 void		update_player(t_main *main, int x, int y);
-void		mlx_mouse(t_main *main);
+int			mlx_mouse(t_main *main);
 
 /* ======= COLLISION ====== */
 int			is_wall_collision(int x, int y, t_player current, t_coor wall);
@@ -210,12 +241,23 @@ void		raycast(t_main *main);
 t_dblcoor	line_raycast_hori(t_main *main, float rad);
 t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
+t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
+
+void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val);
+
+void	raycast_flastlight_new(t_main *main, float angle);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
+int			is_ray_collision(double x, double y, t_coor wall);
+int			get_hit_orient(double x, double y, t_coor wall);
+int	get_hit_texture_spbox(t_main *main, t_dblcoor val);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(int angle);
+float		distance_from_main(t_main *main, t_dblcoor val);
+int			mini_distance(t_main *main, t_dblcoor hori, t_dblcoor verti);
+float		distance_diff(t_dblcoor a, t_dblcoor b);
 
 /* ======= DDA ====== */
 void		init_ray_view(t_main *main);
@@ -227,6 +269,9 @@ int			get_abs(int value);
 int			ft_delta_time(t_main *main);
 int			get_time(t_main *main);
 t_cooldown	init_cooldown(void);
+
+/* ======= TEXTURE ====== */
+t_hit		get_hit_texture_box(t_main *main, t_dblcoor val);
 
 /* ======= COPY_FILE ====== */
 int			get_file(t_main *main, char *str);
