@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:10:41 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 17:19:43 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:21:02 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val)
 	box = get_hit_texture_box(main, val);
 	while (x < x_max)
 	{
-		i = 0;
-		while (i < height)
+		i = -1;
+		while (++i < height)
 		{
-			//mlx_put_pixel(main->map->view, x, i + y, ft_pixel(150, 150, 150, 255));
 			if (box.orientation == 1)
 				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(0, 0, 200, 255));
 			else if (box.orientation == 2)
@@ -37,7 +36,6 @@ void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val)
 				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(0, 200, 0, 255));
 			else if (box.orientation == 4)
 				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(0, 200, 200, 255));
-			i++;
 		}
 		x++;
 	}
