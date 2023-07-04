@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:39:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 15:29:54 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/06/29 16:07:08 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	check_arround(char **map, int i, int k)
 		ft_errormap("bad wall");
 }
 
+void	check_door(char **map, int i, int k)
+{
+	if ((map[k - 1][i] == '1' && map[k + 1][i] == '1') || (map[k][i - 1] == '1' && map[k][i + 1] == '1'))
+		return ;
+	else
+		ft_errormap("No wall for door");
+}
 void	ft_pars_clean_map(char	**map)
 {
 	int	k;
@@ -47,6 +54,8 @@ void	ft_pars_clean_map(char	**map)
 				ft_errormap("bad char in map");
 			if (char_to_check_around(map[k][i]))
 				check_arround(map, i, k);
+			if (map[k][i] == 'D')
+				check_door(map, i, k);
 			if (char_player(map[k][i]))
 				player++;
 		}
