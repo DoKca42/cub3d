@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:13:59 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 15:14:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:56:47 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_grid(t_main *main)
 	map = main->map;
 	map->grid = ftm_malloc((1) * sizeof(mlx_image_t));
 	map->grid = mlx_new_image(main->mlx, get_map_maxsize(map->map).x
-			* MAP_RES, get_map_maxsize(map->map).y * MAP_RES);
+			* MN_MAP_RES, get_map_maxsize(map->map).y * MN_MAP_RES);
 	if (!map->grid || (mlx_image_to_window(main->mlx, map->grid, 0, 0)
 			< 0))
 		exit(0);
@@ -41,7 +41,7 @@ void	dda_incr_grid(float x, float y, int step, t_coor dcoor)
 	i = 0;
 	while (i < step)
 	{
-		if (x < map->width * MAP_RES && y < map->height * MAP_RES)
+		if (x < map->width * MN_MAP_RES && y < map->height * MN_MAP_RES)
 			mlx_put_pixel(map->grid, (uint32_t)x, (uint32_t)y, ft_pixel(133, 133, 133, 255));
 		x += xdda;
 		y += ydda;
@@ -73,13 +73,13 @@ void	grid_mlx(t_main *main)
 	size = get_map_maxsize(main->map_tab);
 	while (i < size.y)
 	{
-		draw_line_grid(0, i * MAP_RES, size.x * MAP_RES, i * MAP_RES);
+		draw_line_grid(0, i * MN_MAP_RES, size.x * MN_MAP_RES, i * MN_MAP_RES);
 		i++;
 	}
 	i = 0;
 	while (i < size.x)
 	{
-		draw_line_grid(i * MAP_RES, 0, i * MAP_RES, size.y * MAP_RES);
+		draw_line_grid(i * MN_MAP_RES, 0, i * MN_MAP_RES, size.y * MN_MAP_RES);
 		i++;
 	}
 }
