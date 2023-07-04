@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:28:04 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 14:26:21 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:42:52 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	read_map(int fd)
 	buffer[1] = '\0';
 	size = 1;
 	if (read(fd, 0, 0) < 0 || fd < 0)
-		return (ft_errormap("invalide file"));
+	{
+		close(fd);
+		return (ft_errormap("invalid file"));
+	}
 	while (read(fd, buffer, 1) > 0)
 		size += checkline(buffer);
 	close(fd);
