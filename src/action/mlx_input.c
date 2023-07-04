@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:50:28 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:33:21 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 11:28:30 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	player_get_rotation(t_main *main)
 	map = main->map;
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_LEFT))
 	{
-		map->current.direc += 4;
+		map->current.direc += 2;
 		if (map->current.direc >= 360)
 			map->current.direc = 0;
 		return (1);
 	}
 	if (mlx_is_key_down((void *)main->mlx, MLX_KEY_RIGHT))
 	{
-		map->current.direc -= 4;
+		map->current.direc -= 2;
 		if (map->current.direc < 0)
 			map->current.direc = 359;
 		return (1);
@@ -78,7 +78,7 @@ int	mlx_mouse(t_main *main)
 	{
 		if (mx < WIDTH / 2 - 5)
 		{
-			map->current.direc += 4;
+			map->current.direc += 2;
 			if (map->current.direc >= 360)
 				map->current.direc = 0;
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);
@@ -86,7 +86,7 @@ int	mlx_mouse(t_main *main)
 		}
 		else if (mx > WIDTH / 2 + 5)
 		{
-			map->current.direc -= 4;
+			map->current.direc -= 2;
 			if (map->current.direc < 0)
 				map->current.direc = 359;
 			mlx_set_mouse_pos(main->mlx, WIDTH / 2, HEIGHT / 2);

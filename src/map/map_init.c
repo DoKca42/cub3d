@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:02:09 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 12:24:56 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_map	init_map_wall(t_map map)
 		while (map.map[y] != 0 && map.map[y][x] != 0 && map.map[y][x] != '\n')
 		{
 			if (map.map[y][x] == '1')
-				map.wall[i++] = map_add_hitbox(x * 50, y * 50);
+				map.wall[i++] = map_add_hitbox(x * MAP_RES, y * MAP_RES);
 			x++;
 		}
 		y++;
@@ -66,7 +66,7 @@ t_map	init_map_door(t_map map)
 		{
 			if (map.map[y][x] == 'D')
 			{
-				map.door[i].coor = map_add_hitbox(x * 50, y * 50);
+				map.door[i].coor = map_add_hitbox(x * MAP_RES, y * MAP_RES);
 				map.door[i++].open = 0;
 			}
 			x++;

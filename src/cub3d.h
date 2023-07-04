@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/30 05:03:22 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 12:53:46 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define MN_MAP_RES 50
 # define MN_PLAYER_RES 25
 
-# define MAP_RES 50
-# define PLAYER_RES 25
+# define MAP_RES 100
+# define PLAYER_RES 50
 
-# define PLY_SPEED 2
+# define PLY_SPEED 4
 # define PLY_FOV 60
 
 # define PI 3.14159265
@@ -197,7 +197,7 @@ void		init_main(t_main *main);
 int			ft_strlen_(char *str);
 int			get_max(int a, int b);
 int			get_min(int a, int b);
-int			height_distance(int distance);
+int			height_distance(int distance, float angle);
 char		*ft_itoa_(int n);
 
 /* ======= PLAYER ====== */

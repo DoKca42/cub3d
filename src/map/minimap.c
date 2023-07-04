@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:22:11 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 16:51:27 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 12:54:58 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void display_mini_map_player(t_main *main)
 	map = main->map;
 	map->img_player = ftm_malloc((1) * sizeof(mlx_image_t));
 	map->img_player = mlx_new_image(main->mlx, MN_PLAYER_RES, MN_PLAYER_RES);
-	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player, map->start.x, map->start.y) < 0))
+	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player, map->start.x / 2, map->start.y / 2) < 0))
 		exit(0);
 	fill_color_image(map->img_player, ft_pixel(25, 255, 255, 255));
-	//dessiner_cercle_bresenham(map->start.x, map->start.y, 12, map->img_player);
 }

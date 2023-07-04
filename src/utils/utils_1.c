@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:45:56 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 18:10:32 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 12:20:45 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,16 @@ int	get_min(int a, int b)
 	return (b);
 }
 
-int	height_distance(int distance)
+int	height_distance(int distance, float angle)
 {
 	int			height;
+	t_map		*map;
 
-	height = HEIGHT - distance * 3;
+	map = get_main(0)->map;
+	distance = distance * cos(deg_to_rad(map->current.direc - angle));
+	//height = HEIGHT - distance * 3;
+	height = HEIGHT * 100 / distance * 1;
+	(void)angle;
 	if (height < 0)
 		height = 0;
 	if (height > HEIGHT)

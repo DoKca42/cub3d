@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 21:29:05 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 13:00:11 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	update_player(t_main *main, int x, int y)
 	t_map	*map;
 
 	map = main->map;
-	map->img_player->instances[0].x += x;
-	map->img_player->instances[0].y += y;
 	map->current.y += y;
 	map->current.x += x;
+	map->img_player->instances[0].x = map->current.x / 2;
+	map->img_player->instances[0].y = map->current.y / 2;
 }
 
 void	set_mv(t_main *main, int x, int y)
@@ -28,10 +28,10 @@ void	set_mv(t_main *main, int x, int y)
 	t_map	*map;
 
 	map = main->map;
-	map->img_player->instances[0].x = x;
-	map->img_player->instances[0].y = y;
 	map->current.y = y;
 	map->current.x = x;
+	map->img_player->instances[0].x = map->current.x / 2;
+	map->img_player->instances[0].y = map->current.y / 2;
 }
 
 void	ft_player_rotation(t_main *main)
