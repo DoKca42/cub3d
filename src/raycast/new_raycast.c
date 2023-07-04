@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 14:33:57 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:29:53 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor val)
 {
 	t_dblcoor	dcoor;
-	t_dblcoor	tmp;
 	float		xdda;
 	float		ydda;
 	int			i;
@@ -26,6 +25,7 @@ t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor
 	dcoor.y = main->ray->y;
 	xdda = val.x / (float)step;
 	ydda = val.y / (float)step;
+	//printf(">>%f = %f - x:%f y:%f\n", rad, temp, val.x, val.y);
 	y_case = get_case_coor(get_center_player(main)).y;
 	if (!(rad < PI))
 		y_case += MAP_RES;
@@ -35,16 +35,15 @@ t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor
 	i = 0;
 	while (i < step && dcoor.y >= 0)
 	{
-		if ((int)dcoor.y == y_case)
+		if (round(dcoor.y) == y_case)
 		{
-			tmp.y = (int)dcoor.y;
-			tmp.x = dcoor.x;
+			dcoor.y = round(dcoor.y);
 			//if (get_hit_texture_spbox(main, dcoor) == 1 || get_hit_texture_spbox(main, dcoor) == 2)
-			if (raycast_get_collision(tmp, main) == 1)
+			if (raycast_get_collision(dcoor, main) == 1)
 			{
 				//if ((int)dcoor.y == 100 && (int)dcoor.x == 150)
 				//	printf("%f %f\n", dcoor.x, dcoor.y);
-				return (tmp);
+				return (dcoor);
 			}
 			else
 			{
@@ -54,13 +53,12 @@ t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor
 					y_case += MAP_RES;
 			}
 		}
-		if ((int)dcoor.x == x_case)
+		if (round(dcoor.x) == x_case)
 		{
-			tmp.x = (int)dcoor.x;
-			tmp.y = dcoor.y;
+			dcoor.x = round(dcoor.x);
 			//if (get_hit_texture_spbox(main, dcoor) == 4 || get_hit_texture_spbox(main, dcoor) == 3)
-			if (raycast_get_collision(tmp, main) == 1)
-				return (tmp);
+			if (raycast_get_collision(dcoor, main) == 1)
+				return (dcoor);
 			else
 			{
 				if ((rad > PI / 2) && (rad < (PI / 2) * 3))
@@ -106,8 +104,8 @@ t_dblcoor	line_raycast_new(t_main *main, float rad)
 	max = distance_diff(a, b);
 	val.x = main->ray->x + cos(rad) * max;
 	val.y = main->ray->y - sin(rad) * max;
-	draw_line((int)main->ray->x / 2, (int)main->ray->y / 2, (int)main->ray->x / 2
-		+ cos(rad) * 25, (int)main->ray->y / 2 - sin(rad) * 25);
+	//draw_line((int)main->ray->x / 2, (int)main->ray->y / 2, (int)main->ray->x / 2
+	//	+ cos(rad) * 25, (int)main->ray->y / 2 - sin(rad) * 25);
 	return (line_raycast_new_dda(main, rad, val));
 }
 
@@ -128,15 +126,17 @@ void	raycast_flastlight_new(t_main *main, float angle)
 			temp += 359;
 		else if (angle >= 360)
 			temp = angle - 360;
-		val = line_raycast_new(main, deg_to_rad(temp));
-		if (i % 10 == 0)
-		{
+		//if (i % 10 == 0)
+		//{
+			val = line_raycast_new(main, deg_to_rad(temp));
 			draw_rectangle(main, i, height_distance(distance_from_main(main, val), temp), val);
-			//printf(">>%d = %f - x:%f y:%f\n", i, temp, val.x, val.y);
-		}
+			//draw_line((int)main->ray->x / 2, (int)main->ray->y / 2, (int)val.x / 2, (int)val.y / 2);
+			//printf(">>%d = %f:%f - x:%f y:%f\n", i, temp, deg_to_rad(temp), val.x, val.y);
+		//}
 		//if (i > 2200)
 		//	printf(">>%d = %f - %f %f\n", i, temp, val.x, val.y);
 		angle -= step;
 		i++;
 	}
+	//printf("\n\n\n\n");
 }

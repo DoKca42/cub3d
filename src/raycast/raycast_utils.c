@@ -6,17 +6,17 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:22:02 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/29 15:41:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:34:36 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double	deg_to_rad(int angle)
+double	deg_to_rad(double angle)
 {
 	double	rad;
 
-	rad = ((double)angle * PI) / 180;
+	rad = (angle * PI) / 180.0f;
 	return (rad);
 }
 

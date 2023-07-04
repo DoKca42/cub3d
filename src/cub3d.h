@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 12:53:46 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:38:30 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 # define MN_MAP_RES 50
 # define MN_PLAYER_RES 25
 
-# define MAP_RES 100
-# define PLAYER_RES 50
+# define MAP_RES 500
+# define PLAYER_RES 250
 
-# define PLY_SPEED 4
+# define PLY_SPEED 40
 # define PLY_FOV 60
 
-# define PI 3.14159265
+# define PI 3.14159265f
 
 typedef struct s_inpt
 {
@@ -168,6 +168,8 @@ void		init_grid(t_main *main);
 void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
+void bresenham(int x0, int y0, int x1, int y1);
+
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
 void		infinit_join_fill(char *full_join, char *argu, int *i);
@@ -254,7 +256,7 @@ int			get_hit_orient(double x, double y, t_coor wall);
 int	get_hit_texture_spbox(t_main *main, t_dblcoor val);
 
 /* ======= RAYCASTING UTILS ====== */
-double		deg_to_rad(int angle);
+double		deg_to_rad(double angle);
 float		distance_from_main(t_main *main, t_dblcoor val);
 int			mini_distance(t_main *main, t_dblcoor hori, t_dblcoor verti);
 float		distance_diff(t_dblcoor a, t_dblcoor b);
