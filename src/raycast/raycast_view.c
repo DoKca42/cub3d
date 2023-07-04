@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_view.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:10:41 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/30 00:33:56 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:19:43 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val)
 	t_hit	box;
 
 	y = HEIGHT / 2 - height / 2;
-	x_max = x + 1;
+	x = x * 2;
+	x_max = x + 2;
 	box = get_hit_texture_box(main, val);
 	while (x < x_max)
 	{
