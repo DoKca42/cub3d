@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:22:02 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 16:34:36 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:43:11 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	deg_to_rad(double angle)
 {
 	double	rad;
 
-	rad = (angle * PI) / 180.0f;
+	rad = (angle * PI) / 180.0;
 	return (rad);
 }
 

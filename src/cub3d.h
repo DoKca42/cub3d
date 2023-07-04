@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 16:38:30 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:44:05 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 # define MAP_RES 500
 # define PLAYER_RES 250
 
-# define PLY_SPEED 40
+# define PLY_SPEED 20
 # define PLY_FOV 60
 
-# define PI 3.14159265f
+# define PI 3.14159265
 
 typedef struct s_inpt
 {
