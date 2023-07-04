@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/04 12:53:29 by loculy           ###   ########.fr       */
-=======
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/04 14:24:51 by mmorue           ###   ########.fr       */
->>>>>>> 90a2d03bacf8940f59e9f5b6362700929b38fbe7
+/*   Updated: 2023/07/04 14:33:26 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +31,9 @@ static void	ft_hook(void *param)
 int	main(int argc, char **argv)
 {
 	t_main		main;
-	//t_map		map;
-	//t_cooldown	cooldown;
-	//t_raycast	raycast;
+	t_map		map;
+	t_cooldown	cooldown;
+	t_raycast	raycast;
 	t_texture	text;
 	t_rgb		sol;
 	t_rgb		ciel;

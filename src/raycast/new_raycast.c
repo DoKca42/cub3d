@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 13:14:33 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:33:57 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_dblcoor	line_raycast_new_dda(t_main *main, float rad, t_dblcoor	max)
 	dx = max.x - main->ray->x;
 	dy = max.y - main->ray->y;
 	step = get_max(get_abs(dx), get_abs(dy));
-	printf(">>%d, %f/%f «» %f/%f\n", step, max.x, main->ray->x, max.y, main->ray->y);
+	//printf(">>%d, %f/%f «» %f/%f\n", step, max.x, main->ray->x, max.y, main->ray->y);
 	dcoor.x = dx;
 	dcoor.y = dy;
 	return (line_raycast_new_dda_incr(main, rad, step, dcoor));
