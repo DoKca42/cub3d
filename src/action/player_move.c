@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:33:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 16:12:38 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:32:52 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	update_player(t_main *main, int x, int y)
 	map = main->map;
 	map->current.y += y;
 	map->current.x += x;
-	//map->img_player->instances[0].x = map->current.x / 20;
-	//map->img_player->instances[0].y = map->current.y / 20;
+	map->img_player->instances[0].x = map->current.x / 50;
+	map->img_player->instances[0].y = map->current.y / 50;
 }
 
 void	set_mv(t_main *main, int x, int y)
@@ -30,8 +30,8 @@ void	set_mv(t_main *main, int x, int y)
 	map = main->map;
 	map->current.y = y;
 	map->current.x = x;
-	//map->img_player->instances[0].x = map->current.x / 20;
-	//map->img_player->instances[0].y = map->current.y / 20;
+	map->img_player->instances[0].x = map->current.x / 50;
+	map->img_player->instances[0].y = map->current.y / 50;
 }
 
 void	ft_player_rotation(t_main *main)

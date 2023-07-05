@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:56:29 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 15:21:07 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:43:32 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int	get_hit_orient(double x, double y, t_coor wall)
 	return (0);
 }
 
+t_hit	get_hit_texture_pose(double x, double y, t_hit out, t_coor wall)
+{
+	out.orientation = get_hit_orient(x, y, wall);
+	//if (out.orientation == 1)
+	//	out.pixel_col = (int)(x - wall.x);
+	return (out);
+}
+
 t_hit	get_hit_texture_box(t_main *main, t_dblcoor val)
 {
 	int		i;
@@ -43,17 +51,15 @@ t_hit	get_hit_texture_box(t_main *main, t_dblcoor val)
 	while (++i < map->wall_size)
 	{
 		if (is_ray_collision(val.x, val.y, map->wall[i]) == 1)
-		{
-			box.orientation = get_hit_orient(val.x, val.y, map->wall[i]);
-			return (box);
-		}
+			return (get_hit_texture_pose(val.x, val.y, box, map->wall[i]));
 	}
 	box.hit_type = 2;
 	i = -1;
 	while (++i < map->door_size)
 	{
-		if (is_ray_collision(val.x, val.y, map->door[i].coor) == 1)
-			return (box);
+		if (map->door[i].open == 0
+			&& is_ray_collision(val.x, val.y, map->door[i].coor) == 1)
+			return (get_hit_texture_pose(val.x, val.y, box, map->door[i].coor));
 	}
 	return (box);
 }

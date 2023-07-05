@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 15:26:57 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:40:55 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define HEIGHT 1440
 # define TOOLBAR 130
 
-# define MN_MAP_RES 50
-# define MN_PLAYER_RES 10
+# define MN_MAP_RES 10
+# define MN_PLAYER_RES 2
 
 # define MAP_RES 500
 # define PLAYER_RES 100
@@ -59,6 +59,7 @@ typedef struct s_hit
 	float	x;
 	int		hit_type;
 	int		orientation;
+	int		pixel_col;
 }	t_hit;
 
 

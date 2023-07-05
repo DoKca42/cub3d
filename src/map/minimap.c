@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:22:11 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 16:09:42 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:34:32 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void display_mini_map(t_main *main)
 			if (map->map[y][x] == '1')
 				fill_color_image(map->img_bck[i], ft_pixel(255, 255, 255, 255));
 			else if (map->map[y][x] == 'D')
-				fill_color_image(map->img_bck[i], ft_pixel(255, 25, 255, 255));
-			else
-				fill_color_image(map->img_bck[i], ft_pixel(255, 255, 255, 25));
+				fill_color_image(map->img_bck[i], ft_pixel(125, 80, 50, 255));
+			else if (map->map[y][x] != ' ' && map->map[y][x] != '\t')
+				fill_color_image(map->img_bck[i], ft_pixel(50, 50, 50, 255));
 			i++;
 			x++;
 		}
@@ -50,7 +50,7 @@ void display_mini_map_player(t_main *main)
 	map = main->map;
 	map->img_player = ftm_malloc((1) * sizeof(mlx_image_t));
 	map->img_player = mlx_new_image(main->mlx, MN_PLAYER_RES, MN_PLAYER_RES);
-	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player, map->start.x / 20, map->start.y / 20) < 0))
+	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player, map->start.x / 50, map->start.y / 50) < 0))
 		exit(0);
-	fill_color_image(map->img_player, ft_pixel(25, 255, 255, 255));
+	fill_color_image(map->img_player, ft_pixel(255, 0, 0, 255));
 }
