@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:21 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/28 22:20:02 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:04:06 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_ray_view(t_main *main)
 	map = main->map;
 	map->ray_lines = ftm_malloc((1) * sizeof(mlx_image_t));
 	map->ray_lines = mlx_new_image(main->mlx, get_map_maxsize(map->map).x
-			* MAP_RES, get_map_maxsize(map->map).y * MAP_RES);
+			* MN_MAP_RES, get_map_maxsize(map->map).y * MN_MAP_RES);
 	if (!map->ray_lines || (mlx_image_to_window(main->mlx, map->ray_lines, 0, 0)
 			< 0))
 		exit(0);
