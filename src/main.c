@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/05 16:03:45 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:28:44 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	main(int argc, char **argv)
 	get_main(&main);
 	ft_mlx_init_build(&main);
 	init_main(&main);
-	//display_mini_map(&main);
+	display_mini_map(&main);
 	//
-	//display_mini_map_player(&main);
+	display_mini_map_player(&main);
 	init_ray_view(&main);
 	//init_grid(&main);
 	//grid_mlx(&main);
