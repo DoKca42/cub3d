@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_files_utils_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:59:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 18:59:46 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:22:53 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void	ft_copy_map(char **raw_map, t_main *main, int k)
 		i++;
 	}
 	ft_free_tab(raw_map);
-	ft_pars_clean_map(main->map_tab);
+	ft_pars_clean_map(main->map_tab, main);
 }

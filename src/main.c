@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:10:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/04 16:12:27 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:24:27 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ int	main(int argc, char **argv)
 	main.ciel = &ciel;
 	main.sol = &sol;
 	ft_bzero(main.text, sizeof(t_texture));
+	main.door = 0;
 	get_file(&main, argv[1]);
 	ft_pars_raw_map(main.clean_file, &main);
-
+	//i = -1;
+	//while(main.map_tab[++i])
+	//	printf("%s\n", main.map_tab[i]);
 	/* ========= RAYCAST ========= */
 	map.map = main.map_tab;
 	map = init_map(map);
@@ -68,10 +71,10 @@ int	main(int argc, char **argv)
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
 	ray_set_player_pose(&main);
-
+	
 	load_texture(&main);
 	hand_display(&main, 0);
-//
+	
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);

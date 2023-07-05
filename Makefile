@@ -43,6 +43,7 @@ SRCS =	src/main.c\
 		src/parsing_map/pars_raw_file_utils.c\
 		src/parsing_map/pars_raw_files_utils_2.c\
 		src/parsing_map/pars_clean_map.c\
+		src/parsing_map/pars_clean_map_utils.c\
 		src/raycast/grid_gridy.c #DEBUG
 
 OBJS	= ${SRCS:.c=.o}

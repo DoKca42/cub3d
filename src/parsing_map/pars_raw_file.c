@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/06/28 17:56:39 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:23:21 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	check_valide_format(char *raw_map, int *i, t_texture *text)
 		text->we = check_routine(raw_map, text->we, "WE");
 	if (raw_map[*i] == 'E')
 		text->ea = check_routine(raw_map, text->ea, "EA");
+	if	(raw_map[*i] == 'D')
+		text->dr = check_routine(raw_map, text->dr, "DO");
 	return (0);
 }
 
@@ -77,10 +79,10 @@ int	check_char(char *raw_map, int *i, t_main *main)
 	else if (raw_map[*i] != 'N' && raw_map[*i] != 'S' && raw_map[*i] != 'W'
 		&& raw_map[*i] != 'E' && raw_map[*i] != 'F' && raw_map[*i] != 'C'
 		&& raw_map[*i] != '1' && raw_map[*i] != ' ' && raw_map[*i] != '\n'
-		&& raw_map[*i] != '\t')
+		&& raw_map[*i] != '\t' && raw_map[*i] != 'D')
 		ft_errormap("Wrong format of file");
 	else if (raw_map[*i] == 'N' || raw_map[*i] == 'S' || raw_map[*i] == 'W'
-		|| raw_map[*i] == 'E')
+		|| raw_map[*i] == 'E' || raw_map[*i] == 'D')
 		check_valide_format(raw_map, i, main->text);
 	else if (raw_map[*i] == 'F')
 	{
@@ -120,5 +122,6 @@ void	ft_pars_raw_map(char **raw_map, t_main *main)
 	if (check_valide_texture(main->text) == 0 || raw_map[k] == 0)
 		ft_errormap("Wrong file format");
 	ft_copy_map(raw_map, main, k);
+	ft_door_texture(main);
 }
 

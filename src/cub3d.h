@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 17:24:22 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:47:55 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_map
 
 typedef struct s_texture
 {
+	char	**dr;
 	char	**no;
 	char	**so;
 	char	**we;
@@ -152,6 +153,7 @@ typedef struct s_main
 	t_map		*map;
 	t_cooldown	*cooldown;
 	t_raycast	*ray;
+	int			door;
 	int			pause;
 	int			fire;
 	int			fire_anim;
@@ -305,15 +307,20 @@ int			check_char_for_map(char	*tab);
 void		convert_color(char **color, t_rgb *rgb);
 char		*ft_strdup_(char *s1);
 void		ft_copy_map(char **raw_map, t_main *main, int k);
+
 /* ======= SPLIT_MODIF ====== */
 char		**ft_split_modif(char const *str, char *c);
 int			check_char_tab_split(char c, char *str);
 
 /* ======= PARS_CLEAN_MAP ====== */
 void		check_arround(char **map, int i, int k);
-void		ft_pars_clean_map(char	**map);
+void		ft_pars_clean_map(char	**map, t_main *main);
 int			char_player(char c);
 int			char_to_check_around(char c);
 int			check_char_clean_map(char c, int cases);
+
+/* ======= PARS_CLEAN_MAP_UTILS ====== */
+void		check_door(char **map, int i, int k, int *door);
+void		ft_door_texture(t_main *main);
 
 #endif
