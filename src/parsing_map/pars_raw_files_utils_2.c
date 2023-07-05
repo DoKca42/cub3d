@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:59:24 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/05 15:22:53 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:42:28 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_copy_map(char **raw_map, t_main *main, int k)
 		k++;
 	if (raw_map[k] != 0)
 		ft_errormap("Wrong file format");
+	if (k - start_map > 30)
+		ft_errormap("map too long");
 	main->map_tab = ftm_malloc((k - start_map + 1) * sizeof(char *));
 	main->map_tab[k - start_map] = 0;
 	i = 0;
