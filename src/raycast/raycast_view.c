@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:10:41 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 17:21:02 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:23:19 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val)
 		i = -1;
 		while (++i < height)
 		{
-			if (box.orientation == 1)
+			if (box.hit_type == 2)
+				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(90, 60, 17, 255));
+			else if (box.orientation == 1)
 				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(0, 0, 200, 255));
 			else if (box.orientation == 2)
 				mlx_put_pixel(main->map->view, x, i + y, ft_pixel(200, 0, 0, 255));

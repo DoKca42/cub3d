@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 14:47:55 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:26:57 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # define TOOLBAR 130
 
 # define MN_MAP_RES 50
-# define MN_PLAYER_RES 25
+# define MN_PLAYER_RES 10
 
 # define MAP_RES 500
-# define PLAYER_RES 250
+# define PLAYER_RES 100
 
 # define PLY_SPEED 20
 # define PLY_FOV 60
@@ -53,6 +53,7 @@ typedef struct s_dblcoor
 	double	y;
 }	t_dblcoor;
 
+/* hit_type : 1 wall | hit_type : 2 door */
 typedef struct s_hit
 {
 	float	x;
