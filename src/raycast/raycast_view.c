@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:10:41 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 15:23:19 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:06:34 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val)
 	x = x * 2;
 	x_max = x + 2;
 	box = get_hit_texture_box(main, val);
+	//if (x >= 0 && x <= 2)
+	//{
+	//	printf("x: %d	box.x:%f	box.hit_type: %d	box.orientation: %d	box.pixel_col: %d\n", x, box.x, box.hit_type, box.orientation, box.pixel_col);
+	//}
 	while (x < x_max)
 	{
 		i = -1;

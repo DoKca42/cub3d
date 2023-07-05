@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 15:15:46 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:58:39 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	init_main(t_main *main)
 	main->map->view = mlx_new_image(main->mlx, WIDTH, HEIGHT);
 	if (!main->map->view
 		|| (mlx_image_to_window(main->mlx, main->map->view, 0, 0) < 0))
-		exit(0);
+		ft_errormap("No space left");
 	main->map->hand = ftm_malloc((29) * sizeof(mlx_image_t));
 }

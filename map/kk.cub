@@ -1,8 +1,8 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-DO ./path_to_the_east_texture
+NO ./textures/wall_1/north.png
+SO ./textures/wall_1/south.png
+WE ./textures/wall_1/west.png
+EA ./textures/wall_1/east.png
+DO ./textures/wall_1/door.png
 
 
 F 120,50,30

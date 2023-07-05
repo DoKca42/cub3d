@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/05 15:23:21 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:56:28 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_valide_format(char *raw_map, int *i, t_texture *text)
 		text->we = check_routine(raw_map, text->we, "WE");
 	if (raw_map[*i] == 'E')
 		text->ea = check_routine(raw_map, text->ea, "EA");
-	if	(raw_map[*i] == 'D')
+	if (raw_map[*i] == 'D')
 		text->dr = check_routine(raw_map, text->dr, "DO");
 	return (0);
 }

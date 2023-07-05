@@ -30,6 +30,7 @@ SRCS =	src/main.c\
 		src/raycast/bresenham.c\
 		src/texture/infinit_join.c\
 		src/texture/hand.c\
+		src/texture/wall_textures.c\
 		src/utils/utils_1.c\
 		src/utils/utils_2.c\
 		memory_manager/memory_manager.c\

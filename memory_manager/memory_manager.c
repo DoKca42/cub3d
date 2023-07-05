@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:39:10 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/19 11:30:55 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:58:27 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ftm_malloc(size_t sz)
 
 	mem = malloc(sz);
 	if (!mem)
-		return (0);
+		ft_error();
 	mng = ft_head_lst();
 	new = ft_memnew_manager(mem, 0, 0);
 	ft_memadd_back_manager(mng, new);

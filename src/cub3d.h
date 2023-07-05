@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 16:45:26 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:27:30 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,14 @@ typedef struct s_map
 
 typedef struct s_texture
 {
-	char	**dr;
-	char	**no;
-	char	**so;
-	char	**we;
-	char	**ea;
-	char	**f;
-	char	**c;
+	char			**dr;
+	char			**no;
+	char			**so;
+	char			**we;
+	char			**ea;
+	char			**f;
+	char			**c;
+	mlx_texture_t	**all;
 }	t_texture;
 
 typedef struct s_rgb
@@ -183,6 +184,7 @@ void		load_texture(t_main *main);
 void		hand_display(t_main *main, int pose);
 void		get_fire(t_main *main);
 void		get_reload(t_main *main, int force);
+void		wall_textures_load(t_main *main);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
