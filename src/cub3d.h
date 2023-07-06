@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 16:02:51 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:25:16 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,21 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
+typedef struct s_rgba
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_rgba;
+
+typedef struct s_pixtex
+{
+	t_rgba		**pixels;
+	int			height;
+	int			width;
+}	t_pixtex;
+
 typedef struct s_main
 {
 	void		*mlx;
@@ -166,6 +181,7 @@ typedef struct s_main
 	int			load_anim;
 	int			ammo;
 	t_hit		*raycast_arr;
+	t_pixtex	*png;
 }	t_main;
 
 /* ======= DEBUG ====== */
@@ -177,7 +193,6 @@ void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
 void		bresenham(int x0, int y0, int x1, int y1);
-void		display_tex(t_main *main);
 
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
@@ -194,6 +209,7 @@ void		wall_textures_load(t_main *main);
 int			ft_mlx_init_build(t_main *main);
 void		fill_color_image(mlx_image_t *image, uint32_t color);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		load_pixels(t_main *main);
 
 /* ======= MAP ====== */
 t_coor		map_add_hitbox(int x, int y);

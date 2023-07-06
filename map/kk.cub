@@ -1,4 +1,4 @@
-NO ./textures/wall_1/north.png
+NO ./textures/wp.png
 SO ./textures/wall_1/south.png
 WE ./textures/wall_1/west.png
 EA ./textures/wall_1/east.png
