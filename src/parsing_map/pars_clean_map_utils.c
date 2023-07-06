@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/05 14:49:49 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:45:21 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	check_door(char **map, int i, int k, int *door)
 {
 	*door = 1;
-	if ((map[k - 1][i] == '1' && map[k + 1][i] == '1') || (map[k][i - 1] == '1' && map[k][i + 1] == '1'))
+	if ((map[k - 1][i] == '1' && map[k + 1][i] == '1')
+			|| (map[k][i - 1] == '1' && map[k][i + 1] == '1'))
 		return ;
 	else
 		ft_errormap("No wall for door");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 17:27:30 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:34:30 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void		init_grid(t_main *main);
 void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
-void bresenham(int x0, int y0, int x1, int y1);
+void		bresenham(int x0, int y0, int x1, int y1);
 
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
@@ -251,15 +251,16 @@ t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
 t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
 
-void	draw_rectangle(t_main *main, int x, int height, t_dblcoor val);
+void		draw_rectangle(t_main *main, int x,
+				int height, t_dblcoor val);
 
-void	raycast_flastlight_new(t_main *main, float angle);
+void		raycast_flastlight_new(t_main *main, float angle);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 int			is_ray_collision(double x, double y, t_coor wall);
 int			get_hit_orient(double x, double y, t_coor wall);
-int	get_hit_texture_spbox(t_main *main, t_dblcoor val);
+int			get_hit_texture_spbox(t_main *main, t_dblcoor val);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(double angle);
@@ -327,4 +328,7 @@ int			check_char_clean_map(char c, int cases);
 void		check_door(char **map, int i, int k, int *door);
 void		ft_door_texture(t_main *main);
 
+
+
+void		display_ground_sky(t_main *main);
 #endif

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:22:11 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 16:34:32 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:44:52 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void display_mini_map(t_main *main)
+void	display_mini_map(t_main *main)
 {
 	t_map	*map;
 	int i = 0;
 	int x = 0;
 	int y = 0;
-	
+
 	map = main->map;
 	map->bck_size = get_map_size(map->map);
 	map->img_bck = ftm_malloc((map->bck_size) * sizeof(mlx_image_t));
@@ -43,14 +43,15 @@ void display_mini_map(t_main *main)
 	}
 }
 
-void display_mini_map_player(t_main *main)
+void	display_mini_map_player(t_main *main)
 {
 	t_map	*map;
 
 	map = main->map;
 	map->img_player = ftm_malloc((1) * sizeof(mlx_image_t));
 	map->img_player = mlx_new_image(main->mlx, MN_PLAYER_RES, MN_PLAYER_RES);
-	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player, map->start.x / 50, map->start.y / 50) < 0))
+	if (!map->img_player || (mlx_image_to_window(main->mlx, map->img_player,
+				map->start.x / 50, map->start.y / 50) < 0))
 		exit(0);
 	fill_color_image(map->img_player, ft_pixel(255, 0, 0, 255));
 }

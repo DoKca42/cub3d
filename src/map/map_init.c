@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 17:58:39 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:34:55 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	init_main(t_main *main)
 	main->ammo = 20;
 	mode = MLX_MOUSE_HIDDEN;
 	mlx_set_cursor_mode(main->mlx, mode);
+	display_ground_sky(main);
 	main->map->view = ftm_malloc((1) * sizeof(mlx_image_t));
 	main->map->view = mlx_new_image(main->mlx, WIDTH, HEIGHT);
 	if (!main->map->view

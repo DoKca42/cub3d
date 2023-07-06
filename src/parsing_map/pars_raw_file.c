@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_raw_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:34:49 by mmorue            #+#    #+#             */
-/*   Updated: 2023/07/05 17:56:28 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 13:45:37 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,3 @@ void	ft_pars_raw_map(char **raw_map, t_main *main)
 	ft_copy_map(raw_map, main, k);
 	ft_door_texture(main);
 }
-
