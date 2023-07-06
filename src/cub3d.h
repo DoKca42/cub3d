@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 17:25:16 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:45:56 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ typedef struct s_rgba
 
 typedef struct s_pixtex
 {
-	t_rgba		**pixels;
+	int32_t		**pixels;
 	int			height;
 	int			width;
 }	t_pixtex;

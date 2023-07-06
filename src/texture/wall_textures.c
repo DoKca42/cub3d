@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:22:49 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 17:31:17 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:59:12 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ t_pixtex	texture_to_pixels(mlx_texture_t *tex)
 	i = 0;
 	y = 0;
 	x = 0;
-	out.pixels = ftm_malloc((tex->width) * sizeof(t_rgba));
+	out.pixels = ftm_malloc((tex->width) * sizeof(int32_t *));
 	out.height = tex->height;
 	out.width = tex->width;
 	while (i < tex->width)
-		out.pixels[i++] = ftm_malloc((tex->height) * sizeof(t_rgba));
+		out.pixels[i++] = ftm_malloc((tex->height) * sizeof(int32_t));
 	i = 0;
 	while (i < tex->height * tex->width * tex->bytes_per_pixel)
 	{
@@ -64,10 +64,7 @@ t_pixtex	texture_to_pixels(mlx_texture_t *tex)
 			x = 0;
 			y++;
 		}
-		out.pixels[x][y].r = tex->pixels[i];
-		out.pixels[x][y].g = tex->pixels[i + 1];
-		out.pixels[x][y].b = tex->pixels[i + 2];
-		out.pixels[x][y].a = tex->pixels[i + 3];
+		out.pixels[x][y] = ft_pixel(tex->pixels[i], tex->pixels[i + 1], tex->pixels[i + 2], tex->pixels[i + 3]);
 		i += tex->bytes_per_pixel;
 		x++;
 	}

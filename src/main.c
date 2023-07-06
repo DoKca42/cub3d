@@ -6,27 +6,27 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 17:31:29 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:47:01 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//static void	ft_hook(void *param)
-//{
-//	t_main	*main;
-//	int		update;
-//
-//	update = 0;
-//	main = param;
-//	update += player_get_move(main);
-//	update += player_get_rotation(main);
-//	update += player_get_action(main);
-//	get_fire(main);
-//	get_reload(main, 0);
-//	if (update > 0)
-//		ft_player_rotation(main);
-//}
+static void	ft_hook(void *param)
+{
+	t_main	*main;
+	int		update;
+
+	update = 0;
+	main = param;
+	update += player_get_move(main);
+	update += player_get_rotation(main);
+	update += player_get_action(main);
+	get_fire(main);
+	get_reload(main, 0);
+	if (update > 0)
+		ft_player_rotation(main);
+}
 
 void display_ground_sky(t_main *main)
 {
