@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:03:31 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:34:55 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:24:19 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_main(t_main *main)
 {
 	mouse_mode_t	mode;
 
+	main->raycast_arr = ftm_malloc((1280) * sizeof(t_hit));
 	main->pause = 0;
 	main->fire = 0;
 	main->fire_anim = 0;

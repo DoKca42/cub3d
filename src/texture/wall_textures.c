@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:22:49 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 17:51:18 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:09:28 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,28 @@ void	wall_textures_load(t_main *main)
 	load_texture_secu(i++, tex->ea[1], tex);
 	if (main->door == 1)
 		load_texture_secu(i++, tex->dr[1], tex);
+}
+
+void	display_tex(t_main *main)
+{
+	t_texture	*tex;
+	unsigned int			y;
+	unsigned int			x;
+	unsigned int			i;
+
+	i = 0;
+	y = 0;
+	x = 0;
+	tex = main->text;
+	while (i < tex->all[0]->height * tex->all[0]->width)
+	{
+		mlx_put_pixel(main->map->view, (uint32_t)x, (uint32_t)y, tex->all[0]->pixels[i]);
+		i++;
+		x++;
+		if (x == tex->all[0]->width)
+		{
+			x = 0;
+			y++;
+		}
+	}
 }

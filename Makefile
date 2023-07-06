@@ -28,6 +28,7 @@ SRCS =	src/main.c\
 		src/raycast/new_raycast.c\
 		src/raycast/raycast_view.c\
 		src/raycast/bresenham.c\
+		src/raycast/raycast_filtre.c\
 		src/texture/infinit_join.c\
 		src/texture/hand.c\
 		src/texture/wall_textures.c\

@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:35:43 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:06:09 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_hook(void *param)
-{
-	t_main	*main;
-	int		update;
-
-	update = 0;
-	main = param;
-	update += player_get_move(main);
-	update += player_get_rotation(main);
-	update += player_get_action(main);
-	get_fire(main);
-	get_reload(main, 0);
-	if (update > 0)
-		ft_player_rotation(main);
-}
+//static void	ft_hook(void *param)
+//{
+//	t_main	*main;
+//	int		update;
+//
+//	update = 0;
+//	main = param;
+//	update += player_get_move(main);
+//	update += player_get_rotation(main);
+//	update += player_get_action(main);
+//	get_fire(main);
+//	get_reload(main, 0);
+//	if (update > 0)
+//		ft_player_rotation(main);
+//}
 
 void display_ground_sky(t_main *main)
 {
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 	ft_mlx_init_build(&main);
 	init_main(&main);
 	
-	display_mini_map(&main);
+	//display_mini_map(&main);
 
 	display_mini_map_player(&main);
 	init_ray_view(&main);	
@@ -89,7 +89,8 @@ int	main(int argc, char **argv)
 	hand_display(&main, 0);
 	
 	wall_textures_load(&main);
-	mlx_loop_hook(main.mlx, ft_hook, &main);
+	//mlx_loop_hook(main.mlx, ft_hook, &main);
+	display_tex(&main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);
 	ftm_free_all();
