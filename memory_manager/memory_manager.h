@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:09:20 by loculy            #+#    #+#             */
-/*   Updated: 2023/05/09 18:12:27 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:58:20 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	ftm_free_all(void);
 void	ftm_add_track(void *mem);
 void	ftm_rm_track(void *mem);
 void	error_msg_exit(char *msg);
+int		ft_error(void);
 
 #endif

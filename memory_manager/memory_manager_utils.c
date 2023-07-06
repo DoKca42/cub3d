@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_manager_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:17:35 by loculy            #+#    #+#             */
-/*   Updated: 2023/01/26 04:15:35 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 17:58:24 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,13 @@ int	ft_is_in_lst(void *mem)
 		current = current->next;
 	}
 	return (0);
+}
+
+int	ft_error(void)
+{
+	write(1, "Error\n", 6);
+	write(1, "No space left", 13);
+	write(1, "\n", 1);
+	ftm_free_all();
+	exit (1);
 }

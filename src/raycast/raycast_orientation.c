@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:56:29 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 16:43:32 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/05 16:53:30 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	get_hit_orient(double x, double y, t_coor wall)
 t_hit	get_hit_texture_pose(double x, double y, t_hit out, t_coor wall)
 {
 	out.orientation = get_hit_orient(x, y, wall);
-	//if (out.orientation == 1)
-	//	out.pixel_col = (int)(x - wall.x);
+	if (out.orientation == 1 || out.orientation == 2)
+		out.pixel_col = (int)(x - wall.x);
+	if (out.orientation == 3 || out.orientation == 4)
+		out.pixel_col = (int)(y - wall.y);
 	return (out);
 }
 
