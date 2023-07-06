@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 18:00:34 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:35:43 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ static void	ft_hook(void *param)
 	get_reload(main, 0);
 	if (update > 0)
 		ft_player_rotation(main);
+}
+
+void display_ground_sky(t_main *main)
+{
+	int		i;
+
+	i = -1;
+	mlx_image_t **ground_sky;
+
+	ground_sky = ftm_malloc(2 * sizeof(mlx_image_t));
+	while(++i < 2)
+	{
+		ground_sky[i] = mlx_new_image(main->mlx, WIDTH , HEIGHT / 2);
+		mlx_image_to_window(main->mlx, ground_sky[i], 0, i * (HEIGHT / 2));
+	}
+	fill_color_image(ground_sky[0], ft_pixel(ft_atoi(main->text->f[0]), ft_atoi(main->text->f[1]), ft_atoi(main->text->f[2]), 255));
+	fill_color_image(ground_sky[1], ft_pixel(ft_atoi(main->text->c[0]), ft_atoi(main->text->c[1]), ft_atoi(main->text->c[2]), 255));
 }
 
 int	main(int argc, char **argv)
@@ -62,18 +79,16 @@ int	main(int argc, char **argv)
 	display_mini_map(&main);
 
 	display_mini_map_player(&main);
-	init_ray_view(&main);
-
+	init_ray_view(&main);	
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
 	ray_set_player_pose(&main);
-
+	
 	load_texture(&main);
 	hand_display(&main, 0);
-
+	
 	wall_textures_load(&main);
-
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);

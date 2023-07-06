@@ -1,11 +1,11 @@
-F 100 ,50, 1
-C 10,10,10
+F 255 ,0, 0
+C 0,255,0
 			 
-NO ./_zone_51/test_1.png
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-DO qwerfwe
+NO ./textures/wall_1/north.png
+SO ./textures/wall_1/south.png
+WE ./textures/wall_1/west.png
+EA ./textures/wall_1/east.png
+DO ./textures/wall_1/door.png
 
 1111111111111111111111111
 1000000000000000000000001
