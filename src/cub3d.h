@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 17:45:56 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/07 12:44:30 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,11 @@ void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
 void		bresenham(int x0, int y0, int x1, int y1);
+void		pixels_display(t_main *main, int height);
+
+
+
+int			pixels_convert_ratio(t_main *main, t_pixtex png, int i, int height);
 
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
