@@ -24,6 +24,7 @@ SRCS =	src/main.c\
 		src/raycast/raycast_utils.c\
 		src/raycast/draw_line.c\
 		src/raycast/new_raycast.c\
+		src/raycast/new_raycast_2.c\
 		src/raycast/raycast_orientation.c\
 		src/raycast/raycast_collision.c\
 		src/raycast/raycast_view.c\

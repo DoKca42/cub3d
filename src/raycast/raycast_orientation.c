@@ -6,13 +6,12 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:56:29 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:24:21 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:14:29 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*	1:SUD | 2:NORTH | 3:WEST | 4:EST */
 int	get_hit_orient(double x, double y, t_coor wall)
 {
 	if (x >= (double)wall.x && x <= (double)wall.x + MAP_RES
