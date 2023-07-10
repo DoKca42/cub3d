@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:10:04 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/05 17:54:34 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 17:23:29 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	load_texture(t_main *main)
 
 void	get_fire(t_main *main)
 {
-	if (mlx_is_mouse_down(main->mlx, MLX_MOUSE_BUTTON_LEFT) == true)
+	if (mlx_is_mouse_down(main->mlx, MLX_MOUSE_BUTTON_LEFT) == true
+		|| mlx_is_key_down((void *)main->mlx, MLX_KEY_F))
 	{
 		if (main->fire == 0 && main->load == 0)
 		{

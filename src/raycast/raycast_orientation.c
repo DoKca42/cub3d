@@ -6,36 +6,41 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:56:29 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:14:29 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 17:17:06 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*2:SUD | 1:NORTH | 4:WEST | 3:EST */
 int	get_hit_orient(double x, double y, t_coor wall)
 {
 	if (x >= (double)wall.x && x <= (double)wall.x + MAP_RES
 		&& (y == (double)wall.y + MAP_RES))
-		return (1);
+		return (2);
 	if (x >= (double)wall.x && x <= (double)wall.x + MAP_RES
 		&& (y == (double)wall.y))
-		return (2);
+		return (1);
 	if (y >= (double)wall.y && y <= (double)wall.y + MAP_RES
 		&& (x == (double)wall.x + MAP_RES))
-		return (3);
+		return (4);
 	if (y >= (double)wall.y && y <= (double)wall.y + MAP_RES
 		&& (x == (double)wall.x))
-		return (4);
+		return (3);
 	return (0);
 }
 
 t_hit	get_hit_texture_pose(double x, double y, t_hit out, t_coor wall)
 {
 	out.orientation = get_hit_orient(x, y, wall);
-	if (out.orientation == 1 || out.orientation == 2)
+	if (out.orientation == 1)
+		out.pixel_col = MAP_RES - (int)(x - wall.x);
+	if (out.orientation == 2)
 		out.pixel_col = (int)(x - wall.x);
-	if (out.orientation == 3 || out.orientation == 4)
+	if (out.orientation == 3)
 		out.pixel_col = (int)(y - wall.y);
+	if (out.orientation == 4)
+		out.pixel_col = MAP_RES - (int)(y - wall.y);
 	return (out);
 }
 

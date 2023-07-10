@@ -6,13 +6,14 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:04:41 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 17:18:57 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor val)
+t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step,
+	t_dblcoor val)
 {
 	t_dblcoor	dcoor;
 	t_dda		dda;
