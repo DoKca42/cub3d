@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 13:32:10 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 14:39:04 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,8 +192,6 @@ void		init_grid(t_main *main);
 void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
-void		bresenham(int x0, int y0, int x1, int y1);
-void		pixels_display(t_main *main, int height);
 
 
 
@@ -275,6 +273,9 @@ void		raycast(t_main *main);
 void		add_ray_filtre(t_main *main, t_dblcoor val, int i, float angle);
 void		read_ray(t_main *main);
 void		apply_filtre(t_main *main);
+int32_t		get_pix(int pose, int i, int pixel_col, int height);
+void		pixels_display(t_hit box, int i, int height, int x);
+
 
 t_dblcoor	line_raycast_hori(t_main *main, float rad);
 t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
