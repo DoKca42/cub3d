@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:34:30 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:51:41 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_map
 
 	t_player		start;
 	t_player		current;
-
+	mlx_image_t		**ground_sky;
 	mlx_image_t		*img_player;
 
 	mlx_image_t		*ray_lines;
