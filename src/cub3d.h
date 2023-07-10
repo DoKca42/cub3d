@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:18:59 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:29:47 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_dblcoor
 	double	y;
 }	t_dblcoor;
 
-
 typedef struct s_coor
 {
 	int	x;
@@ -79,7 +78,6 @@ typedef struct s_cooldown
 	int	fire;
 	int	pause;
 }	t_cooldown;
-
 
 /* hit_type : 1 wall | hit_type : 2 door */
 typedef struct s_hit
@@ -192,9 +190,6 @@ void		init_grid(t_main *main);
 void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
-
-
-
 int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
 int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
 
@@ -276,7 +271,6 @@ void		apply_filtre(t_main *main);
 int32_t		get_pix(int pose, int i, int pixel_col, int height);
 void		pixels_display(t_hit box, int i, int height, int x);
 
-
 t_dblcoor	line_raycast_hori(t_main *main, float rad);
 t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
@@ -357,8 +351,6 @@ int			check_char_clean_map(char c, int cases);
 /* ======= PARS_CLEAN_MAP_UTILS ====== */
 void		check_door(char **map, int i, int k, int *door);
 void		ft_door_texture(t_main *main);
-
-
 
 void		display_ground_sky(t_main *main);
 #endif

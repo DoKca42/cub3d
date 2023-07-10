@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:18:45 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:29:19 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ static void	ft_hook(void *param)
 		ft_player_rotation(main);
 }
 
-void display_ground_sky(t_main *main)
+void	display_ground_sky(t_main *main)
 {
-	t_map *map;
+	t_map	*map;
 	int		i;
 
 	map = main->map;
 	i = -1;
-
 	map->ground_sky = ftm_malloc(2 * sizeof(mlx_image_t));
-	while(++i < 2)
+	while (++i < 2)
 	{
-		map->ground_sky[i] = mlx_new_image(main->mlx, WIDTH , HEIGHT / 2);
+		map->ground_sky[i] = mlx_new_image(main->mlx, WIDTH, HEIGHT / 2);
 		mlx_image_to_window(main->mlx, map->ground_sky[i], 0, i * (HEIGHT / 2));
 	}
-	fill_color_image(map->ground_sky[0], ft_pixel(ft_atoi(main->text->c[0]), ft_atoi(main->text->c[1]), ft_atoi(main->text->c[2]), 255));
-	fill_color_image(map->ground_sky[1], ft_pixel(ft_atoi(main->text->f[0]), ft_atoi(main->text->f[1]), ft_atoi(main->text->f[2]), 255));
+	fill_color_image(map->ground_sky[0], ft_pixel(ft_atoi(main->text->c[0]),
+			ft_atoi(main->text->c[1]), ft_atoi(main->text->c[2]), 255));
+	fill_color_image(map->ground_sky[1], ft_pixel(ft_atoi(main->text->f[0]),
+			ft_atoi(main->text->f[1]), ft_atoi(main->text->f[2]), 255));
 }
 
 int	main(int argc, char **argv)
