@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:15:25 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 15:28:57 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:04:41 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,26 @@
 t_dblcoor	line_raycast_new_dda_incr(t_main *main, float rad, int step, t_dblcoor val)
 {
 	t_dblcoor	dcoor;
-	float		xdda;
-	float		ydda;
-	int			i;
-	float		y_case;
-	float		x_case;
+	t_dda		dda;
 
 	dcoor.x = main->ray->x;
 	dcoor.y = main->ray->y;
-	xdda = val.x / (float)step;
-	ydda = val.y / (float)step;
-	y_case = get_case_coor(get_center_player(main)).y;
+	dda.xdda = val.x / (float)step;
+	dda.ydda = val.y / (float)step;
+	dda.y_case = get_case_coor(get_center_player(main)).y;
 	if (!(rad < PI))
-		y_case += MAP_RES;
-	x_case = get_case_coor(get_center_player(main)).x;
+		dda.y_case += MAP_RES;
+	dda.x_case = get_case_coor(get_center_player(main)).x;
 	if (!((rad > PI / 2) && (rad < (PI / 2) * 3)))
-		x_case += MAP_RES;
-	i = 0;
-	while (i < step && dcoor.y >= 0)
+		dda.x_case += MAP_RES;
+	dda.i = 0;
+	while (dda.i < step && dcoor.y >= 0)
 	{
-		if (round(dcoor.y) == y_case)
-		{
-			dcoor.y = round(dcoor.y);
-			if (raycast_get_collision(dcoor, main) == 1)
-				return (dcoor);
-			else
-			{
-				if (rad < PI)
-					y_case -= MAP_RES;
-				else
-					y_case += MAP_RES;
-			}
-		}
-		if (round(dcoor.x) == x_case)
-		{
-			dcoor.x = round(dcoor.x);
-			if (raycast_get_collision(dcoor, main) == 1)
-				return (dcoor);
-			else
-			{
-				if ((rad > PI / 2) && (rad < (PI / 2) * 3))
-					x_case -= MAP_RES;
-				else
-					x_case += MAP_RES;
-			}
-		}
-		dcoor.x += xdda;
-		dcoor.y += ydda;
-		i++;
+		if (daa_stairs(&dda, &dcoor, rad, main) == 1)
+			return (dcoor);
+		dcoor.x += dda.xdda;
+		dcoor.y += dda.ydda;
+		dda.i++;
 	}
 	return (dcoor);
 }
@@ -118,7 +90,6 @@ void	raycast_flastlight_new(t_main *main, float angle)
 			temp = angle - 360;
 		val = line_raycast_new(main, deg_to_rad(temp));
 		add_ray_filtre(main, val, i, temp);
-		//draw_rectangle(main, i, height_distance(distance_from_main(main, val), temp), val);
 		angle -= step;
 		i++;
 	}

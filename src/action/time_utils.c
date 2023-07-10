@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:10:33 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:58:31 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:26:21 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_time(t_main *main)
 {
 	unsigned int	time;
 
-	(void)main; //flag
+	(void)main;
 	time = mlx_get_time() * 1000;
 	if (time >= 2147483646)
 		time -= 2147483646;

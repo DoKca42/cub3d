@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:29:47 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:31:41 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,15 @@ typedef struct s_pixtex
 	int			width;
 }	t_pixtex;
 
+typedef struct s_dda
+{
+	float		xdda;
+	float		ydda;
+	int			i;
+	float		y_case;
+	float		x_case;
+}	t_dda;
+
 typedef struct s_main
 {
 	void		*mlx;
@@ -285,6 +294,7 @@ int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
 int			is_ray_collision(double x, double y, t_coor wall);
 int			get_hit_orient(double x, double y, t_coor wall);
 int			get_hit_texture_spbox(t_main *main, t_dblcoor val);
+int			daa_stairs(t_dda *dda, t_dblcoor *dcoor, float rad, t_main *main);
 
 /* ======= RAYCASTING UTILS ====== */
 double		deg_to_rad(double angle);
