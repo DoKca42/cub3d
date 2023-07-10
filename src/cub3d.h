@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/07 12:44:30 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 13:32:10 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,8 @@ void		pixels_display(t_main *main, int height);
 
 
 
-int			pixels_convert_ratio(t_main *main, t_pixtex png, int i, int height);
+int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
+int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
 
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
