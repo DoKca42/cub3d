@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:10:33 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:26:21 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 16:16:22 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ int	get_time(t_main *main)
 	return ((int)time);
 }
 
-t_cooldown	init_cooldown(void)
+t_cooldown	*init_cooldown(void)
 {
-	t_cooldown	cooldown;
+	t_cooldown	*cooldown;
 
-	cooldown.door = 0;
-	cooldown.fire = 0;
-	cooldown.pause = 0;
+	cooldown = ftm_malloc(sizeof(t_cooldown));
+	cooldown->door = 0;
+	cooldown->fire = 0;
+	cooldown->pause = 0;
 	return (cooldown);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 15:31:41 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 16:38:07 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,6 @@ typedef struct s_map
 
 	mlx_image_t		*ray_lines;
 
-	mlx_image_t		*grid;
-
 	mlx_image_t		*view;
 	mlx_image_t		**hand;
 	mlx_texture_t	**hand_texture;
@@ -191,17 +189,6 @@ typedef struct s_main
 	t_pixtex	*png;
 }	t_main;
 
-/* ======= DEBUG ====== */
-void		grid_mlx(t_main *main);
-void		draw_line_grid(int xa, int ya, int xb, int yb);
-void		dda_incr_grid(float x, float y, int step, t_coor dcoor);
-void		init_grid(t_main *main);
-void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
-void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
-
-int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
-int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
-
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
 void		infinit_join_fill(char *full_join, char *argu, int *i);
@@ -212,12 +199,15 @@ void		hand_display(t_main *main, int pose);
 void		get_fire(t_main *main);
 void		get_reload(t_main *main, int force);
 void		wall_textures_load(t_main *main);
+int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
+int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
 void		fill_color_image(mlx_image_t *image, uint32_t color);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		load_pixels(t_main *main);
+void		mlx_destroyer_all(t_main *main);
 
 /* ======= MAP ====== */
 t_coor		map_add_hitbox(int x, int y);
@@ -280,14 +270,7 @@ void		apply_filtre(t_main *main);
 int32_t		get_pix(int pose, int i, int pixel_col, int height);
 void		pixels_display(t_hit box, int i, int height, int x);
 
-t_dblcoor	line_raycast_hori(t_main *main, float rad);
-t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
-t_dblcoor	line_raycast_verti(t_main *main, float rad);
-t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
-
 void		draw_rectangle(t_main *main, int x, int height, t_hit box);
-
-void		raycast_flastlight_new(t_main *main, float angle);
 
 /* ======= RAYCASTING COLLISION ====== */
 int			raycast_get_collision(t_dblcoor n_coor, t_main *main);
@@ -311,7 +294,7 @@ int			get_abs(int value);
 /* ======= TIME ====== */
 int			ft_delta_time(t_main *main);
 int			get_time(t_main *main);
-t_cooldown	init_cooldown(void);
+t_cooldown	*init_cooldown(void);
 
 /* ======= TEXTURE ====== */
 t_hit		get_hit_texture_box(t_main *main, t_dblcoor val);
