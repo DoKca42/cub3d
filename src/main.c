@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 15:06:59 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:18:45 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 	display_mini_map(&main);
 
 	display_mini_map_player(&main);
-	init_ray_view(&main);	
+	init_ray_view(&main);
 	cooldown = init_cooldown();
 	main.cooldown = &cooldown;
 	main.ray = &raycast;
@@ -88,8 +88,12 @@ int	main(int argc, char **argv)
 	
 	load_texture(&main);
 	hand_display(&main, 0);
-	
+
+
 	wall_textures_load(&main);
+	load_pixels(&main);
+	//pixels_display(&main, 442);
+
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_terminate(main.mlx);

@@ -23,11 +23,12 @@ SRCS =	src/main.c\
 		src/raycast/init_raycast.c\
 		src/raycast/raycast_utils.c\
 		src/raycast/draw_line.c\
-		src/raycast/raycast_collision.c\
-		src/raycast/raycast_orientation.c\
 		src/raycast/new_raycast.c\
+		src/raycast/raycast_orientation.c\
+		src/raycast/raycast_collision.c\
 		src/raycast/raycast_view.c\
-		src/raycast/bresenham.c\
+		src/raycast/raycast_view_2.c\
+		src/raycast/raycast_filtre.c\
 		src/texture/infinit_join.c\
 		src/texture/hand.c\
 		src/texture/wall_textures.c\
@@ -45,7 +46,6 @@ SRCS =	src/main.c\
 		src/parsing_map/pars_raw_files_utils_2.c\
 		src/parsing_map/pars_clean_map.c\
 		src/parsing_map/pars_clean_map_utils.c\
-		src/raycast/grid_gridy.c #DEBUG
 
 OBJS	= ${SRCS:.c=.o}
 OBJS_BN	= ${SRCS_BN:.c=.o}

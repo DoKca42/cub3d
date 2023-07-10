@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:45:56 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/04 16:34:25 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/10 14:08:49 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,13 @@ int	height_distance(int distance, float angle)
 	height = HEIGHT * 500 / distance * 1;
 	if (height < 0)
 		height = 0;
-	if (height > HEIGHT)
-		height = HEIGHT;
 	return (height);
+}
+
+int	get_diff(int a, int b)
+{
+	int	out;
+
+	out = a - b;
+	return (get_abs(out));
 }

@@ -6,7 +6,7 @@
 /*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:10:33 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/27 16:53:32 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:58:31 by loculy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	ft_delta_time(t_main *main)
 int	get_time(t_main *main)
 {
 	unsigned int	time;
-	//mlx_t			*mlx;
 
-	//mlx = main->mlx;
 	(void)main; //flag
 	time = mlx_get_time() * 1000;
 	if (time >= 2147483646)

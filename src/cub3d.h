@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/06 14:51:41 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:18:59 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,6 @@ typedef struct s_dblcoor
 	double	y;
 }	t_dblcoor;
 
-/* hit_type : 1 wall | hit_type : 2 door */
-typedef struct s_hit
-{
-	float	x;
-	int		hit_type;
-	int		orientation;
-	int		pixel_col;
-}	t_hit;
-
 
 typedef struct s_coor
 {
@@ -88,6 +79,17 @@ typedef struct s_cooldown
 	int	fire;
 	int	pause;
 }	t_cooldown;
+
+
+/* hit_type : 1 wall | hit_type : 2 door */
+typedef struct s_hit
+{
+	int			hit_type;
+	int			orientation;
+	int			pixel_col;
+	int			distance;
+	t_dblcoor	coor;
+}	t_hit;
 
 typedef struct s_raycast
 {
@@ -145,6 +147,21 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
+typedef struct s_rgba
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_rgba;
+
+typedef struct s_pixtex
+{
+	int32_t		**pixels;
+	int			height;
+	int			width;
+}	t_pixtex;
+
 typedef struct s_main
 {
 	void		*mlx;
@@ -163,6 +180,8 @@ typedef struct s_main
 	int			load;
 	int			load_anim;
 	int			ammo;
+	t_hit		*raycast_arr;
+	t_pixtex	*png;
 }	t_main;
 
 /* ======= DEBUG ====== */
@@ -173,7 +192,11 @@ void		init_grid(t_main *main);
 void		dda_incr_red(float x, float y, int step, t_coor dcoor, int32_t color);
 void		draw_line_red(int xa, int ya, int xb, int yb, int32_t color);
 
-void		bresenham(int x0, int y0, int x1, int y1);
+
+
+
+int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
+int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
 
 /* ======= INIFINIT JOIN ====== */
 char		*infinit_join(const char *fmt, ...);
@@ -190,6 +213,7 @@ void		wall_textures_load(t_main *main);
 int			ft_mlx_init_build(t_main *main);
 void		fill_color_image(mlx_image_t *image, uint32_t color);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		load_pixels(t_main *main);
 
 /* ======= MAP ====== */
 t_coor		map_add_hitbox(int x, int y);
@@ -207,6 +231,7 @@ int			get_max(int a, int b);
 int			get_min(int a, int b);
 int			height_distance(int distance, float angle);
 char		*ft_itoa_(int n);
+int			get_diff(int a, int b);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);
@@ -245,14 +270,19 @@ void		ray_set_player_pose(t_main *main);
 t_dblcoor	ray_get_yn_xn(t_main *main);
 t_dblcoor	ray_horizontal(t_dblcoor pose, int direc);
 void		raycast(t_main *main);
+void		add_ray_filtre(t_main *main, t_dblcoor val, int i, float angle);
+void		read_ray(t_main *main);
+void		apply_filtre(t_main *main);
+int32_t		get_pix(int pose, int i, int pixel_col, int height);
+void		pixels_display(t_hit box, int i, int height, int x);
+
 
 t_dblcoor	line_raycast_hori(t_main *main, float rad);
 t_dblcoor	line_raycast_hori_next(t_main *main, float rad, t_dblcoor val);
 t_dblcoor	line_raycast_verti(t_main *main, float rad);
 t_dblcoor	line_raycast_verti_next(t_main *main, float rad, t_dblcoor val);
 
-void		draw_rectangle(t_main *main, int x,
-				int height, t_dblcoor val);
+void		draw_rectangle(t_main *main, int x, int height, t_hit box);
 
 void		raycast_flastlight_new(t_main *main, float angle);
 
