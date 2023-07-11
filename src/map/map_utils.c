@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:05:14 by loculy            #+#    #+#             */
-/*   Updated: 2023/06/26 14:08:02 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/11 14:15:31 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,23 @@ t_main	*get_main(void *input)
 		main = (t_main *)input;
 	}
 	return (main);
+}
+
+void	display_ground_sky(t_main *main)
+{
+	t_map	*map;
+	int		i;
+
+	map = main->map;
+	i = -1;
+	map->ground_sky = ftm_malloc(2 * sizeof(mlx_image_t));
+	while (++i < 2)
+	{
+		map->ground_sky[i] = mlx_new_image(main->mlx, WIDTH, HEIGHT / 2);
+		mlx_image_to_window(main->mlx, map->ground_sky[i], 0, i * (HEIGHT / 2));
+	}
+	fill_color_image(map->ground_sky[1], ft_pixel(ft_atoi(main->text->c[0]),
+			ft_atoi(main->text->c[1]), ft_atoi(main->text->c[2]), 255));
+	fill_color_image(map->ground_sky[0], ft_pixel(ft_atoi(main->text->f[0]),
+			ft_atoi(main->text->f[1]), ft_atoi(main->text->f[2]), 255));
 }

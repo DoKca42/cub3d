@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:05:00 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 16:38:07 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/11 14:32:44 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,8 @@ void		get_fire(t_main *main);
 void		get_reload(t_main *main, int force);
 void		wall_textures_load(t_main *main);
 int			pixels_convert_ratio_width(t_main *main, t_pixtex png, int i);
-int			pixels_convert_ratio_height(t_main *main, t_pixtex png, int i, int height);
+int			pixels_convert_ratio_height(t_main *main, t_pixtex png,
+				int i, int height);
 
 /* ======= MLX ====== */
 int			ft_mlx_init_build(t_main *main);
@@ -226,6 +227,7 @@ int			get_min(int a, int b);
 int			height_distance(int distance, float angle);
 char		*ft_itoa_(int n);
 int			get_diff(int a, int b);
+void		display_ground_sky(t_main *main);
 
 /* ======= PLAYER ====== */
 t_map		init_map_player(t_map map);
@@ -269,7 +271,7 @@ void		read_ray(t_main *main);
 void		apply_filtre(t_main *main);
 int32_t		get_pix(int pose, int i, int pixel_col, int height);
 void		pixels_display(t_hit box, int i, int height, int x);
-
+void		raycast_flastlight_new(t_main *main, float angle);
 void		draw_rectangle(t_main *main, int x, int height, t_hit box);
 
 /* ======= RAYCASTING COLLISION ====== */
@@ -345,5 +347,4 @@ int			check_char_clean_map(char c, int cases);
 void		check_door(char **map, int i, int k, int *door);
 void		ft_door_texture(t_main *main);
 
-void		display_ground_sky(t_main *main);
 #endif

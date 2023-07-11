@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loculy <loculy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:46:27 by loculy            #+#    #+#             */
-/*   Updated: 2023/07/10 16:41:25 by loculy           ###   ########.fr       */
+/*   Updated: 2023/07/11 14:45:59 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,6 @@ static void	ft_hook(void *param)
 	get_reload(main, 0);
 	if (update > 0)
 		ft_player_rotation(main);
-}
-
-void	display_ground_sky(t_main *main)
-{
-	t_map	*map;
-	int		i;
-
-	map = main->map;
-	i = -1;
-	map->ground_sky = ftm_malloc(2 * sizeof(mlx_image_t));
-	while (++i < 2)
-	{
-		map->ground_sky[i] = mlx_new_image(main->mlx, WIDTH, HEIGHT / 2);
-		mlx_image_to_window(main->mlx, map->ground_sky[i], 0, i * (HEIGHT / 2));
-	}
-	fill_color_image(map->ground_sky[1], ft_pixel(ft_atoi(main->text->c[0]),
-			ft_atoi(main->text->c[1]), ft_atoi(main->text->c[2]), 255));
-	fill_color_image(map->ground_sky[0], ft_pixel(ft_atoi(main->text->f[0]),
-			ft_atoi(main->text->f[1]), ft_atoi(main->text->f[2]), 255));
 }
 
 void	init_main_rgb(t_main *main, char *argv)
@@ -92,7 +73,6 @@ void	mlx_destroyer_all(t_main *main)
 	i = -1;
 	while (++i < main->map->bck_size)
 		mlx_delete_image(main->mlx, main->map->img_bck[i]);
-
 }
 
 int	main(int argc, char **argv)
@@ -110,6 +90,7 @@ int	main(int argc, char **argv)
 	map = init_map(map);
 	main.map = &map;
 	init_main_mlx(&main, &raycast);
+	ft_player_rotation(&main);
 	mlx_loop_hook(main.mlx, ft_hook, &main);
 	mlx_loop(main.mlx);
 	mlx_destroyer_all(&main);
